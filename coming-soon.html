@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <title>Em breve — Admin Template</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" />
+    <link rel="stylesheet" href="assets/css/variables.css" />
+    <link rel="stylesheet" href="assets/css/dark.css" />
+    <link rel="stylesheet" href="assets/css/app.css" />
+</head>
+<body>
+<div class="tx-state-page">
+    <div class="tx-state-bg">
+        <span class="tx-state-blob tx-state-blob--one"></span>
+        <span class="tx-state-blob tx-state-blob--two"></span>
+    </div>
+
+    <div class="tx-state-content has-text-centered">
+        <span class="tx-state-icon"><span class="mdi mdi-rocket-launch"></span></span>
+        <h1 class="title is-2 has-text-white" style="margin-top: 1.25rem;">Em breve</h1>
+        <p class="subtitle is-6 tx-state-text" style="margin-top: 0.75rem;">
+            Estamos preparando algo incrível para você. Inscreva-se abaixo e seja o primeiro a saber
+            quando lançarmos.
+        </p>
+
+        <div class="tx-state-countdown">
+            <div class="tx-state-unit"><span class="tx-state-unit-value" id="cd-days">00</span><span class="tx-state-unit-label">Dias</span></div>
+            <div class="tx-state-unit"><span class="tx-state-unit-value" id="cd-hours">00</span><span class="tx-state-unit-label">Horas</span></div>
+            <div class="tx-state-unit"><span class="tx-state-unit-value" id="cd-mins">00</span><span class="tx-state-unit-label">Minutos</span></div>
+            <div class="tx-state-unit"><span class="tx-state-unit-value" id="cd-secs">00</span><span class="tx-state-unit-label">Segundos</span></div>
+        </div>
+
+        <form class="tx-state-form" id="subscribe-form">
+            <div class="field has-addons">
+                <p class="control has-icons-left is-expanded">
+                    <input class="input is-medium" type="email" id="sub-email" required placeholder="seu@email.com" />
+                    <span class="icon is-small is-left"><span class="mdi mdi-email"></span></span>
+                </p>
+                <p class="control">
+                    <button type="submit" class="button is-primary is-medium">
+                        <span class="icon"><span class="mdi mdi-bell"></span></span>
+                        <span>Avise-me</span>
+                    </button>
+                </p>
+            </div>
+            <p class="is-size-7 has-text-success" id="sub-success" style="display: none; margin-top: 0.5rem;">
+                <span class="mdi mdi-check-circle"></span> Você será avisado!
+            </p>
+        </form>
+    </div>
+</div>
+
+<script src="assets/js/state.js"></script>
+<script src="assets/js/pwa.js"></script>
+<script>
+    var target = Date.now() + 30 * 24 * 60 * 60 * 1000;
+    function pad(n) { return String(n).padStart(2, '0'); }
+    function tick() {
+        var diff = Math.max(0, target - Date.now());
+        var total = Math.floor(diff / 1000);
+        document.getElementById('cd-days').textContent = pad(Math.floor(total / 86400));
+        document.getElementById('cd-hours').textContent = pad(Math.floor((total % 86400) / 3600));
+        document.getElementById('cd-mins').textContent = pad(Math.floor((total % 3600) / 60));
+        document.getElementById('cd-secs').textContent = pad(total % 60);
+    }
+    tick();
+    setInterval(tick, 1000);
+
+    document.getElementById('subscribe-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        document.getElementById('sub-email').value = '';
+        document.getElementById('sub-success').style.display = 'block';
+    });
+</script>
+</body>
+</html>

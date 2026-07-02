@@ -1,0 +1,49 @@
+:root {
+  --tx-primary: #485fc7;
+  --tx-primary-hover: #3a4fa3;
+
+  /* Semantic colors */
+  --tx-success: #48c774;
+  --tx-warning: #f59e0b;
+  --tx-danger: #f14668;
+  --tx-info: #3273dc;
+
+  --tx-sidebar-width: 260px;
+  --tx-sidebar-collapsed: 56px;
+  --tx-header-height: 60px;
+
+  /* Spacing scale */
+  --tx-space-1: 0.25rem;
+  --tx-space-2: 0.5rem;
+  --tx-space-3: 0.75rem;
+  --tx-space-4: 1rem;
+  --tx-space-5: 1.25rem;
+  --tx-space-6: 1.5rem;
+
+  --tx-body-bg: #f5f5f5;
+  --tx-sidebar-bg: #2c3e50;
+  --tx-sidebar-text: #ecf0f1;
+  --tx-sidebar-text-muted: #95a5a6;
+  --tx-sidebar-hover: rgba(255, 255, 255, 0.08);
+  --tx-sidebar-active: rgba(255, 255, 255, 0.15);
+  --tx-sidebar-border: rgba(255, 255, 255, 0.1);
+
+  --tx-header-bg: #ffffff;
+  --tx-header-border: #e0e0e0;
+  --tx-header-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+
+  --tx-card-bg: #ffffff;
+
+  --tx-border-subtle: #ebebeb;
+  --tx-border: #dbdbdb;
+  --tx-border-strong: #b5b5b5;
+
+  --tx-text-heading: #1a1a2a;
+  --tx-text: #363636;
+  --tx-text-muted: #7a7a7a;
+  --tx-text-light: #b5b5b5;
+
+  --tx-transition: 0.18s ease;
+  --tx-radius: 6px;
+  --tx-radius-small: 4px;
+}

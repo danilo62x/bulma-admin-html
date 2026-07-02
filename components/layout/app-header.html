@@ -1,0 +1,69 @@
+<!--
+    AppHeader — barra superior
+    Gerado dinamicamente por `assets/js/layout.js` (função renderHeader).
+    Esta estrutura é referência visual.
+-->
+<header class="tx-header">
+    <!-- Lado esquerdo: toggles + título da página -->
+    <div class="tx-header-left">
+        <!-- Toggle mobile -->
+        <button class="button is-ghost tx-icon-btn is-hidden-desktop">
+            <span class="mdi mdi-menu"></span>
+        </button>
+        <!-- Toggle desktop (colapsar/expandir sidebar) -->
+        <button class="button is-ghost tx-icon-btn is-hidden-touch">
+            <span class="mdi mdi-menu"></span>
+        </button>
+        <span class="tx-page-title">Dashboard</span>
+    </div>
+
+    <!-- Lado direito: dark mode + notificações + usuário -->
+    <div class="tx-header-right">
+        <button class="button is-ghost tx-icon-btn" title="Modo escuro">
+            <span class="mdi mdi-weather-night"></span>
+        </button>
+
+        <!-- Notificações (dropdown) -->
+        <div class="tx-dropdown is-left">
+            <button class="button is-ghost tx-icon-btn tx-icon-btn-notif">
+                <span class="mdi mdi-bell"></span>
+                <span class="tag is-danger is-rounded tx-notif-badge">3</span>
+            </button>
+            <div class="tx-dropdown-menu" style="min-width: 300px;">
+                <div class="tx-dropdown-header">Notificações</div>
+                <div class="dropdown-item">
+                    <div class="tx-notif-item">
+                        <span class="mdi mdi-account-plus tx-notif-icon" style="color:#48c774;"></span>
+                        <div>
+                            <div class="tx-notif-title">Novo usuário cadastrado</div>
+                            <div class="tx-notif-time">2 min atrás</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Usuário (dropdown) -->
+        <div class="tx-dropdown is-left">
+            <button class="button is-ghost tx-user-trigger">
+                <div class="tx-user-avatar">AU</div>
+                <span class="tx-user-name-text is-hidden-touch">Admin Usuário</span>
+                <span class="mdi mdi-chevron-down is-hidden-touch" style="font-size:1rem; color: var(--tx-text-muted);"></span>
+            </button>
+            <div class="tx-dropdown-menu" style="min-width: 220px;">
+                <div class="tx-user-info">
+                    <div class="tx-user-name">Admin Usuário</div>
+                    <div class="tx-user-email">admin@template.com</div>
+                    <span class="tag is-light is-small tx-user-role">Administrador</span>
+                </div>
+                <a class="dropdown-item" href="settings.html">
+                    <span class="mdi mdi-cog" style="margin-right:0.5rem;"></span>Configurações
+                </a>
+                <hr class="dropdown-divider" />
+                <a class="dropdown-item has-text-danger">
+                    <span class="mdi mdi-logout" style="margin-right:0.5rem;"></span>Sair
+                </a>
+            </div>
+        </div>
+    </div>
+</header>

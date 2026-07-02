@@ -1,0 +1,45 @@
+<!--
+    StatsCard — card de métrica com ícone colorido, valor, label e indicador de tendência
+    Usa a variável CSS `--icon-color` para colorir o ícone e seu fundo (com color-mix).
+-->
+
+<!-- Variante padrão (tendência positiva) -->
+<div class="tx-stats-card">
+    <div class="tx-stats-icon" style="--icon-color: #485fc7;">
+        <span class="mdi mdi-account-group"></span>
+    </div>
+    <div class="tx-stats-info">
+        <div class="tx-stats-value">2.841</div>
+        <div class="tx-stats-label">Usuários</div>
+        <div class="tx-stats-trend" style="color: var(--tx-success);">
+            <span class="mdi mdi-trending-up" style="font-size: 0.85rem;"></span>
+            +12% este mês
+        </div>
+    </div>
+</div>
+
+<!-- Variante com tendência negativa -->
+<div class="tx-stats-card">
+    <div class="tx-stats-icon" style="--icon-color: #f59e0b;">
+        <span class="mdi mdi-clock-alert"></span>
+    </div>
+    <div class="tx-stats-info">
+        <div class="tx-stats-value">23</div>
+        <div class="tx-stats-label">Pendentes</div>
+        <div class="tx-stats-trend" style="color: var(--tx-danger);">
+            <span class="mdi mdi-trending-down" style="font-size: 0.85rem;"></span>
+            -3 hoje
+        </div>
+    </div>
+</div>
+
+<!-- Variante neutra (sem tendência) -->
+<div class="tx-stats-card">
+    <div class="tx-stats-icon" style="--icon-color: #48c774;">
+        <span class="mdi mdi-cart"></span>
+    </div>
+    <div class="tx-stats-info">
+        <div class="tx-stats-value">184</div>
+        <div class="tx-stats-label">Pedidos</div>
+    </div>
+</div>

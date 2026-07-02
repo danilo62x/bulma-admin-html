@@ -1,0 +1,43 @@
+<!--
+    Card — container reutilizável com header (ícone + título + toolbar), body e footer
+    Use as classes .tx-card, .tx-card-header, .tx-card-body, .tx-card-footer.
+-->
+
+<!-- Card básico (só body) -->
+<div class="tx-card">
+    <div class="tx-card-body">
+        <p>Conteúdo do card.</p>
+    </div>
+</div>
+
+<!-- Card com header (título + ícone) -->
+<div class="tx-card">
+    <div class="tx-card-header">
+        <span class="mdi tx-card-header-icon mdi-star"></span>
+        <span class="tx-card-title">Título do Card</span>
+    </div>
+    <div class="tx-card-body">
+        <p>Conteúdo do card.</p>
+    </div>
+</div>
+
+<!-- Card com header + toolbar (ações) + footer -->
+<div class="tx-card">
+    <div class="tx-card-header">
+        <span class="mdi tx-card-header-icon mdi-history"></span>
+        <span class="tx-card-title">Atividades Recentes</span>
+        <!-- Toolbar: qualquer elemento depois do .tx-card-title -->
+        <button class="button is-small is-ghost">
+            <span class="mdi mdi-refresh" style="margin-right: 0.25rem;"></span>Atualizar
+        </button>
+    </div>
+    <div class="tx-card-body">
+        <p>Conteúdo do card.</p>
+    </div>
+    <div class="tx-card-footer">
+        <div class="tx-card-footer-actions">
+            <button class="button is-small is-primary">Ação primária</button>
+            <button class="button is-small is-light">Cancelar</button>
+        </div>
+    </div>
+</div>

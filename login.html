@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <title>Login — Admin Template</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" />
+    <link rel="stylesheet" href="assets/css/variables.css" />
+    <link rel="stylesheet" href="assets/css/dark.css" />
+    <link rel="stylesheet" href="assets/css/app.css" />
+</head>
+<body>
+<div class="tx-login-page">
+    <div class="tx-login-card">
+        <div class="tx-login-header">
+            <div style="width: 56px; height: 56px; border-radius: 14px; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 1.8rem; font-weight: 900;">A</div>
+            <h1 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 0.25rem;">Admin Template</h1>
+            <p style="opacity: 0.8; font-size: 0.875rem;">Faça login para continuar</p>
+        </div>
+
+        <div class="tx-login-body">
+            <form id="login-form" novalidate>
+                <div class="field">
+                    <label class="label">E-mail</label>
+                    <div class="control has-icons-left">
+                        <input class="input" type="email" name="email" id="login-email" placeholder="seu@email.com" autocomplete="email" />
+                        <span class="icon is-small is-left"><i class="mdi mdi-email"></i></span>
+                    </div>
+                    <p class="help is-danger" id="error-email" style="display: none;"></p>
+                </div>
+
+                <div class="field">
+                    <label class="label">Senha</label>
+                    <div class="control has-icons-left has-icons-right">
+                        <input class="input" type="password" name="password" id="login-password" placeholder="••••••••" autocomplete="current-password" />
+                        <span class="icon is-small is-left"><i class="mdi mdi-lock"></i></span>
+                        <span class="icon is-small is-right is-clickable" id="toggle-password" style="pointer-events: auto;">
+                            <i class="mdi mdi-eye" id="toggle-password-icon"></i>
+                        </span>
+                    </div>
+                    <p class="help is-danger" id="error-password" style="display: none;"></p>
+                    <p class="help is-danger" id="error-global" style="display: none;"></p>
+                </div>
+
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem;">
+                    <label class="checkbox is-size-7">
+                        <input type="checkbox" name="remember" /> Lembrar-me
+                    </label>
+                    <a href="forgot-password.html" style="font-size: 0.8rem; color: var(--tx-primary);">Esqueceu a senha?</a>
+                </div>
+
+                <button type="submit" class="button is-primary is-fullwidth" id="login-submit">Entrar</button>
+            </form>
+
+            <div style="margin-top: 1.5rem; padding: 0.75rem; background: #f0f4ff; border-radius: 6px; font-size: 0.78rem; color: #555;">
+                <strong>Credenciais de demonstração:</strong><br />
+                admin@template.com / admin123<br />
+                user@template.com / user123
+            </div>
+
+            <p class="has-text-centered is-size-7 has-text-grey" style="margin-top: 1.5rem;">
+                Ainda não tem conta?
+                <a href="register.html" style="color: var(--tx-primary); font-weight: 500;">Criar conta</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<script src="assets/js/state.js"></script>
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/pwa.js"></script>
+<script>
+    txAuth.requireGuest();
+
+    var form = document.getElementById('login-form');
+    var emailEl = document.getElementById('login-email');
+    var passEl = document.getElementById('login-password');
+    var submitBtn = document.getElementById('login-submit');
+    var errEmail = document.getElementById('error-email');
+    var errPass = document.getElementById('error-password');
+    var errGlobal = document.getElementById('error-global');
+    var togglePass = document.getElementById('toggle-password');
+    var togglePassIcon = document.getElementById('toggle-password-icon');
+
+    togglePass.addEventListener('click', function () {
+        var t = passEl.type === 'password' ? 'text' : 'password';
+        passEl.type = t;
+        togglePassIcon.className = 'mdi ' + (t === 'password' ? 'mdi-eye' : 'mdi-eye-off');
+    });
+
+    function clearErrors() {
+        errEmail.style.display = 'none';
+        errPass.style.display = 'none';
+        errGlobal.style.display = 'none';
+        emailEl.classList.remove('is-danger');
+        passEl.classList.remove('is-danger');
+    }
+
+    function showError(el, msg, inputEl) {
+        el.textContent = msg;
+        el.style.display = 'block';
+        if (inputEl) inputEl.classList.add('is-danger');
+    }
+
+    form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        clearErrors();
+        var email = emailEl.value.trim();
+        var password = passEl.value;
+        var valid = true;
+        if (!email) { showError(errEmail, 'E-mail é obrigatório', emailEl); valid = false; }
+        if (!password) { showError(errPass, 'Senha é obrigatória', passEl); valid = false; }
+        if (!valid) return;
+
+        submitBtn.classList.add('is-loading');
+        submitBtn.disabled = true;
+        var user = await txAuth.login(email, password);
+        submitBtn.classList.remove('is-loading');
+        submitBtn.disabled = false;
+        if (!user) {
+            showError(errGlobal, 'E-mail ou senha inválidos', passEl);
+            return;
+        }
+        var params = new URLSearchParams(window.location.search);
+        var redirect = params.get('redirect') || 'dashboard.html';
+        window.location.replace(redirect);
+    });
+</script>
+</body>
+</html>

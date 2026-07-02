@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <title>Dashboard — Admin Template</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" />
+    <link rel="stylesheet" href="assets/css/variables.css" />
+    <link rel="stylesheet" href="assets/css/dark.css" />
+    <link rel="stylesheet" href="assets/css/app.css" />
+</head>
+<body>
+<div class="tx-layout">
+    <aside class="tx-sidebar" id="tx-sidebar"></aside>
+    <div class="tx-backdrop" id="tx-backdrop"></div>
+    <div class="tx-main" id="tx-main">
+        <header class="tx-header" id="tx-header"></header>
+        <main class="tx-content">
+
+            <!-- Stats row -->
+            <div class="columns is-multiline" style="margin-bottom: 0.5rem;">
+                <div class="column is-3-desktop is-6-tablet is-12-mobile">
+                    <div class="tx-stats-card">
+                        <div class="tx-stats-icon" style="--icon-color: #485fc7;"><span class="mdi mdi-account-group"></span></div>
+                        <div class="tx-stats-info">
+                            <div class="tx-stats-value">2.841</div>
+                            <div class="tx-stats-label">Usuários</div>
+                            <div class="tx-stats-trend" style="color: var(--tx-success);"><span class="mdi mdi-trending-up" style="font-size: 0.85rem;"></span> +12% este mês</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-3-desktop is-6-tablet is-12-mobile">
+                    <div class="tx-stats-card">
+                        <div class="tx-stats-icon" style="--icon-color: #48c774;"><span class="mdi mdi-cart"></span></div>
+                        <div class="tx-stats-info">
+                            <div class="tx-stats-value">184</div>
+                            <div class="tx-stats-label">Pedidos</div>
+                            <div class="tx-stats-trend" style="color: var(--tx-success);"><span class="mdi mdi-trending-up" style="font-size: 0.85rem;"></span> +5% este mês</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-3-desktop is-6-tablet is-12-mobile">
+                    <div class="tx-stats-card">
+                        <div class="tx-stats-icon" style="--icon-color: #3273dc;"><span class="mdi mdi-currency-brl"></span></div>
+                        <div class="tx-stats-info">
+                            <div class="tx-stats-value">R$ 48.2k</div>
+                            <div class="tx-stats-label">Receita</div>
+                            <div class="tx-stats-trend" style="color: var(--tx-success);"><span class="mdi mdi-trending-up" style="font-size: 0.85rem;"></span> +18% este mês</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-3-desktop is-6-tablet is-12-mobile">
+                    <div class="tx-stats-card">
+                        <div class="tx-stats-icon" style="--icon-color: #f59e0b;"><span class="mdi mdi-clock-alert"></span></div>
+                        <div class="tx-stats-info">
+                            <div class="tx-stats-value">23</div>
+                            <div class="tx-stats-label">Pendentes</div>
+                            <div class="tx-stats-trend" style="color: var(--tx-danger);"><span class="mdi mdi-trending-down" style="font-size: 0.85rem;"></span> -3 hoje</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="columns">
+                <!-- Recent activity -->
+                <div class="column is-7">
+                    <div class="tx-card">
+                        <div class="tx-card-header">
+                            <span class="mdi tx-card-header-icon mdi-history"></span>
+                            <span class="tx-card-title">Atividades Recentes</span>
+                            <button class="button is-small is-ghost" onclick="txStore.notify('Atualizado!', 'is-info')">
+                                <span class="mdi mdi-refresh" style="margin-right: 0.25rem;"></span>Atualizar
+                            </button>
+                        </div>
+                        <div class="tx-card-body">
+                            <div class="tx-activity-item"><div class="tx-activity-icon" style="--icon-color: #48c774;"><span class="mdi mdi-cart-plus"></span></div><div class="tx-activity-content"><div class="tx-activity-title">Novo pedido realizado</div><div class="tx-activity-meta">João Silva · 2 min</div></div><span class="tx-activity-tag" style="--tag-color: #48c774;">Pedido</span></div>
+                            <div class="tx-activity-item"><div class="tx-activity-icon" style="--icon-color: #3273dc;"><span class="mdi mdi-account-plus"></span></div><div class="tx-activity-content"><div class="tx-activity-title">Usuário cadastrado</div><div class="tx-activity-meta">Maria Santos · 15 min</div></div><span class="tx-activity-tag" style="--tag-color: #3273dc;">Usuário</span></div>
+                            <div class="tx-activity-item"><div class="tx-activity-icon" style="--icon-color: #48c774;"><span class="mdi mdi-check-circle"></span></div><div class="tx-activity-content"><div class="tx-activity-title">Pagamento aprovado</div><div class="tx-activity-meta">Sistema · 1h</div></div><span class="tx-activity-tag" style="--tag-color: #48c774;">Pagamento</span></div>
+                            <div class="tx-activity-item"><div class="tx-activity-icon" style="--icon-color: #485fc7;"><span class="mdi mdi-file-export"></span></div><div class="tx-activity-content"><div class="tx-activity-title">Relatório exportado</div><div class="tx-activity-meta">Carlos Lima · 2h</div></div><span class="tx-activity-tag" style="--tag-color: #485fc7;">Relatório</span></div>
+                            <div class="tx-activity-item"><div class="tx-activity-icon" style="--icon-color: #f59e0b;"><span class="mdi mdi-package-variant"></span></div><div class="tx-activity-content"><div class="tx-activity-title">Estoque atualizado</div><div class="tx-activity-meta">Ana Costa · 3h</div></div><span class="tx-activity-tag" style="--tag-color: #f59e0b;">Estoque</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Goals + Quick actions -->
+                <div class="column is-5">
+                    <div class="tx-card">
+                        <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-target"></span><span class="tx-card-title">Metas do Mês</span></div>
+                        <div class="tx-card-body">
+                            <div class="tx-goal-item"><div class="tx-goal-row"><span class="tx-goal-label">Vendas mensais</span><span class="tx-goal-value">72%</span></div><progress class="progress is-success is-small" value="72" max="100">72%</progress></div>
+                            <div class="tx-goal-item"><div class="tx-goal-row"><span class="tx-goal-label">Novos clientes</span><span class="tx-goal-value">58%</span></div><progress class="progress is-info is-small" value="58" max="100">58%</progress></div>
+                            <div class="tx-goal-item"><div class="tx-goal-row"><span class="tx-goal-label">Satisfação</span><span class="tx-goal-value">91%</span></div><progress class="progress is-primary is-small" value="91" max="100">91%</progress></div>
+                            <div class="tx-goal-item"><div class="tx-goal-row"><span class="tx-goal-label">Metas de equipe</span><span class="tx-goal-value">44%</span></div><progress class="progress is-warning is-small" value="44" max="100">44%</progress></div>
+                        </div>
+                    </div>
+
+                    <div class="tx-card" style="margin-top: 1rem;">
+                        <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-lightning-bolt"></span><span class="tx-card-title">Ações Rápidas</span></div>
+                        <div class="tx-card-body">
+                            <div class="tx-quick-actions-grid">
+                                <button class="tx-quick-action" style="--action-color: #485fc7;" onclick="txStore.notify('Novo Pedido clicado!', 'is-info')"><span class="mdi tx-quick-action-icon mdi-plus-circle"></span><span class="tx-quick-action-label">Novo Pedido</span></button>
+                                <button class="tx-quick-action" style="--action-color: #3273dc;" onclick="txStore.notify('Relatório clicado!', 'is-info')"><span class="mdi tx-quick-action-icon mdi-file-chart"></span><span class="tx-quick-action-label">Relatório</span></button>
+                                <button class="tx-quick-action" style="--action-color: #48c774;" onclick="txStore.notify('Usuários clicado!', 'is-info')"><span class="mdi tx-quick-action-icon mdi-account-group"></span><span class="tx-quick-action-label">Usuários</span></button>
+                                <button class="tx-quick-action" style="--action-color: #f59e0b;" onclick="txStore.notify('Configurar clicado!', 'is-info')"><span class="mdi tx-quick-action-icon mdi-cog"></span><span class="tx-quick-action-label">Configurar</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Orders table -->
+            <div class="tx-card">
+                <div class="tx-card-header">
+                    <span class="mdi tx-card-header-icon mdi-cart"></span>
+                    <span class="tx-card-title">Últimos Pedidos</span>
+                    <a href="tables.html"><button class="button is-small is-primary is-outlined">Ver todos</button></a>
+                </div>
+                <div class="tx-card-body">
+                    <div class="table-container">
+                        <table class="table is-fullwidth is-striped is-hoverable">
+                            <thead><tr><th>#</th><th>Cliente</th><th>Produto</th><th>Valor</th><th>Status</th><th>Data</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>#1001</strong></td><td>João Silva</td><td>Plano Pro</td><td>R$ 299,90</td><td><span class="tag is-success is-light">Aprovado</span></td><td>25/05/2026</td></tr>
+                                <tr><td><strong>#1002</strong></td><td>Maria Santos</td><td>Plano Basic</td><td>R$ 99,90</td><td><span class="tag is-warning is-light">Pendente</span></td><td>25/05/2026</td></tr>
+                                <tr><td><strong>#1003</strong></td><td>Carlos Lima</td><td>Plano Enterprise</td><td>R$ 899,90</td><td><span class="tag is-success is-light">Aprovado</span></td><td>24/05/2026</td></tr>
+                                <tr><td><strong>#1004</strong></td><td>Ana Costa</td><td>Plano Pro</td><td>R$ 299,90</td><td><span class="tag is-danger is-light">Cancelado</span></td><td>24/05/2026</td></tr>
+                                <tr><td><strong>#1005</strong></td><td>Pedro Oliveira</td><td>Plano Basic</td><td>R$ 99,90</td><td><span class="tag is-success is-light">Aprovado</span></td><td>23/05/2026</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+        <footer class="tx-footer" id="tx-footer" style="padding: 0.75rem 1.25rem; border-top: 1px solid var(--tx-border); text-align: center; font-size: 0.78rem; color: var(--tx-text-muted); background: var(--tx-card-bg);"></footer>
+    </div>
+    <div class="tx-notifications" id="tx-notifications"></div>
+    <div class="tx-cookie-banner" id="tx-cookie-banner" style="display:none;"></div>
+</div>
+
+<script src="assets/js/state.js"></script>
+<script src="assets/js/menu.js"></script>
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/layout.js"></script>
+<script>
+    if (txAuth.requireAuth()) {
+        txLayout.init({ current: 'dashboard.html', pageTitle: 'Dashboard' });
+    }
+</script>
+</body>
+</html>

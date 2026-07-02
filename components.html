@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <title>Componentes — Admin Template</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" />
+    <link rel="stylesheet" href="assets/css/variables.css" />
+    <link rel="stylesheet" href="assets/css/dark.css" />
+    <link rel="stylesheet" href="assets/css/app.css" />
+    <style>
+        .tx-skeleton { height: 1rem; background: linear-gradient(90deg, var(--tx-border-subtle) 0%, var(--tx-border) 50%, var(--tx-border-subtle) 100%); background-size: 200% 100%; animation: skel 1.4s ease-in-out infinite; border-radius: var(--tx-radius-small); }
+        @keyframes skel { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+    </style>
+</head>
+<body>
+<div class="tx-layout">
+    <aside class="tx-sidebar" id="tx-sidebar"></aside>
+    <div class="tx-backdrop" id="tx-backdrop"></div>
+    <div class="tx-main" id="tx-main">
+        <header class="tx-header" id="tx-header"></header>
+        <main class="tx-content">
+
+            <div class="tx-card">
+                <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-bell"></span><span class="tx-card-title">Notificações & Toasts</span></div>
+                <div class="tx-card-body">
+                    <div class="tx-btn-group">
+                        <button class="button is-success" onclick="txStore.notifySuccess('Operação realizada com sucesso!')"><span class="mdi mdi-check-circle" style="margin-right:0.25rem;"></span>Sucesso</button>
+                        <button class="button is-danger" onclick="txStore.notifyError('Ocorreu um erro. Tente novamente.')"><span class="mdi mdi-close-circle" style="margin-right:0.25rem;"></span>Erro</button>
+                        <button class="button is-warning" onclick="txStore.notifyWarning('Atenção: verifique os dados.')"><span class="mdi mdi-alert" style="margin-right:0.25rem;"></span>Aviso</button>
+                        <button class="button is-info" onclick="txStore.notify('Informação importante.', 'is-info')"><span class="mdi mdi-information" style="margin-right:0.25rem;"></span>Info</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tx-card" style="margin-top: 1rem;">
+                <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-window-restore"></span><span class="tx-card-title">Modais</span></div>
+                <div class="tx-card-body">
+                    <div class="tx-btn-group">
+                        <button class="button is-primary" id="open-modal">Abrir Modal</button>
+                        <button class="button is-warning" id="open-confirm">Confirmar Ação</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="modal-example" class="modal">
+                <div class="modal-background" data-close-modal="modal-example"></div>
+                <div class="modal-card" style="width: 500px; max-width: 100%;">
+                    <header class="modal-card-head"><p class="modal-card-title">Exemplo de Modal</p><button class="delete" data-close-modal="modal-example"></button></header>
+                    <section class="modal-card-body"><div class="field"><label class="label">Campo de exemplo</label><div class="control"><input class="input" placeholder="Digite algo..." /></div></div></section>
+                    <footer class="modal-card-foot tx-modal-foot"><button class="button" data-close-modal="modal-example">Cancelar</button><button class="button is-primary" id="save-modal">Salvar</button></footer>
+                </div>
+            </div>
+
+            <div id="modal-confirm" class="modal">
+                <div class="modal-background" data-close-modal="modal-confirm"></div>
+                <div class="modal-card" style="width: 400px; max-width: 100%;">
+                    <header class="modal-card-head"><p class="modal-card-title">Confirmar ação</p></header>
+                    <section class="modal-card-body"><p style="font-size: 0.875rem;">Tem certeza? Esta ação não pode ser desfeita.</p></section>
+                    <footer class="modal-card-foot tx-modal-foot"><button class="button" data-close-modal="modal-confirm">Cancelar</button><button class="button is-danger" id="save-confirm"><span class="mdi mdi-alert" style="margin-right:0.25rem;"></span>Confirmar</button></footer>
+                </div>
+            </div>
+
+            <div class="columns" style="margin-top: 1rem;">
+                <div class="column is-4">
+                    <div class="tx-card">
+                        <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-card-outline"></span><span class="tx-card-title">Card Simples</span></div>
+                        <div class="tx-card-body"><p style="font-size: 0.875rem; color: var(--tx-text-muted);">Card básico com título, ícone e conteúdo.</p></div>
+                    </div>
+                </div>
+                <div class="column is-4">
+                    <div class="tx-card">
+                        <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-card-text"></span><span class="tx-card-title">Card com Footer</span></div>
+                        <div class="tx-card-body"><p style="font-size: 0.875rem; color: var(--tx-text-muted);">Card com slot de footer e botões.</p></div>
+                        <div class="tx-card-footer"><div class="tx-card-footer-actions"><button class="button is-small is-primary">Ação primária</button><button class="button is-small is-light">Cancelar</button></div></div>
+                    </div>
+                </div>
+                <div class="column is-4">
+                    <div class="tx-card">
+                        <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-card-bulleted"></span><span class="tx-card-title">Card com Toolbar</span><button class="button is-small is-ghost"><span class="mdi mdi-dots-vertical"></span></button></div>
+                        <div class="tx-card-body"><p style="font-size: 0.875rem; color: var(--tx-text-muted);">Card com dropdown no cabeçalho.</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tx-card" style="margin-top: 1rem;">
+                <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-tag"></span><span class="tx-card-title">Tags & Badges</span></div>
+                <div class="tx-card-body">
+                    <div class="tx-tags-showcase">
+                        <span class="tag is-primary">Primary</span><span class="tag is-success">Sucesso</span><span class="tag is-warning">Aviso</span><span class="tag is-danger">Erro</span><span class="tag is-info">Info</span><span class="tag is-dark">Dark</span><span class="tag is-light">Light</span>
+                        <span class="tag is-primary is-light">Primary light</span><span class="tag is-success is-light">Success light</span><span class="tag is-danger is-light">Danger light</span>
+                        <span class="tag is-rounded is-primary">Rounded</span><span class="tag is-medium is-info">Medium</span><span class="tag is-large is-warning">Large</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tx-card" style="margin-top: 1rem;">
+                <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-chart-bar"></span><span class="tx-card-title">Barras de Progresso</span></div>
+                <div class="tx-card-body">
+                    <div class="tx-progress-list">
+                        <div><div class="tx-progress-row"><span>Primary</span><span>65%</span></div><progress class="progress is-primary" value="65" max="100">65%</progress></div>
+                        <div><div class="tx-progress-row"><span>Sucesso</span><span>80%</span></div><progress class="progress is-success" value="80" max="100">80%</progress></div>
+                        <div><div class="tx-progress-row"><span>Aviso</span><span>45%</span></div><progress class="progress is-warning" value="45" max="100">45%</progress></div>
+                        <div><div class="tx-progress-row"><span>Erro</span><span>30%</span></div><progress class="progress is-danger" value="30" max="100">30%</progress></div>
+                        <div><div class="tx-progress-row"><span>Indeterminado</span><span class="tag is-light is-small">Carregando</span></div><progress class="progress is-primary"></progress></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="columns" style="margin-top: 1rem;">
+                <div class="column is-6">
+                    <div class="tx-card">
+                        <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-loading"></span><span class="tx-card-title">Loading</span></div>
+                        <div class="tx-card-body"><div class="tx-btn-group"><button class="button is-primary is-loading">Carregando</button><button class="button is-success is-outlined is-loading">Salvando</button><button class="button is-danger is-loading">Excluindo</button></div></div>
+                    </div>
+                </div>
+                <div class="column is-6">
+                    <div class="tx-card">
+                        <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-rectangle-outline"></span><span class="tx-card-title">Skeleton</span></div>
+                        <div class="tx-card-body"><div style="display: flex; flex-direction: column; gap: 0.5rem;"><div class="tx-skeleton" style="width: 85%;"></div><div class="tx-skeleton" style="width: 60%;"></div><div class="tx-skeleton" style="width: 75%;"></div><div class="tx-skeleton" style="width: 36px; height: 36px; border-radius: 50%;"></div></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tx-card" style="margin-top: 1rem;">
+                <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-message-text"></span><span class="tx-card-title">Mensagens</span></div>
+                <div class="tx-card-body">
+                    <div class="tx-message-list">
+                        <div class="tx-message is-info"><div class="tx-message-header"><span class="mdi mdi-information"></span> Informação</div><div class="tx-message-body">Esta é uma mensagem informativa.</div></div>
+                        <div class="tx-message is-success"><div class="tx-message-header"><span class="mdi mdi-check-circle"></span> Sucesso</div><div class="tx-message-body">Operação realizada com êxito!</div></div>
+                        <div class="tx-message is-warning"><div class="tx-message-header"><span class="mdi mdi-alert"></span> Atenção</div><div class="tx-message-body">Verifique os campos antes de continuar.</div></div>
+                        <div class="tx-message is-danger"><div class="tx-message-header"><span class="mdi mdi-close-circle"></span> Erro</div><div class="tx-message-body">Falha ao processar a solicitação.</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tx-card" style="margin-top: 1rem;">
+                <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-chevron-down"></span><span class="tx-card-title">Collapse / Acordeão</span></div>
+                <div class="tx-card-body">
+                    <div class="tx-collapse-list" id="collapse-list"></div>
+                </div>
+            </div>
+
+        </main>
+        <footer class="tx-footer" id="tx-footer" style="padding: 0.75rem 1.25rem; border-top: 1px solid var(--tx-border); text-align: center; font-size: 0.78rem; color: var(--tx-text-muted); background: var(--tx-card-bg);"></footer>
+    </div>
+    <div class="tx-notifications" id="tx-notifications"></div>
+    <div class="tx-cookie-banner" id="tx-cookie-banner" style="display:none;"></div>
+</div>
+
+<script src="assets/js/state.js"></script>
+<script src="assets/js/menu.js"></script>
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/layout.js"></script>
+<script src="assets/js/pages/components.js"></script>
+</body>
+</html>

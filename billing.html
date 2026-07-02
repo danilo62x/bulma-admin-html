@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <title>Cobrança — Admin Template</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" />
+    <link rel="stylesheet" href="assets/css/variables.css" />
+    <link rel="stylesheet" href="assets/css/dark.css" />
+    <link rel="stylesheet" href="assets/css/app.css" />
+</head>
+<body>
+<div class="tx-layout">
+    <aside class="tx-sidebar" id="tx-sidebar"></aside>
+    <div class="tx-backdrop" id="tx-backdrop"></div>
+    <div class="tx-main" id="tx-main">
+        <header class="tx-header" id="tx-header"></header>
+        <main class="tx-content">
+
+            <div style="margin-bottom: 1.25rem;">
+                <h1 class="title is-4" style="margin-bottom: 0.25rem;">Cobrança</h1>
+                <p class="subtitle is-6 has-text-grey">Gerencie seu plano, forma de pagamento e histórico de faturas.</p>
+            </div>
+
+            <div class="columns">
+                <div class="column is-8">
+                    <div class="tx-card">
+                        <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-rocket-launch"></span><span class="tx-card-title">Plano atual</span></div>
+                        <div class="tx-card-body">
+                            <div class="tx-plan-top">
+                                <div>
+                                    <div class="tx-plan-name-row"><h3 class="title is-5" style="margin-bottom: 0;">Plano Pro</h3><span class="tag is-primary is-light">Ativo</span></div>
+                                    <p class="tx-plan-price"><span class="has-text-grey is-size-7">R$</span><span class="tx-plan-price-amount">129</span><span class="has-text-grey is-size-7">/mês</span></p>
+                                    <p class="tx-plan-renew"><span class="mdi mdi-information-outline" style="color: var(--tx-primary);"></span> Renova em <span class="has-text-weight-medium">28/06/2026</span></p>
+                                </div>
+                                <div class="tx-plan-actions">
+                                    <button class="button is-primary" data-notify="Upgrade de plano iniciado!"><span class="icon"><span class="mdi mdi-trending-up"></span></span><span>Fazer upgrade</span></button>
+                                    <button class="button is-light" data-notify="Abrindo gerenciamento do plano..."><span class="icon"><span class="mdi mdi-cog"></span></span><span>Gerenciar</span></button>
+                                </div>
+                            </div>
+                            <div class="tx-plan-stats">
+                                <div><p class="tx-plan-stat-label">Usuários</p><p class="tx-plan-stat-value">12 / 15</p></div>
+                                <div><p class="tx-plan-stat-label">Armazenamento</p><p class="tx-plan-stat-value">68 / 100 GB</p></div>
+                                <div><p class="tx-plan-stat-label">Próx. cobrança</p><p class="tx-plan-stat-value">R$ 129,00</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="column is-4">
+                    <div class="tx-card">
+                        <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-credit-card-outline"></span><span class="tx-card-title">Forma de pagamento</span></div>
+                        <div class="tx-card-body">
+                            <div class="tx-card-credit">
+                                <div class="tx-card-credit-circle tx-card-credit-circle-1"></div>
+                                <div class="tx-card-credit-circle tx-card-credit-circle-2"></div>
+                                <div class="tx-card-credit-top"><span class="has-text-weight-medium">Acme Tecnologia</span><span class="mdi mdi-credit-card"></span></div>
+                                <div class="tx-card-credit-chip"><div class="tx-card-credit-chip-inner"></div></div>
+                                <p class="tx-card-credit-number">•••• •••• •••• 4242</p>
+                                <div class="tx-card-credit-foot">
+                                    <div><p class="tx-card-credit-cap">Titular</p><p class="has-text-weight-medium is-size-7">Marina Costa</p></div>
+                                    <div class="has-text-right"><p class="tx-card-credit-cap">Validade</p><p class="has-text-weight-medium is-size-7">09/28</p></div>
+                                </div>
+                            </div>
+                            <button class="button is-light is-fullwidth" style="margin-top: 1rem;" data-notify="Atualização da forma de pagamento iniciada!"><span class="icon"><span class="mdi mdi-pencil"></span></span><span>Atualizar</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="columns is-multiline" style="margin-bottom: 0.5rem;">
+                <div class="column is-3-desktop is-6-tablet"><div class="tx-stats-card"><div class="tx-stats-icon" style="--icon-color:#485fc7;"><span class="mdi mdi-cash-multiple"></span></div><div class="tx-stats-info"><div class="tx-stats-value">R$ 1.752,90</div><div class="tx-stats-label">Gasto este mês</div><div class="tx-stats-trend" style="color: var(--tx-success);"><span class="mdi mdi-trending-up" style="font-size:0.85rem;"></span> +6,2%</div></div></div></div>
+                <div class="column is-3-desktop is-6-tablet"><div class="tx-stats-card"><div class="tx-stats-icon" style="--icon-color:#48c774;"><span class="mdi mdi-check-circle"></span></div><div class="tx-stats-info"><div class="tx-stats-value">18</div><div class="tx-stats-label">Faturas pagas</div><div class="tx-stats-trend" style="color: var(--tx-success);"><span class="mdi mdi-trending-up" style="font-size:0.85rem;"></span> +2</div></div></div></div>
+                <div class="column is-3-desktop is-6-tablet"><div class="tx-stats-card"><div class="tx-stats-icon" style="--icon-color:#f59e0b;"><span class="mdi mdi-tag-outline"></span></div><div class="tx-stats-info"><div class="tx-stats-value">R$ 1.752,90</div><div class="tx-stats-label">Pendente</div></div></div></div>
+                <div class="column is-3-desktop is-6-tablet"><div class="tx-stats-card"><div class="tx-stats-icon" style="--icon-color:#3273dc;"><span class="mdi mdi-trending-up"></span></div><div class="tx-stats-info"><div class="tx-stats-value">R$ 90,00</div><div class="tx-stats-label">Créditos</div><div class="tx-stats-trend" style="color: var(--tx-success);"><span class="mdi mdi-trending-up" style="font-size:0.85rem;"></span> +100%</div></div></div></div>
+            </div>
+
+            <div class="tx-card">
+                <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-table"></span><span class="tx-card-title">Histórico de cobrança</span></div>
+                <div class="tx-card-body">
+                    <div class="table-container">
+                        <table class="table is-fullwidth is-hoverable">
+                            <thead><tr><th>Data</th><th>Descrição</th><th>Valor</th><th>Status</th><th class="has-text-right">Fatura</th></tr></thead>
+                            <tbody id="history-tbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+        <footer class="tx-footer" id="tx-footer" style="padding: 0.75rem 1.25rem; border-top: 1px solid var(--tx-border); text-align: center; font-size: 0.78rem; color: var(--tx-text-muted); background: var(--tx-card-bg);"></footer>
+    </div>
+    <div class="tx-notifications" id="tx-notifications"></div>
+    <div class="tx-cookie-banner" id="tx-cookie-banner" style="display:none;"></div>
+</div>
+
+<script src="assets/js/state.js"></script>
+<script src="assets/js/menu.js"></script>
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/layout.js"></script>
+<script>
+    if (txAuth.requireAuth()) {
+        txLayout.init({ current: 'billing.html', pageTitle: 'Cobrança' });
+        (function () {
+            var HISTORY = [
+                { id: '2026-0042', date: '28/05/2026', desc: 'Plano Pro — assinatura anual', amount: '1.752,90', status: 'Pendente' },
+                { id: '2026-0031', date: '28/04/2026', desc: 'Usuários adicionais (5 assentos)', amount: '145,00', status: 'Pago' },
+                { id: '2026-0024', date: '28/03/2026', desc: 'Plano Pro — mensalidade', amount: '129,00', status: 'Pago' },
+                { id: '2026-0018', date: '28/02/2026', desc: 'Armazenamento extra (250 GB)', amount: '98,00', status: 'Pago' },
+                { id: '2026-0009', date: '28/01/2026', desc: 'Plano Pro — mensalidade', amount: '129,00', status: 'Pago' },
+                { id: '2025-0312', date: '28/12/2025', desc: 'Plano Start — mensalidade', amount: '79,00', status: 'Reembolsado' },
+            ];
+            function cls(s) { if (s === 'Pago') return 'is-success is-light'; if (s === 'Pendente') return 'is-warning is-light'; return 'is-danger is-light'; }
+            document.getElementById('history-tbody').innerHTML = HISTORY.map(function (r) {
+                return '<tr><td class="has-text-grey">' + r.date + '</td><td class="has-text-weight-medium">' + r.desc + '</td>' +
+                    '<td>R$ ' + r.amount + '</td><td><span class="tag ' + cls(r.status) + '">' + r.status + '</span></td>' +
+                    '<td class="has-text-right"><button class="button is-small is-primary is-outlined" data-inv="' + r.id + '"><span class="icon"><span class="mdi mdi-download"></span></span><span>#' + r.id + '</span></button></td></tr>';
+            }).join('');
+            document.querySelectorAll('[data-inv]').forEach(function (b) {
+                b.addEventListener('click', function () { txStore.notifySuccess('Baixando fatura #' + b.getAttribute('data-inv') + '...'); });
+            });
+            document.querySelectorAll('[data-notify]').forEach(function (b) {
+                b.addEventListener('click', function () { txStore.notifySuccess(b.getAttribute('data-notify')); });
+            });
+        })();
+    }
+</script>
+</body>
+</html>

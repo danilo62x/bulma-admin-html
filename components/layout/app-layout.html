@@ -1,0 +1,34 @@
+<!--
+    AppLayout — wrapper principal
+    Shell completo: sidebar + backdrop + main (header + content + footer) + toasts + cookie banner.
+
+    Como usar: cada página do template inclui esta estrutura (ver dashboard.html etc).
+    Os ids `tx-sidebar`, `tx-header`, `tx-footer` são preenchidos pelo layout.js
+    via `txLayout.init({ current, pageTitle })`.
+-->
+<div class="tx-layout">
+    <aside class="tx-sidebar" id="tx-sidebar"></aside>
+    <div class="tx-backdrop" id="tx-backdrop"></div>
+    <div class="tx-main" id="tx-main">
+        <header class="tx-header" id="tx-header"></header>
+        <main class="tx-content">
+            <!-- Conteúdo da página aqui -->
+        </main>
+        <footer class="tx-footer" id="tx-footer"></footer>
+    </div>
+    <div class="tx-notifications" id="tx-notifications"></div>
+    <div class="tx-cookie-banner" id="tx-cookie-banner" style="display:none;"></div>
+</div>
+
+<!--
+    Scripts necessários (na ordem):
+    <script src="assets/js/state.js"></script>
+    <script src="assets/js/menu.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/layout.js"></script>
+    <script>
+        if (txAuth.requireAuth()) {
+            txLayout.init({ current: 'dashboard.html', pageTitle: 'Dashboard' });
+        }
+    </script>
+-->

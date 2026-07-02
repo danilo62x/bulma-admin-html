@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <title>Gráficos & Analytics — Admin Template</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" />
+    <link rel="stylesheet" href="assets/css/variables.css" />
+    <link rel="stylesheet" href="assets/css/dark.css" />
+    <link rel="stylesheet" href="assets/css/app.css" />
+</head>
+<body>
+<div class="tx-layout">
+    <aside class="tx-sidebar" id="tx-sidebar"></aside>
+    <div class="tx-backdrop" id="tx-backdrop"></div>
+    <div class="tx-main" id="tx-main">
+        <header class="tx-header" id="tx-header"></header>
+        <main class="tx-content">
+
+            <div class="columns is-multiline" style="margin-bottom: 0.5rem;" id="chart-stats-row"></div>
+
+            <div class="columns">
+                <div class="column is-8">
+                    <div class="tx-card">
+                        <div class="tx-card-header">
+                            <span class="mdi tx-card-header-icon mdi-chart-bar"></span>
+                            <span class="tx-card-title">Receita Mensal 2025</span>
+                            <div class="tx-legend-row"><span class="tx-legend-dot" style="background:#485fc7;"></span><span>R$ (mil)</span></div>
+                        </div>
+                        <div class="tx-card-body"><div class="tx-chart-wrap"><svg id="bar-chart" width="100%" viewBox="0 0 700 260" class="tx-chart-svg"></svg></div></div>
+                    </div>
+                </div>
+                <div class="column is-4">
+                    <div class="tx-card">
+                        <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-chart-donut"></span><span class="tx-card-title">Fontes de Tráfego</span></div>
+                        <div class="tx-card-body"><div class="tx-donut-wrap"><svg id="donut-chart" width="180" height="180" viewBox="0 0 180 180"></svg><div class="tx-donut-legend" id="donut-legend"></div></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tx-card">
+                <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-chart-areaspline"></span><span class="tx-card-title">Usuários Ativos — Últimas 24 Semanas</span></div>
+                <div class="tx-card-body">
+                    <div class="tx-chart-wrap"><svg id="area-chart" width="100%" viewBox="0 0 860 220" class="tx-chart-svg"></svg></div>
+                    <div class="tx-area-legend">
+                        <span class="tx-legend-dot" style="background:#485fc7"></span><span style="font-size:0.8rem;color:var(--tx-text-muted);margin-right:1rem;">Novos usuários</span>
+                        <span class="tx-legend-dot" style="background:#48c774"></span><span style="font-size:0.8rem;color:var(--tx-text-muted);">Recorrentes</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="columns" style="margin-top:1rem;">
+                <div class="column is-7">
+                    <div class="tx-card">
+                        <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-package-variant"></span><span class="tx-card-title">Produtos Mais Vendidos</span></div>
+                        <div class="tx-card-body" id="top-products"></div>
+                    </div>
+                </div>
+                <div class="column is-5">
+                    <div class="tx-card">
+                        <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-filter-variant"></span><span class="tx-card-title">Funil de Conversão</span></div>
+                        <div class="tx-card-body"><div class="tx-funnel" id="funnel"></div></div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+        <footer class="tx-footer" id="tx-footer" style="padding: 0.75rem 1.25rem; border-top: 1px solid var(--tx-border); text-align: center; font-size: 0.78rem; color: var(--tx-text-muted); background: var(--tx-card-bg);"></footer>
+    </div>
+    <div class="tx-notifications" id="tx-notifications"></div>
+    <div class="tx-cookie-banner" id="tx-cookie-banner" style="display:none;"></div>
+</div>
+
+<script src="assets/js/state.js"></script>
+<script src="assets/js/menu.js"></script>
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/layout.js"></script>
+<script src="assets/js/pages/charts.js"></script>
+</body>
+</html>

@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <title>Admin Template — O template admin que acelera seu produto</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" />
+    <link rel="stylesheet" href="assets/css/variables.css" />
+    <link rel="stylesheet" href="assets/css/dark.css" />
+    <link rel="stylesheet" href="assets/css/app.css" />
+</head>
+<body>
+<div class="tx-lp-page">
+    <!-- Nav -->
+    <header class="tx-lp-nav" id="lp-nav">
+        <div class="container tx-lp-nav-inner">
+            <button type="button" class="tx-lp-brand" data-scroll="hero">
+                <span class="tx-lp-brand-logo">A</span>
+                <span class="tx-lp-brand-name">Admin Template</span>
+            </button>
+
+            <nav class="tx-lp-nav-links is-hidden-touch">
+                <button type="button" class="tx-lp-nav-link" data-scroll="features">Recursos</button>
+                <button type="button" class="tx-lp-nav-link" data-scroll="pricing">Preços</button>
+                <button type="button" class="tx-lp-nav-link" data-scroll="faq">FAQ</button>
+                <button type="button" class="tx-lp-nav-link" data-scroll="contact">Contato</button>
+            </nav>
+
+            <div class="tx-lp-nav-actions">
+                <button type="button" class="button is-ghost tx-lp-icon-btn" id="lp-dark" aria-label="Alternar tema"><span class="mdi" id="lp-dark-icon"></span></button>
+                <div class="tx-dropdown is-left" id="lp-lang">
+                    <button type="button" class="button is-ghost tx-lp-icon-btn" data-dropdown-trigger aria-label="Idioma"><span id="lp-lang-flag" style="font-size:1.1rem;"></span></button>
+                    <div class="tx-dropdown-menu" style="min-width:180px;">
+                        <div class="tx-dropdown-header">Idioma</div>
+                        <div id="lp-lang-items"></div>
+                    </div>
+                </div>
+                <a href="login.html" class="button is-ghost is-hidden-mobile tx-lp-login">Entrar</a>
+                <a href="register.html" class="button is-primary is-hidden-mobile">Começar agora</a>
+                <button type="button" class="button is-ghost tx-lp-icon-btn is-hidden-desktop" id="lp-menu-toggle" aria-label="Abrir menu"><span class="mdi mdi-menu" id="lp-menu-icon"></span></button>
+            </div>
+        </div>
+
+        <div class="tx-lp-mobile-menu is-hidden-desktop" id="lp-mobile" style="display:none;">
+            <div class="container">
+                <button type="button" class="tx-lp-mobile-link" data-scroll="features">Recursos</button>
+                <button type="button" class="tx-lp-mobile-link" data-scroll="pricing">Preços</button>
+                <button type="button" class="tx-lp-mobile-link" data-scroll="faq">FAQ</button>
+                <button type="button" class="tx-lp-mobile-link" data-scroll="contact">Contato</button>
+                <div class="tx-lp-mobile-cta">
+                    <a href="login.html" class="button is-light is-fullwidth">Entrar</a>
+                    <a href="register.html" class="button is-primary is-fullwidth">Começar agora</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section id="hero" class="hero tx-lp-hero">
+            <div class="tx-lp-hero-blob tx-lp-blob-1"></div>
+            <div class="tx-lp-hero-blob tx-lp-blob-2"></div>
+            <div class="hero-body">
+                <div class="container">
+                    <div class="columns is-vcentered is-variable is-8">
+                        <div class="column is-6 tx-lp-hero-copy">
+                            <span class="tag is-primary is-light tx-lp-badge"><span class="mdi mdi-rocket-launch"></span> HTML + Bulma</span>
+                            <h1 class="title tx-lp-hero-title">O template admin que acelera seu próximo produto</h1>
+                            <p class="subtitle tx-lp-hero-sub">
+                                Componentes prontos, dark mode, internacionalização e performance de primeira.
+                                Lance sua aplicação em dias, não meses.
+                            </p>
+                            <div class="tx-lp-hero-actions">
+                                <a href="register.html" class="button is-primary is-medium tx-lp-cta"><span class="mdi mdi-rocket-launch"></span><span>Começar grátis</span></a>
+                                <a href="dashboard.html" class="button is-medium tx-lp-cta tx-lp-cta-ghost"><span>Ver demo</span><span class="mdi mdi-chevron-right"></span></a>
+                            </div>
+                            <div class="tx-lp-social-proof">
+                                <div class="tx-lp-avatars">
+                                    <span class="tx-lp-avatar" style="background:#485fc7"><span class="mdi mdi-account"></span></span>
+                                    <span class="tx-lp-avatar" style="background:#48c774"><span class="mdi mdi-account"></span></span>
+                                    <span class="tx-lp-avatar" style="background:#f59e0b"><span class="mdi mdi-account"></span></span>
+                                    <span class="tx-lp-avatar" style="background:#3273dc"><span class="mdi mdi-account"></span></span>
+                                </div>
+                                <span class="tx-lp-proof-text"><strong>+2.000 equipes</strong> já constroem com a gente</span>
+                            </div>
+                        </div>
+                        <div class="column is-6">
+                            <div class="tx-lp-mockup-wrap">
+                                <div class="box tx-lp-mockup">
+                                    <div class="tx-lp-mockup-bar">
+                                        <span class="tx-lp-dot" style="background:#f14668"></span>
+                                        <span class="tx-lp-dot" style="background:#f59e0b"></span>
+                                        <span class="tx-lp-dot" style="background:#48c774"></span>
+                                        <span class="tx-lp-mockup-url">app.template.com</span>
+                                    </div>
+                                    <div class="columns is-mobile is-variable is-2 tx-lp-stats">
+                                        <div class="column"><div class="tx-lp-stat"><p class="tx-lp-stat-label">Receita</p><p class="tx-lp-stat-value">R$ 84.2k</p><span class="tx-lp-stat-trend is-primary"><span class="mdi mdi-trending-up"></span> +12%</span></div></div>
+                                        <div class="column"><div class="tx-lp-stat"><p class="tx-lp-stat-label">Usuários</p><p class="tx-lp-stat-value">12.480</p><span class="tx-lp-stat-trend is-success"><span class="mdi mdi-trending-up"></span> +12%</span></div></div>
+                                        <div class="column"><div class="tx-lp-stat"><p class="tx-lp-stat-label">Conversão</p><p class="tx-lp-stat-value">4,8%</p><span class="tx-lp-stat-trend is-warning"><span class="mdi mdi-trending-up"></span> +12%</span></div></div>
+                                    </div>
+                                    <div class="tx-lp-chart-card">
+                                        <div class="tx-lp-chart-head"><p class="tx-lp-chart-title">Visão geral</p><span class="tag is-primary is-light tx-lp-chart-tag">7 dias</span></div>
+                                        <div class="tx-lp-bars">
+                                            <div class="tx-lp-bar" style="height:42%"></div>
+                                            <div class="tx-lp-bar" style="height:68%"></div>
+                                            <div class="tx-lp-bar" style="height:55%"></div>
+                                            <div class="tx-lp-bar" style="height:80%"></div>
+                                            <div class="tx-lp-bar" style="height:62%"></div>
+                                            <div class="tx-lp-bar" style="height:95%"></div>
+                                            <div class="tx-lp-bar" style="height:74%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tx-lp-float-card is-hidden-mobile">
+                                    <span class="tx-lp-float-icon"><span class="mdi mdi-check"></span></span>
+                                    <div><p class="tx-lp-float-title">Deploy pronto</p><p class="tx-lp-float-sub">build otimizado</p></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section id="features" class="section tx-lp-section">
+            <div class="container">
+                <div class="tx-lp-head">
+                    <span class="tx-lp-eyebrow">Recursos</span>
+                    <h2 class="title tx-lp-head-title">Tudo que você precisa para construir</h2>
+                    <p class="subtitle tx-lp-head-sub">Uma base sólida e moderna para o seu próximo painel administrativo ou SaaS.</p>
+                </div>
+                <div class="columns is-multiline is-variable is-5 tx-lp-grid" id="lp-features"></div>
+            </div>
+        </section>
+
+        <!-- Pricing -->
+        <section id="pricing" class="section tx-lp-section tx-lp-section-alt">
+            <div class="container">
+                <div class="tx-lp-head">
+                    <span class="tx-lp-eyebrow">Preços</span>
+                    <h2 class="title tx-lp-head-title">Planos para cada estágio</h2>
+                    <p class="subtitle tx-lp-head-sub">Sem taxas ocultas. Cancele quando quiser.</p>
+                    <div class="tx-lp-toggle">
+                        <button type="button" class="tx-lp-toggle-btn is-active" id="pm-monthly">Mensal</button>
+                        <button type="button" class="tx-lp-toggle-btn" id="pm-annual">Anual <span class="tag is-success is-light tx-lp-toggle-badge">-20%</span></button>
+                    </div>
+                </div>
+                <div class="columns is-multiline is-centered is-variable is-5 tx-lp-grid" id="lp-plans"></div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq" class="section tx-lp-section">
+            <div class="container tx-lp-faq-container">
+                <div class="tx-lp-head">
+                    <span class="tx-lp-eyebrow">FAQ</span>
+                    <h2 class="title tx-lp-head-title">Perguntas frequentes</h2>
+                    <p class="subtitle tx-lp-head-sub">Tudo o que você precisa saber antes de começar.</p>
+                </div>
+                <div class="tx-lp-faq-list" id="lp-faq"></div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" class="section tx-lp-section tx-lp-section-alt">
+            <div class="container">
+                <div class="tx-lp-head">
+                    <span class="tx-lp-eyebrow">Contato</span>
+                    <h2 class="title tx-lp-head-title">Fale com a gente</h2>
+                    <p class="subtitle tx-lp-head-sub">Tem dúvidas? Envie uma mensagem e nossa equipe responde rapidinho.</p>
+                </div>
+                <div class="columns is-variable is-6 tx-lp-grid">
+                    <div class="column is-5 tx-lp-contact-info">
+                        <div class="tx-lp-info-item"><span class="tx-lp-info-icon"><span class="mdi mdi-email"></span></span><div><p class="tx-lp-info-label">Email</p><p class="tx-lp-info-value">contato@template.com</p></div></div>
+                        <div class="tx-lp-info-item"><span class="tx-lp-info-icon"><span class="mdi mdi-phone"></span></span><div><p class="tx-lp-info-label">Telefone</p><p class="tx-lp-info-value">+55 (11) 4002-8922</p></div></div>
+                        <div class="tx-lp-info-item"><span class="tx-lp-info-icon"><span class="mdi mdi-map-marker"></span></span><div><p class="tx-lp-info-label">Endereço</p><p class="tx-lp-info-value">Av. Paulista, 1000 — São Paulo, SP</p></div></div>
+                        <div class="card tx-lp-info-card">
+                            <div class="tx-lp-info-card-head"><span class="mdi mdi-check"></span><p>Resposta em até 24h</p></div>
+                            <p class="tx-lp-info-card-text">Atendimento de segunda a sexta, das 9h às 18h (horário de Brasília).</p>
+                        </div>
+                    </div>
+                    <div class="column is-7">
+                        <form class="card tx-lp-form" id="lp-contact-form">
+                            <div class="field"><label class="label">Nome</label><div class="control"><input class="input" type="text" id="c-nome" placeholder="Seu nome" required /></div></div>
+                            <div class="field"><label class="label">Email</label><div class="control"><input class="input" type="email" id="c-email" placeholder="seu@email.com" required /></div></div>
+                            <div class="field"><label class="label">Mensagem</label><div class="control"><textarea class="textarea" id="c-msg" rows="4" placeholder="Como podemos ajudar?" required></textarea></div></div>
+                            <button type="submit" class="button is-primary is-fullwidth"><span class="icon"><span class="mdi mdi-email"></span></span><span>Enviar mensagem</span></button>
+                            <p class="is-size-7 has-text-success" id="c-success" style="display:none; margin-top:0.75rem;"><span class="mdi mdi-check-circle"></span> Mensagem enviada!</p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="tx-lp-footer">
+        <div class="container">
+            <div class="columns is-variable is-6">
+                <div class="column is-4">
+                    <div class="tx-lp-footer-brand"><span class="tx-lp-footer-logo">A</span><span class="tx-lp-footer-name">Admin Template</span></div>
+                    <p class="tx-lp-footer-about">O template admin moderno para acelerar o desenvolvimento do seu próximo produto.</p>
+                    <div class="tx-lp-footer-social">
+                        <a href="#" class="tx-lp-social-link" aria-label="Site"><span class="mdi mdi-web"></span></a>
+                        <a href="#" class="tx-lp-social-link" aria-label="Email"><span class="mdi mdi-email"></span></a>
+                        <a href="#" class="tx-lp-social-link" aria-label="Comunidade"><span class="mdi mdi-account-group"></span></a>
+                        <a href="#" class="tx-lp-social-link" aria-label="Avaliações"><span class="mdi mdi-star"></span></a>
+                    </div>
+                </div>
+                <div class="column"><h3 class="tx-lp-footer-col-title">Produto</h3><ul class="tx-lp-footer-links"><li><a href="#" class="tx-lp-footer-link">Recursos</a></li><li><a href="#" class="tx-lp-footer-link">Preços</a></li><li><a href="integrations.html" class="tx-lp-footer-link">Integrações</a></li><li><a href="#" class="tx-lp-footer-link">Changelog</a></li></ul></div>
+                <div class="column"><h3 class="tx-lp-footer-col-title">Empresa</h3><ul class="tx-lp-footer-links"><li><a href="#" class="tx-lp-footer-link">Sobre</a></li><li><a href="#" class="tx-lp-footer-link">Blog</a></li><li><a href="#" class="tx-lp-footer-link">Carreiras</a></li><li><a href="#" class="tx-lp-footer-link">Contato</a></li></ul></div>
+                <div class="column"><h3 class="tx-lp-footer-col-title">Legal</h3><ul class="tx-lp-footer-links"><li><a href="#" class="tx-lp-footer-link">Privacidade</a></li><li><a href="#" class="tx-lp-footer-link">Termos</a></li><li><a href="#" class="tx-lp-footer-link">Cookies</a></li><li><a href="#" class="tx-lp-footer-link">Licença</a></li></ul></div>
+            </div>
+            <div class="tx-lp-footer-bottom">
+                <p>© <span id="lp-year"></span> Admin Template. Todos os direitos reservados.</p>
+                <p class="tx-lp-footer-made">Feito com <span class="mdi mdi-rocket-launch"></span> em HTML + Bulma</p>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script src="assets/js/state.js"></script>
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/pwa.js"></script>
+<script>
+    (function () {
+        document.getElementById('lp-year').textContent = new Date().getFullYear();
+
+        /* Dark mode */
+        function syncDarkIcon() {
+            document.getElementById('lp-dark-icon').className = 'mdi ' + (txStore.state.darkMode ? 'mdi-weather-sunny' : 'mdi-weather-night');
+        }
+        syncDarkIcon();
+        document.getElementById('lp-dark').addEventListener('click', function () { txStore.toggleDarkMode(); syncDarkIcon(); });
+
+        /* Language switcher */
+        var LANGS = [
+            { code: 'pt-BR', label: 'Português', flag: '🇧🇷' },
+            { code: 'en', label: 'English', flag: '🇺🇸' },
+            { code: 'es', label: 'Español', flag: '🇪🇸' },
+        ];
+        function curLang() { return (window.I18n && window.I18n.getLang()) || 'pt-BR'; }
+        function renderLang() {
+            var lang = curLang();
+            var cur = LANGS.filter(function (l) { return l.code === lang; })[0] || LANGS[0];
+            document.getElementById('lp-lang-flag').textContent = cur.flag;
+            document.getElementById('lp-lang-items').innerHTML = LANGS.map(function (l) {
+                return '<a class="dropdown-item ' + (l.code === lang ? 'is-active' : '') + '" data-lang="' + l.code + '"><span style="margin-right:0.5rem;">' + l.flag + '</span>' + l.label + '</a>';
+            }).join('');
+            document.querySelectorAll('#lp-lang-items [data-lang]').forEach(function (el) {
+                el.addEventListener('click', function () {
+                    if (window.I18n) window.I18n.setLang(el.getAttribute('data-lang'));
+                    renderLang();
+                });
+            });
+        }
+        renderLang();
+
+        document.querySelectorAll('[data-dropdown-trigger]').forEach(function (btn) {
+            btn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                btn.closest('.tx-dropdown').classList.toggle('is-active');
+            });
+        });
+        document.addEventListener('click', function () {
+            document.querySelectorAll('.tx-dropdown.is-active').forEach(function (d) { d.classList.remove('is-active'); });
+        });
+
+        /* Smooth scroll */
+        document.querySelectorAll('[data-scroll]').forEach(function (el) {
+            el.addEventListener('click', function () {
+                document.getElementById('lp-mobile').style.display = 'none';
+                var t = document.getElementById(el.getAttribute('data-scroll'));
+                if (t) t.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        /* Mobile menu */
+        document.getElementById('lp-menu-toggle').addEventListener('click', function () {
+            var m = document.getElementById('lp-mobile');
+            var open = m.style.display !== 'none';
+            m.style.display = open ? 'none' : 'block';
+            document.getElementById('lp-menu-icon').className = 'mdi ' + (open ? 'mdi-menu' : 'mdi-close');
+        });
+
+        /* Scrolled nav */
+        var nav = document.getElementById('lp-nav');
+        function onScroll() { nav.classList.toggle('is-scrolled', window.scrollY > 8); }
+        onScroll();
+        window.addEventListener('scroll', onScroll, { passive: true });
+
+        /* Features */
+        var FEATURES = [
+            { icon: 'mdi-rocket-launch', color: '#485fc7', title: 'Performance de ponta', desc: 'HTML estático e zero build pesado. Carregamento instantâneo em qualquer servidor.' },
+            { icon: 'mdi-view-grid', color: '#3273dc', title: 'Componentes prontos', desc: 'Dezenas de componentes Bulma acessíveis e reutilizáveis para montar telas em minutos.' },
+            { icon: 'mdi-web', color: '#48c774', title: 'Internacionalização', desc: 'Suporte a múltiplos idiomas com i18n leve. Troque a língua sem recarregar a página.' },
+            { icon: 'mdi-weather-night', color: '#7c3aed', title: 'Dark mode nativo', desc: 'Tema claro e escuro com tokens de design consistentes em toda a interface.' },
+            { icon: 'mdi-shield-check', color: '#f59e0b', title: 'Segurança em primeiro lugar', desc: 'Autenticação mockada, rotas protegidas e boas práticas já configuradas.' },
+            { icon: 'mdi-package-variant-closed', color: '#f14668', title: 'PWA pronto', desc: 'Instalável, com suporte offline e cache inteligente para uma experiência de app.' },
+        ];
+        document.getElementById('lp-features').innerHTML = FEATURES.map(function (f) {
+            return '<div class="column is-4"><div class="card tx-lp-feature">' +
+                '<div class="tx-lp-feature-icon" style="background: color-mix(in srgb, ' + f.color + ' 14%, transparent); color: ' + f.color + ';"><span class="mdi ' + f.icon + '"></span></div>' +
+                '<h3 class="tx-lp-feature-title">' + f.title + '</h3><p class="tx-lp-feature-desc">' + f.desc + '</p></div></div>';
+        }).join('');
+
+        /* Pricing */
+        var PLANS = [
+            { name: 'Starter', desc: 'Ideal para começar com o pé direito', icon: 'mdi-rocket-launch', color: '#3273dc', m: 49, a: 39, cta: 'Começar grátis', featured: false, features: ['Até 3 usuários', '5 GB de armazenamento', 'Suporte por email', 'Relatórios básicos'] },
+            { name: 'Pro', desc: 'Para times em crescimento', icon: 'mdi-rocket-launch', color: '#485fc7', m: 129, a: 103, cta: 'Assinar Pro', featured: true, features: ['Até 15 usuários', '100 GB de armazenamento', 'Suporte prioritário 24/5', 'Relatórios avançados', 'API access completo'] },
+            { name: 'Enterprise', desc: 'Para grandes organizações', icon: 'mdi-shield-check', color: '#7c3aed', m: 399, a: 319, cta: 'Falar com vendas', featured: false, features: ['Usuários ilimitados', 'Armazenamento ilimitado', 'Suporte dedicado 24/7', 'SSO e audit logs', 'SLA 99,99%'] },
+        ];
+        var annual = false;
+        function renderPlans() {
+            document.getElementById('lp-plans').innerHTML = PLANS.map(function (p) {
+                var price = annual ? p.a : p.m;
+                var note = annual ? ('Cobrado anualmente (R$ ' + (p.a * 12) + '/ano)') : 'Pagamento mensal';
+                return '<div class="column is-4"><div class="card tx-lp-plan' + (p.featured ? ' is-featured' : '') + '">' +
+                    (p.featured ? '<div class="tx-lp-plan-badge">Popular</div>' : '') +
+                    '<div class="tx-lp-plan-icon" style="background: color-mix(in srgb, ' + p.color + ' 14%, transparent); color: ' + p.color + ';"><span class="mdi ' + p.icon + '"></span></div>' +
+                    '<h3 class="tx-lp-plan-name">' + p.name + '</h3><p class="tx-lp-plan-desc">' + p.desc + '</p>' +
+                    '<div class="tx-lp-plan-price"><span class="tx-lp-plan-cur">R$</span><span class="tx-lp-plan-amount">' + price + '</span><span class="tx-lp-plan-period">/mês</span></div>' +
+                    '<p class="tx-lp-plan-note">' + note + '</p>' +
+                    '<a href="register.html" class="button is-fullwidth tx-lp-plan-cta ' + (p.featured ? 'is-primary' : 'is-light') + '">' + p.cta + '</a>' +
+                    '<ul class="tx-lp-plan-features">' + p.features.map(function (f) { return '<li class="tx-lp-plan-feat"><span class="mdi mdi-check tx-lp-plan-check"></span><span>' + f + '</span></li>'; }).join('') + '</ul>' +
+                    '</div></div>';
+            }).join('');
+        }
+        renderPlans();
+        document.getElementById('pm-monthly').addEventListener('click', function () {
+            annual = false; this.classList.add('is-active'); document.getElementById('pm-annual').classList.remove('is-active'); renderPlans();
+        });
+        document.getElementById('pm-annual').addEventListener('click', function () {
+            annual = true; this.classList.add('is-active'); document.getElementById('pm-monthly').classList.remove('is-active'); renderPlans();
+        });
+
+        /* FAQ */
+        var FAQ = [
+            { q: 'O que está incluído no template?', a: 'Você recebe o código-fonte completo em HTML + Bulma + JavaScript vanilla, com dezenas de páginas e componentes prontos, dark mode, internacionalização, autenticação mockada e sem build pesado.' },
+            { q: 'Preciso saber algum framework para usar?', a: 'Não. É HTML, CSS (Bulma) e JavaScript vanilla. Se você sabe o básico de web, já consegue customizar.' },
+            { q: 'O template é responsivo e tem dark mode?', a: 'Sim. Todas as telas são mobile-first e totalmente responsivas, com suporte nativo a tema claro e escuro usando tokens de design consistentes.' },
+            { q: 'Recebo atualizações futuras?', a: 'Sim. Todas as licenças incluem atualizações gratuitas com novos componentes, correções e melhorias enquanto o produto estiver ativo.' },
+            { q: 'Posso usar em projetos comerciais?', a: 'Com certeza. A licença permite uso em projetos comerciais e produtos para clientes. Consulte os termos completos para limites de revenda.' },
+            { q: 'Como funciona o suporte?', a: 'Oferecemos suporte por email para todos os planos e suporte prioritário para os planos Pro e Enterprise, com tempos de resposta reduzidos.' },
+        ];
+        var faqOpen = 0;
+        function renderFaq() {
+            document.getElementById('lp-faq').innerHTML = FAQ.map(function (item, i) {
+                var isOpen = i === faqOpen;
+                return '<div class="tx-lp-faq-item">' +
+                    '<div class="tx-lp-faq-trigger" data-faq="' + i + '" role="button"><span class="tx-lp-faq-q">' + item.q + '</span>' +
+                    '<span class="mdi tx-lp-faq-chevron ' + (isOpen ? 'mdi-chevron-up' : 'mdi-chevron-down') + '"></span></div>' +
+                    (isOpen ? '<div class="tx-lp-faq-body">' + item.a + '</div>' : '') +
+                    '</div>';
+            }).join('');
+            document.querySelectorAll('#lp-faq [data-faq]').forEach(function (el) {
+                el.addEventListener('click', function () {
+                    var i = parseInt(el.getAttribute('data-faq'), 10);
+                    faqOpen = (faqOpen === i) ? -1 : i;
+                    renderFaq();
+                });
+            });
+        }
+        renderFaq();
+
+        /* Contact form */
+        document.getElementById('lp-contact-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            this.reset();
+            document.getElementById('c-success').style.display = 'block';
+        });
+    })();
+</script>
+</body>
+</html>

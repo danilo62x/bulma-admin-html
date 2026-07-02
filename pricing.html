@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <title>Planos & Preços — Admin Template</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" />
+    <link rel="stylesheet" href="assets/css/variables.css" />
+    <link rel="stylesheet" href="assets/css/dark.css" />
+    <link rel="stylesheet" href="assets/css/app.css" />
+</head>
+<body>
+<div class="tx-layout">
+    <aside class="tx-sidebar" id="tx-sidebar"></aside>
+    <div class="tx-backdrop" id="tx-backdrop"></div>
+    <div class="tx-main" id="tx-main">
+        <header class="tx-header" id="tx-header"></header>
+        <main class="tx-content">
+
+            <div class="tx-pricing-header">
+                <h2 class="tx-pricing-title">Planos & Preços</h2>
+                <p class="tx-pricing-subtitle">Escolha o plano ideal para sua empresa. Sem taxas ocultas.</p>
+                <div class="tx-billing-toggle">
+                    <span id="label-monthly" class="tx-toggle-active">Mensal</span>
+                    <label class="tx-switch is-primary"><input type="checkbox" id="annual-toggle" /><span class="tx-switch-track"><span class="tx-switch-thumb"></span></span></label>
+                    <span id="label-annual">Anual</span>
+                    <span class="tag is-success is-light tx-save-badge" id="save-badge" style="display:none;">Economize 20%</span>
+                </div>
+            </div>
+
+            <div class="columns is-centered" style="margin-top:1.5rem;" id="plans-row"></div>
+
+            <div class="tx-card" style="margin-top:1rem;">
+                <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-frequently-asked-questions"></span><span class="tx-card-title">Perguntas Frequentes</span></div>
+                <div class="tx-card-body">
+                    <div class="tx-collapse-list" id="faq-list"></div>
+                </div>
+            </div>
+
+        </main>
+        <footer class="tx-footer" id="tx-footer" style="padding: 0.75rem 1.25rem; border-top: 1px solid var(--tx-border); text-align: center; font-size: 0.78rem; color: var(--tx-text-muted); background: var(--tx-card-bg);"></footer>
+    </div>
+    <div class="tx-notifications" id="tx-notifications"></div>
+    <div class="tx-cookie-banner" id="tx-cookie-banner" style="display:none;"></div>
+</div>
+
+<script src="assets/js/state.js"></script>
+<script src="assets/js/menu.js"></script>
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/layout.js"></script>
+<script src="assets/js/pages/pricing.js"></script>
+</body>
+</html>

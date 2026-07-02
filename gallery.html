@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <title>Galeria — Admin Template</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" />
+    <link rel="stylesheet" href="assets/css/variables.css" />
+    <link rel="stylesheet" href="assets/css/dark.css" />
+    <link rel="stylesheet" href="assets/css/app.css" />
+</head>
+<body>
+<div class="tx-layout">
+    <aside class="tx-sidebar" id="tx-sidebar"></aside>
+    <div class="tx-backdrop" id="tx-backdrop"></div>
+    <div class="tx-main" id="tx-main">
+        <header class="tx-header" id="tx-header"></header>
+        <main class="tx-content">
+
+            <div class="tx-gallery-head">
+                <div>
+                    <h1 class="title is-5" style="margin-bottom: 0.15rem;">Galeria</h1>
+                    <p class="is-size-7 has-text-grey">Imagens e vídeos da sua biblioteca de mídia.</p>
+                </div>
+                <div class="buttons has-addons" style="margin-bottom: 0;" id="gallery-tabs">
+                    <button class="button is-small is-primary" data-tab="all">Todos</button>
+                    <button class="button is-small is-light" data-tab="image">Imagens</button>
+                    <button class="button is-small is-light" data-tab="video">Vídeos</button>
+                </div>
+            </div>
+
+            <div class="tx-gallery-grid" id="gallery-grid"></div>
+
+        </main>
+        <footer class="tx-footer" id="tx-footer" style="padding: 0.75rem 1.25rem; border-top: 1px solid var(--tx-border); text-align: center; font-size: 0.78rem; color: var(--tx-text-muted); background: var(--tx-card-bg);"></footer>
+    </div>
+    <div class="tx-notifications" id="tx-notifications"></div>
+    <div class="tx-cookie-banner" id="tx-cookie-banner" style="display:none;"></div>
+
+    <div class="modal" id="lightbox">
+        <div class="modal-background"></div>
+        <div class="modal-content" style="max-width: 820px;">
+            <div class="tx-lightbox-stage" id="lb-stage"></div>
+            <div class="tx-lightbox-bar is-flex is-align-items-center is-justify-content-space-between" style="margin-top:1rem;">
+                <div><p style="color:#fff; font-weight:600;" id="lb-title"></p><p class="is-size-7" style="color:rgba(255,255,255,0.6);" id="lb-meta"></p></div>
+                <span class="is-size-7" style="color:rgba(255,255,255,0.6);" id="lb-count"></span>
+            </div>
+            <div class="buttons is-centered" style="margin-top:1rem;">
+                <button class="button is-light is-small" id="lb-prev"><span class="mdi mdi-chevron-left"></span> Anterior</button>
+                <button class="button is-light is-small" id="lb-next">Próximo <span class="mdi mdi-chevron-right"></span></button>
+            </div>
+        </div>
+        <button class="modal-close is-large" id="lb-close" aria-label="Fechar"></button>
+    </div>
+</div>
+
+<script src="assets/js/state.js"></script>
+<script src="assets/js/menu.js"></script>
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/layout.js"></script>
+<script>
+    if (txAuth.requireAuth()) {
+        txLayout.init({ current: 'gallery.html', pageTitle: 'Galeria' });
+        (function () {
+            function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+            // Mídia 100% livre de direitos autorais:
+            //  • Imagens: Lorem Picsum (picsum.photos) — domínio público, sem atribuição.
+            //  • Vídeos: open movies CC/CC0 com hospedagem pública estável.
+            function pic(seed, w, h) { return 'https://picsum.photos/seed/' + seed + '/' + (w || 800) + '/' + (h || 600); }
+            var VID_BBB720 = 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_2MB.mp4';
+            var VID_BBB360 = 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4';
+            var VID_FLOWER = 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4';
+            var VID_BBB_W3 = 'https://www.w3schools.com/html/mov_bbb.mp4';
+            var MEDIA = [
+                { title: 'Pôr do sol na praia', type: 'image', meta: '1920 × 1080', thumb: pic('praia', 800, 1100), span: true },
+                { title: 'Montanhas ao amanhecer', type: 'image', meta: '2400 × 1600', thumb: pic('montanha'), span: false },
+                { title: 'Tour pelo escritório', type: 'video', meta: '00:10 · MP4', thumb: pic('escritorio'), video: VID_BBB720, span: false },
+                { title: 'Arquitetura moderna', type: 'image', meta: '1600 × 2000', thumb: pic('arquitetura', 800, 1100), span: true },
+                { title: 'Lançamento do produto', type: 'video', meta: '00:06 · MP4', thumb: pic('produto'), video: VID_FLOWER, span: false },
+                { title: 'Floresta tropical', type: 'image', meta: '2048 × 1365', thumb: pic('floresta'), span: false },
+                { title: 'Cidade à noite', type: 'image', meta: '1920 × 1280', thumb: pic('cidade'), span: false },
+                { title: 'Depoimento de cliente', type: 'video', meta: '00:10 · MP4', thumb: pic('depoimento', 800, 1100), video: VID_BBB_W3, span: true },
+                { title: 'Detalhe de textura', type: 'image', meta: '1500 × 1500', thumb: pic('textura'), span: false },
+                { title: 'Equipe em reunião', type: 'image', meta: '2200 × 1400', thumb: pic('equipe'), span: false },
+                { title: 'Bastidores do evento', type: 'video', meta: '00:10 · MP4', thumb: pic('evento'), video: VID_BBB360, span: false },
+                { title: 'Paisagem minimalista', type: 'image', meta: '1920 × 1080', thumb: pic('paisagem', 800, 1100), span: true },
+            ];
+            var tab = 'all', filtered = MEDIA, idx = null;
+            var grid = document.getElementById('gallery-grid');
+            var modal = document.getElementById('lightbox');
+
+            function compute() { filtered = MEDIA.filter(function (m) { return tab === 'all' || m.type === tab; }); }
+
+            function renderGrid() {
+                compute();
+                grid.innerHTML = filtered.map(function (m, i) {
+                    return '<button class="tx-media-card ' + (m.span ? 'is-tall' : '') + '" data-idx="' + i + '">' +
+                        '<div class="tx-media-bg" style="background-image:url(&quot;' + esc(m.thumb) + '&quot;);background-color:#1f2937;background-size:cover;background-position:center;"></div>' +
+                        (m.type === 'video' ? '<span class="tx-media-badge"><span class="mdi mdi-play"></span> Vídeo</span>' : '') +
+                        '<div class="tx-media-overlay"><p class="tx-media-title">' + esc(m.title) + '</p><p class="tx-media-meta">' + esc(m.meta) + '</p></div>' +
+                        '<span class="tx-media-zoom"><span class="mdi mdi-magnify-plus-outline"></span></span></button>';
+                }).join('');
+                grid.querySelectorAll('[data-idx]').forEach(function (el) {
+                    el.addEventListener('click', function () { idx = parseInt(el.getAttribute('data-idx'), 10); openLb(); });
+                });
+            }
+
+            function openLb() {
+                var m = filtered[idx];
+                if (!m) return;
+                var stage = document.getElementById('lb-stage');
+                stage.style.background = '#0c111d';
+                stage.innerHTML = m.type === 'video'
+                    ? '<video class="tx-lightbox-media" src="' + esc(m.video) + '" poster="' + esc(m.thumb) + '" controls autoplay playsinline></video>'
+                    : '<img class="tx-lightbox-media" src="' + esc(m.thumb) + '" alt="' + esc(m.title) + '" />';
+                document.getElementById('lb-title').textContent = m.title;
+                document.getElementById('lb-meta').textContent = (m.type === 'video' ? 'Vídeo' : 'Imagem') + ' · ' + m.meta;
+                document.getElementById('lb-count').textContent = (idx + 1) + ' / ' + filtered.length;
+                modal.classList.add('is-active');
+            }
+            function closeLb() { modal.classList.remove('is-active'); idx = null; document.getElementById('lb-stage').innerHTML = ''; }
+            document.getElementById('lb-prev').addEventListener('click', function () { idx = (idx - 1 + filtered.length) % filtered.length; openLb(); });
+            document.getElementById('lb-next').addEventListener('click', function () { idx = (idx + 1) % filtered.length; openLb(); });
+            document.getElementById('lb-close').addEventListener('click', closeLb);
+            modal.querySelector('.modal-background').addEventListener('click', closeLb);
+
+            document.querySelectorAll('#gallery-tabs [data-tab]').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    document.querySelectorAll('#gallery-tabs [data-tab]').forEach(function (b) { b.classList.replace('is-primary', 'is-light'); });
+                    btn.classList.replace('is-light', 'is-primary');
+                    tab = btn.getAttribute('data-tab'); idx = null; renderGrid();
+                });
+            });
+            renderGrid();
+        })();
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <title>Formulários — Admin Template</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" />
+    <link rel="stylesheet" href="assets/css/variables.css" />
+    <link rel="stylesheet" href="assets/css/dark.css" />
+    <link rel="stylesheet" href="assets/css/app.css" />
+</head>
+<body>
+<div class="tx-layout">
+    <aside class="tx-sidebar" id="tx-sidebar"></aside>
+    <div class="tx-backdrop" id="tx-backdrop"></div>
+    <div class="tx-main" id="tx-main">
+        <header class="tx-header" id="tx-header"></header>
+        <main class="tx-content">
+
+            <div class="columns">
+                <div class="column is-8">
+                    <div class="tx-card">
+                        <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-form-select"></span><span class="tx-card-title">Formulários</span></div>
+                        <div class="tx-card-body">
+                            <div class="tabs is-boxed is-small">
+                                <ul id="tabs-nav">
+                                    <li class="is-active"><a data-tab="0"><span class="icon is-small"><i class="mdi mdi-account-plus"></i></span><span>Cadastro</span></a></li>
+                                    <li><a data-tab="1"><span class="icon is-small"><i class="mdi mdi-puzzle"></i></span><span>Componentes</span></a></li>
+                                    <li><a data-tab="2"><span class="icon is-small"><i class="mdi mdi-view-dashboard"></i></span><span>Layouts</span></a></li>
+                                </ul>
+                            </div>
+
+                            <!-- Tab Cadastro -->
+                            <div id="tab-0" class="tx-tab-panel">
+                                <form id="register-form">
+                                    <p class="tx-section-divider">Informações Pessoais</p>
+                                    <div class="columns is-multiline">
+                                        <div class="column is-6"><div class="field"><label class="label">Nome completo *</label><div class="control has-icons-left"><input class="input" name="name" placeholder="Digite o nome" /><span class="icon is-small is-left"><i class="mdi mdi-account"></i></span></div><p class="help is-danger" data-error="name" style="display:none;"></p></div></div>
+                                        <div class="column is-6"><div class="field"><label class="label">E-mail *</label><div class="control has-icons-left"><input class="input" type="email" name="email" placeholder="email@exemplo.com" /><span class="icon is-small is-left"><i class="mdi mdi-email"></i></span></div><p class="help is-danger" data-error="email" style="display:none;"></p></div></div>
+                                        <div class="column is-4"><div class="field"><label class="label">Telefone</label><div class="control has-icons-left"><input class="input" name="phone" placeholder="(11) 99999-9999" /><span class="icon is-small is-left"><i class="mdi mdi-phone"></i></span></div></div></div>
+                                        <div class="column is-4"><div class="field"><label class="label">Data de nascimento</label><div class="control has-icons-left"><input class="input" type="date" name="birthdate" /><span class="icon is-small is-left"><i class="mdi mdi-calendar"></i></span></div></div></div>
+                                        <div class="column is-4"><div class="field"><label class="label">Cidade</label><div class="control has-icons-left"><input class="input" name="city" placeholder="Digite uma cidade..." list="cidades" /><span class="icon is-small is-left"><i class="mdi mdi-map-marker"></i></span><datalist id="cidades"><option value="São Paulo"></option><option value="Rio de Janeiro"></option><option value="Curitiba"></option><option value="Belo Horizonte"></option><option value="Porto Alegre"></option></datalist></div></div></div>
+                                        <div class="column is-12"><div class="field"><label class="label">Biografia</label><textarea class="textarea" rows="3" maxlength="300" name="bio" placeholder="Fale um pouco..."></textarea></div></div>
+                                    </div>
+
+                                    <p class="tx-section-divider">Conta & Acesso</p>
+                                    <div class="columns is-multiline">
+                                        <div class="column is-6"><div class="field"><label class="label">Senha *</label><div class="control has-icons-left"><input class="input" type="password" name="password" placeholder="Mínimo 8 caracteres" /><span class="icon is-small is-left"><i class="mdi mdi-lock"></i></span></div><p class="help is-danger" data-error="password" style="display:none;"></p></div></div>
+                                        <div class="column is-6"><div class="field"><label class="label">Perfil *</label><div class="control has-icons-left"><div class="select is-fullwidth"><select name="profile"><option value="">-- Selecione --</option><option value="admin">Administrador</option><option value="manager">Gerente</option><option value="operator">Operador</option><option value="viewer">Visualizador</option></select></div><span class="icon is-small is-left"><i class="mdi mdi-account-cog"></i></span></div><p class="help is-danger" data-error="profile" style="display:none;"></p></div></div>
+                                    </div>
+
+                                    <p class="tx-section-divider">Preferências</p>
+                                    <div class="columns is-multiline">
+                                        <div class="column is-4"><div class="field"><label class="label">Status</label><label class="tx-switch is-success"><input type="checkbox" name="active" checked /><span class="tx-switch-track"><span class="tx-switch-thumb"></span></span><span class="tx-switch-label">Ativo</span></label></div></div>
+                                        <div class="column is-4"><div class="field"><label class="label">Notificações</label><label class="tx-switch is-info"><input type="checkbox" name="notifications" checked /><span class="tx-switch-track"><span class="tx-switch-thumb"></span></span><span class="tx-switch-label">Habilitado</span></label></div></div>
+                                        <div class="column is-4"><div class="field"><label class="label">Avaliação</label><div class="tx-rate is-medium" id="rate-stars" data-value="4"></div></div></div>
+                                        <div class="column is-6"><div class="field"><label class="label">Gênero</label><div class="tx-radio-group"><label class="radio"><input type="radio" name="gender" value="M" checked /> Masculino</label><label class="radio"><input type="radio" name="gender" value="F" /> Feminino</label><label class="radio"><input type="radio" name="gender" value="O" /> Outro</label></div></div></div>
+                                        <div class="column is-6"><div class="field"><label class="label">Permissões</label><div class="tx-check-group"><label class="checkbox"><input type="checkbox" name="perm" value="read" checked /> Leitura</label><label class="checkbox"><input type="checkbox" name="perm" value="write" /> Escrita</label><label class="checkbox"><input type="checkbox" name="perm" value="delete" /> Exclusão</label><label class="checkbox"><input type="checkbox" name="perm" value="admin" /> Admin</label></div></div></div>
+                                    </div>
+
+                                    <div class="tx-form-actions">
+                                        <button type="submit" class="button is-primary" id="submit-btn"><span class="mdi mdi-content-save" style="margin-right: 0.25rem;"></span>Salvar cadastro</button>
+                                        <button type="button" class="button is-light" id="reset-btn"><span class="mdi mdi-refresh" style="margin-right: 0.25rem;"></span>Limpar</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <!-- Tab Componentes -->
+                            <div id="tab-1" class="tx-tab-panel" style="display:none;">
+                                <p class="tx-section-divider">Inputs</p>
+                                <div class="tx-showcase-grid">
+                                    <div class="tx-showcase-item"><p class="tx-component-label">Padrão</p><div class="field"><div class="control has-icons-left"><input class="input" placeholder="Digite..." /><span class="icon is-small is-left"><i class="mdi mdi-pencil"></i></span></div></div></div>
+                                    <div class="tx-showcase-item"><p class="tx-component-label">Sucesso</p><div class="field"><div class="control has-icons-left"><input class="input is-success" value="valor válido" /><span class="icon is-small is-left"><i class="mdi mdi-check"></i></span></div></div></div>
+                                    <div class="tx-showcase-item"><p class="tx-component-label">Erro</p><div class="field"><div class="control has-icons-left"><input class="input is-danger" placeholder="Obrigatório" /><span class="icon is-small is-left"><i class="mdi mdi-alert-circle"></i></span></div></div></div>
+                                    <div class="tx-showcase-item"><p class="tx-component-label">Desabilitado</p><div class="field"><div class="control"><input class="input" disabled value="não editável" /></div></div></div>
+                                </div>
+
+                                <p class="tx-section-divider">Switches</p>
+                                <div class="tx-check-group">
+                                    <label class="tx-switch"><input type="checkbox" checked /><span class="tx-switch-track"><span class="tx-switch-thumb"></span></span><span class="tx-switch-label">Padrão</span></label>
+                                    <label class="tx-switch is-success"><input type="checkbox" checked /><span class="tx-switch-track"><span class="tx-switch-thumb"></span></span><span class="tx-switch-label">Sucesso</span></label>
+                                    <label class="tx-switch is-info"><input type="checkbox" /><span class="tx-switch-track"><span class="tx-switch-thumb"></span></span><span class="tx-switch-label">Info</span></label>
+                                    <label class="tx-switch is-warning"><input type="checkbox" /><span class="tx-switch-track"><span class="tx-switch-thumb"></span></span><span class="tx-switch-label">Aviso</span></label>
+                                    <label class="tx-switch is-danger"><input type="checkbox" /><span class="tx-switch-track"><span class="tx-switch-thumb"></span></span><span class="tx-switch-label">Perigo</span></label>
+                                </div>
+
+                                <p class="tx-section-divider">Sliders</p>
+                                <div class="columns">
+                                    <div class="column is-6"><p class="tx-component-label">Volume (0–100): <span id="vol-value">60</span></p><input type="range" id="vol-slider" min="0" max="100" value="60" style="width:100%; accent-color: var(--tx-primary);" /></div>
+                                    <div class="column is-6"><p class="tx-component-label">Orçamento: R$ <span id="budget-value">2.500</span></p><input type="range" id="budget-slider" min="0" max="10000" step="500" value="2500" style="width:100%; accent-color: var(--tx-success);" /></div>
+                                </div>
+                            </div>
+
+                            <!-- Tab Layouts -->
+                            <div id="tab-2" class="tx-tab-panel" style="display:none;">
+                                <p class="tx-section-divider">Formulário Horizontal</p>
+                                <div class="tx-layout-demo">
+                                    <div class="field is-horizontal"><div class="field-label is-normal"><label class="label">Nome</label></div><div class="field-body"><div class="field"><div class="control"><input class="input" placeholder="Nome completo" /></div></div></div></div>
+                                    <div class="field is-horizontal"><div class="field-label is-normal"><label class="label">E-mail</label></div><div class="field-body"><div class="field"><div class="control"><input class="input" type="email" /></div></div></div></div>
+                                </div>
+
+                                <p class="tx-section-divider">Wizard (Steps)</p>
+                                <div class="tx-layout-demo">
+                                    <div class="tx-steps" id="wizard-steps">
+                                        <div class="tx-step is-active" data-step="1"><div class="tx-step-marker">1</div><div class="tx-step-label">Dados Pessoais</div></div>
+                                        <div class="tx-step" data-step="2"><div class="tx-step-marker">2</div><div class="tx-step-label">Endereço</div></div>
+                                        <div class="tx-step" data-step="3"><div class="tx-step-marker">3</div><div class="tx-step-label">Confirmar</div></div>
+                                    </div>
+                                    <div id="step-content" style="padding: 1rem 0;"></div>
+                                    <div class="tx-steps-nav">
+                                        <button class="button is-light" id="prev-step" style="display:none;"><span class="mdi mdi-arrow-left" style="margin-right:0.25rem;"></span>Anterior</button>
+                                        <button class="button is-primary" id="next-step">Próximo <span class="mdi mdi-arrow-right" style="margin-left:0.25rem;"></span></button>
+                                        <button class="button is-success" id="finish-step" style="display:none;"><span class="mdi mdi-check" style="margin-right:0.25rem;"></span>Finalizar</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="column is-4">
+                    <div class="tx-card">
+                        <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-code-json"></span><span class="tx-card-title">Dados do Formulário</span></div>
+                        <div class="tx-card-body"><pre class="tx-json-preview" id="form-preview">{}</pre></div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+        <footer class="tx-footer" id="tx-footer" style="padding: 0.75rem 1.25rem; border-top: 1px solid var(--tx-border); text-align: center; font-size: 0.78rem; color: var(--tx-text-muted); background: var(--tx-card-bg);"></footer>
+    </div>
+    <div class="tx-notifications" id="tx-notifications"></div>
+    <div class="tx-cookie-banner" id="tx-cookie-banner" style="display:none;"></div>
+</div>
+
+<script src="assets/js/state.js"></script>
+<script src="assets/js/menu.js"></script>
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/layout.js"></script>
+<script src="assets/js/pages/forms.js"></script>
+</body>
+</html>

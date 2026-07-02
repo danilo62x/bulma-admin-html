@@ -1,0 +1,287 @@
+[data-theme="dark"] {
+  /* ── Custom design tokens ──────────────────────────────── */
+  --tx-body-bg: #1a1a2e;
+  --tx-sidebar-bg: #16213e;
+  --tx-sidebar-text: #e2e8f0;
+  --tx-sidebar-text-muted: #718096;
+  --tx-sidebar-hover: rgba(255, 255, 255, 0.06);
+  --tx-sidebar-active: rgba(72, 95, 199, 0.3);
+  --tx-sidebar-border: rgba(255, 255, 255, 0.08);
+
+  --tx-header-bg: #1e2244;
+  --tx-header-border: #2a2f5a;
+  --tx-header-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+
+  --tx-card-bg: #16213e;
+
+  --tx-border-subtle: #1e2640;
+  --tx-border: #2d3748;
+  --tx-border-strong: #4a5568;
+
+  --tx-text-heading: #f0f4ff;
+  --tx-text: #e2e8f0;
+  --tx-text-muted: #a0aec0;
+  --tx-text-light: #4a5568;
+
+  /* ── Bulma dark mode overrides ─────────────────────────── */
+  /* These drive all Buefy components that use --bulma-* vars */
+  --bulma-scheme-brightness: dark;
+  --bulma-scheme-main-l: 9%;
+  --bulma-scheme-main-bis-l: 11%;
+  --bulma-scheme-main-ter-l: 13%;
+  --bulma-background-l: 14%;
+  --bulma-border-weak-l: 21%;
+  --bulma-border-l: 24%;
+  --bulma-text-weak-l: 53%;
+  --bulma-text-l: 71%;
+  --bulma-text-strong-l: 93%;
+  --bulma-text-title-l: 100%;
+  --bulma-scheme-invert-ter-l: 93%;
+  --bulma-scheme-invert-bis-l: 96%;
+  --bulma-scheme-invert-l: 100%;
+  --bulma-soft-l: 20%;
+  --bulma-bold-l: 90%;
+  --bulma-soft-invert-l: 90%;
+  --bulma-bold-invert-l: 20%;
+  --bulma-hover-background-l-delta: 5%;
+  --bulma-active-background-l-delta: 10%;
+  --bulma-hover-border-l-delta: 10%;
+  --bulma-active-border-l-delta: 20%;
+}
+
+/* ── Layout / Custom components ──────────────────────────── */
+[data-theme="dark"] .card {
+  background-color: var(--tx-card-bg);
+  color: var(--tx-text);
+  border-color: var(--tx-border);
+}
+
+[data-theme="dark"] .card-header {
+  border-color: var(--tx-border);
+}
+
+/* Inputs – explicit override for our branded dark bg */
+[data-theme="dark"] .input,
+[data-theme="dark"] .textarea,
+[data-theme="dark"] .select select {
+  background-color: #0f1a35;
+  color: var(--tx-text);
+  border-color: var(--tx-border);
+}
+
+[data-theme="dark"] .input:focus,
+[data-theme="dark"] .textarea:focus,
+[data-theme="dark"] .select select:focus {
+  border-color: var(--tx-primary);
+}
+
+[data-theme="dark"] .input::placeholder,
+[data-theme="dark"] .textarea::placeholder {
+  color: var(--tx-text-muted);
+}
+
+[data-theme="dark"] .label {
+  color: var(--tx-text);
+}
+
+[data-theme="dark"] .help {
+  color: var(--tx-text-muted);
+}
+
+/* Table */
+[data-theme="dark"] .table {
+  background-color: var(--tx-card-bg);
+  color: var(--tx-text);
+}
+
+[data-theme="dark"] .table thead td,
+[data-theme="dark"] .table thead th {
+  color: var(--tx-text-muted);
+  border-color: var(--tx-border);
+}
+
+[data-theme="dark"] .table td,
+[data-theme="dark"] .table th {
+  border-color: var(--tx-border);
+  color: var(--tx-text);
+}
+
+[data-theme="dark"] .table.is-striped tbody tr:not(.is-selected):nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+[data-theme="dark"] .table.is-hoverable tbody tr:not(.is-selected):hover {
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+/* b-table detail row */
+[data-theme="dark"] .detail {
+  background-color: var(--tx-body-bg);
+}
+
+/* Modal */
+[data-theme="dark"] .modal-card {
+  background-color: var(--tx-card-bg);
+}
+
+[data-theme="dark"] .modal-card-head,
+[data-theme="dark"] .modal-card-foot {
+  background-color: var(--tx-sidebar-bg);
+  border-color: var(--tx-border);
+}
+
+[data-theme="dark"] .modal-card-title {
+  color: var(--tx-text);
+}
+
+[data-theme="dark"] .modal-card-body {
+  background-color: var(--tx-card-bg);
+  color: var(--tx-text);
+}
+
+/* Dropdown */
+[data-theme="dark"] .dropdown-content {
+  background-color: var(--tx-card-bg);
+  border-color: var(--tx-border);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .dropdown-item {
+  color: var(--tx-text);
+}
+
+[data-theme="dark"] .dropdown-item:hover,
+[data-theme="dark"] a.dropdown-item:hover {
+  background-color: var(--tx-sidebar-hover);
+  color: white;
+}
+
+[data-theme="dark"] .dropdown-divider {
+  background-color: var(--tx-border);
+}
+
+/* Notifications – only affect plain (unstyled) notifications;
+   leave colored variants (is-success, is-danger, etc.) as-is */
+[data-theme="dark"] .notification:not(.is-white):not(.is-light):not(.is-dark):not(.is-black):not(.is-text):not(.is-ghost):not(.is-primary):not(.is-link):not(.is-info):not(.is-success):not(.is-warning):not(.is-danger) {
+  background-color: var(--tx-card-bg);
+  color: var(--tx-text);
+}
+
+/* Tags – light modifier on dark mode */
+[data-theme="dark"] .tag:not([class*="is-"]),
+[data-theme="dark"] .tag.is-light {
+  background-color: var(--tx-border);
+  color: var(--tx-text);
+}
+
+[data-theme="dark"] .tag.is-primary.is-light {
+  background-color: rgba(72, 95, 199, 0.2);
+  color: #91a3f5;
+}
+
+[data-theme="dark"] .tag.is-success.is-light {
+  background-color: rgba(72, 199, 116, 0.2);
+  color: #68d391;
+}
+
+[data-theme="dark"] .tag.is-danger.is-light {
+  background-color: rgba(241, 70, 104, 0.2);
+  color: #fc8181;
+}
+
+[data-theme="dark"] .tag.is-warning.is-light {
+  background-color: rgba(255, 221, 87, 0.15);
+  color: #f6c90e;
+}
+
+[data-theme="dark"] .tag.is-info.is-light {
+  background-color: rgba(50, 115, 220, 0.2);
+  color: #63b3ed;
+}
+
+/* Pagination */
+[data-theme="dark"] .pagination-link,
+[data-theme="dark"] .pagination-previous,
+[data-theme="dark"] .pagination-next {
+  background-color: var(--tx-card-bg);
+  border-color: var(--tx-border);
+  color: var(--tx-text);
+}
+
+[data-theme="dark"] .pagination-link.is-current {
+  background-color: var(--tx-primary);
+  border-color: var(--tx-primary);
+  color: white;
+}
+
+/* Panel */
+[data-theme="dark"] .panel {
+  border-color: var(--tx-border);
+}
+
+[data-theme="dark"] .panel-heading {
+  background-color: var(--tx-sidebar-bg);
+  color: var(--tx-text);
+  border-color: var(--tx-border);
+}
+
+[data-theme="dark"] .panel-block {
+  border-color: var(--tx-border);
+  color: var(--tx-text);
+}
+
+/* Tabs */
+[data-theme="dark"] .tabs a {
+  border-color: var(--tx-border);
+  color: var(--tx-text-muted);
+}
+
+[data-theme="dark"] .tabs li.is-active a {
+  border-color: var(--tx-primary);
+  color: var(--tx-primary);
+}
+
+/* Steps */
+[data-theme="dark"] .steps .step-item .step-marker {
+  border-color: var(--tx-border);
+  background-color: var(--tx-card-bg);
+  color: var(--tx-text-muted);
+}
+
+[data-theme="dark"] .steps .step-item::before {
+  background: linear-gradient(to right, var(--tx-border) 0%, var(--tx-border) 100%);
+}
+
+/* Box */
+[data-theme="dark"] .box {
+  background-color: var(--tx-card-bg);
+  color: var(--tx-text);
+}
+
+/* Hero */
+[data-theme="dark"] .hero {
+  background-color: var(--tx-sidebar-bg);
+}
+
+/* Datepicker */
+[data-theme="dark"] .datepicker .datepicker-header,
+[data-theme="dark"] .datepicker .datepicker-footer {
+  border-color: var(--tx-border);
+}
+
+[data-theme="dark"] .datepicker .datepicker-cell:hover {
+  background-color: var(--tx-sidebar-hover);
+}
+
+[data-theme="dark"] .datepicker .datepicker-cell.is-selected {
+  background-color: var(--tx-primary);
+}
+
+/* Scrollbar */
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}

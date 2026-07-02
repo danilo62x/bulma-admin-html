@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <title>Componentes avançados — Admin Template</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" />
+    <link rel="stylesheet" href="assets/css/variables.css" />
+    <link rel="stylesheet" href="assets/css/dark.css" />
+    <link rel="stylesheet" href="assets/css/app.css" />
+</head>
+<body>
+<div class="tx-layout">
+    <aside class="tx-sidebar" id="tx-sidebar"></aside>
+    <div class="tx-backdrop" id="tx-backdrop"></div>
+    <div class="tx-main" id="tx-main">
+        <header class="tx-header" id="tx-header"></header>
+        <main class="tx-content">
+
+            <!-- Breadcrumb -->
+            <div class="tx-card">
+                <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-chevron-right"></span><span class="tx-card-title">Breadcrumb — Trilha de navegação</span></div>
+                <div class="tx-card-body">
+                    <nav class="breadcrumb" aria-label="breadcrumbs"><ul>
+                        <li><a href="#"><span class="icon is-small"><i class="mdi mdi-view-dashboard"></i></span><span>Início</span></a></li>
+                        <li><a href="#">Componentes</a></li>
+                        <li class="is-active"><a href="#" aria-current="page">Avançados</a></li>
+                    </ul></nav>
+                    <p class="tx-component-label" style="margin-top: 1rem;">Separador: seta</p>
+                    <nav class="breadcrumb has-arrow-separator" aria-label="breadcrumbs"><ul>
+                        <li><a href="#">Dashboard</a></li><li><a href="#">Usuários</a></li><li class="is-active"><a href="#" aria-current="page">Editar</a></li>
+                    </ul></nav>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="tx-card" style="margin-top: 1rem;">
+                <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-tab"></span><span class="tx-card-title">Abas</span></div>
+                <div class="tx-card-body">
+                    <div class="tabs is-boxed" id="tabset1"><ul>
+                        <li class="is-active" data-tab="0"><a><span class="icon is-small"><i class="mdi mdi-view-dashboard"></i></span><span>Visão geral</span></a></li>
+                        <li data-tab="1"><a><span class="icon is-small"><i class="mdi mdi-bell"></i></span><span>Atividade</span></a></li>
+                        <li data-tab="2"><a><span class="icon is-small"><i class="mdi mdi-cog"></i></span><span>Configurações</span></a></li>
+                    </ul></div>
+                    <div data-tabpanel="0"><p style="font-size: 0.9rem; color: var(--tx-text-muted);">Resumo geral do projeto, métricas e indicadores principais em um só lugar.</p></div>
+                    <div data-tabpanel="1" style="display:none;"><p style="font-size: 0.9rem; color: var(--tx-text-muted);">Histórico de eventos recentes, notificações e ações realizadas pela equipe.</p></div>
+                    <div data-tabpanel="2" style="display:none;"><p style="font-size: 0.9rem; color: var(--tx-text-muted);">Ajuste preferências, integrações e permissões da sua conta.</p></div>
+                </div>
+            </div>
+
+            <!-- Accordions -->
+            <div class="columns" style="margin-top: 1rem;">
+                <div class="column is-6">
+                    <div class="tx-card">
+                        <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-chevron-down"></span><span class="tx-card-title">Acordeão — apenas um aberto</span></div>
+                        <div class="tx-card-body"><div class="tx-accordion" id="acc-single"></div></div>
+                    </div>
+                </div>
+                <div class="column is-6">
+                    <div class="tx-card">
+                        <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-chevron-down"></span><span class="tx-card-title">Acordeão — múltiplos abertos</span></div>
+                        <div class="tx-card-body"><div class="tx-accordion" id="acc-multi"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tooltips -->
+            <div class="tx-card" style="margin-top: 1rem;">
+                <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-tooltip"></span><span class="tx-card-title">Tooltips</span></div>
+                <div class="tx-card-body">
+                    <div class="tx-btn-group">
+                        <button class="button is-light" title="Dica no topo">Topo</button>
+                        <button class="button is-light" title="Dica embaixo">Abaixo</button>
+                        <button class="button is-light" title="Dica à esquerda">Esquerda</button>
+                        <button class="button is-light" title="Dica à direita">Direita</button>
+                        <span class="icon has-text-grey" title="Mais informações sobre este recurso"><i class="mdi mdi-help-circle-outline" style="font-size: 1.4rem;"></i></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Steps -->
+            <div class="tx-card" style="margin-top: 1rem;">
+                <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-format-list-numbered"></span><span class="tx-card-title">Etapas</span></div>
+                <div class="tx-card-body">
+                    <nav class="breadcrumb has-succeeds-separator is-centered" id="steps"><ul></ul></nav>
+                    <div class="has-text-centered" id="step-content" style="font-size: 0.9rem; color: var(--tx-text-muted); padding: 1rem 0;"></div>
+                    <div class="tx-btn-group" style="justify-content: center;">
+                        <button class="button" id="step-prev"><span class="icon"><span class="mdi mdi-chevron-left"></span></span><span>Anterior</span></button>
+                        <button class="button is-primary" id="step-next"><span>Próximo</span><span class="icon"><span class="mdi mdi-chevron-right"></span></span></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="columns" style="margin-top: 1rem;">
+                <!-- Rate -->
+                <div class="column is-6">
+                    <div class="tx-card">
+                        <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-star"></span><span class="tx-card-title">Avaliação</span></div>
+                        <div class="tx-card-body">
+                            <div class="tx-rate-row"><div class="tx-rate" id="rate1"></div><span style="font-size: 0.875rem; color: var(--tx-text-muted);" id="rate1-label"></span></div>
+                            <div class="tx-rate-row" style="border-top: 1px solid var(--tx-border); padding-top: 1rem; margin-top: 1rem;"><span style="font-size: 0.875rem;">Somente leitura:</span><div class="tx-rate" id="rate2"></div></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tags -->
+                <div class="column is-6">
+                    <div class="tx-card">
+                        <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-tag-multiple"></span><span class="tx-card-title">Entrada de tags</span></div>
+                        <div class="tx-card-body">
+                            <div class="field"><div class="control"><div class="tags" id="tag-list" style="margin-bottom: 0.5rem;"></div><input class="input" type="text" id="tag-input" placeholder="Adicionar tecnologia..." /></div></div>
+                            <p style="font-size: 0.78rem; color: var(--tx-text-muted);" id="tag-count"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Badges -->
+            <div class="tx-card" style="margin-top: 1rem;">
+                <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-label"></span><span class="tx-card-title">Badges</span></div>
+                <div class="tx-card-body">
+                    <p class="tx-component-label">Soft / light</p>
+                    <div class="tx-tags-showcase"><span class="tag is-primary is-light">Primário</span><span class="tag is-success is-light">Sucesso</span><span class="tag is-warning is-light">Aviso</span><span class="tag is-danger is-light">Erro</span><span class="tag is-light">Neutro</span></div>
+                    <p class="tx-component-label" style="margin-top: 1rem;">Solid</p>
+                    <div class="tx-tags-showcase"><span class="tag is-primary">Primário</span><span class="tag is-success">Sucesso</span><span class="tag is-warning">Aviso</span><span class="tag is-danger">Erro</span><span class="tag is-dark">Neutro</span></div>
+                    <p class="tx-component-label" style="margin-top: 1rem;">Com ponto de status e ícone</p>
+                    <div class="tx-tags-showcase">
+                        <span class="tag is-success is-light"><span class="tx-badge-dot" style="background: var(--tx-success);"></span>Online</span>
+                        <span class="tag is-warning is-light"><span class="tx-badge-dot" style="background: var(--tx-warning);"></span>Pendente</span>
+                        <span class="tag is-light"><span class="tx-badge-dot" style="background: var(--tx-text-muted);"></span>Offline</span>
+                        <span class="tag is-primary"><span class="icon is-small"><i class="mdi mdi-star"></i></span><span>Premium</span></span>
+                        <span class="tag is-success"><span class="icon is-small"><i class="mdi mdi-check"></i></span><span>Verificado</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Avatars -->
+            <div class="tx-card" style="margin-top: 1rem;">
+                <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-account-circle"></span><span class="tx-card-title">Avatares</span></div>
+                <div class="tx-card-body">
+                    <p class="tx-component-label">Tamanhos (iniciais)</p>
+                    <div class="tx-avatar-row" id="avatar-sizes"></div>
+                    <p class="tx-component-label" style="margin-top: 1.25rem;">Com status</p>
+                    <div class="tx-avatar-row" id="avatar-status"></div>
+                    <p class="tx-component-label" style="margin-top: 1.25rem;">Grupo empilhado</p>
+                    <div class="tx-avatar-group" id="avatar-group"></div>
+                </div>
+            </div>
+
+        </main>
+        <footer class="tx-footer" id="tx-footer" style="padding: 0.75rem 1.25rem; border-top: 1px solid var(--tx-border); text-align: center; font-size: 0.78rem; color: var(--tx-text-muted); background: var(--tx-card-bg);"></footer>
+    </div>
+    <div class="tx-notifications" id="tx-notifications"></div>
+    <div class="tx-cookie-banner" id="tx-cookie-banner" style="display:none;"></div>
+</div>
+
+<script src="assets/js/state.js"></script>
+<script src="assets/js/menu.js"></script>
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/layout.js"></script>
+<script>
+    if (txAuth.requireAuth()) {
+        txLayout.init({ current: 'ui-advanced.html', pageTitle: 'Componentes avançados' });
+        (function () {
+            /* Tabs */
+            document.querySelectorAll('#tabset1 [data-tab]').forEach(function (li) {
+                li.addEventListener('click', function () {
+                    var n = li.getAttribute('data-tab');
+                    document.querySelectorAll('#tabset1 [data-tab]').forEach(function (x) { x.classList.toggle('is-active', x === li); });
+                    document.querySelectorAll('[data-tabpanel]').forEach(function (p) { p.style.display = p.getAttribute('data-tabpanel') === n ? '' : 'none'; });
+                });
+            });
+
+            /* Accordions */
+            var single = [
+                { title: 'O que está incluído?', icon: 'mdi-package-variant', content: 'Todos os componentes de UI, temas claro e escuro, e exemplos prontos para produção.' },
+                { title: 'Posso personalizar as cores?', icon: 'mdi-palette', content: 'Sim, todas as cores usam tokens de design (CSS custom properties) configuráveis.' },
+                { title: 'Há suporte a modo escuro?', icon: 'mdi-weather-night', content: 'Completo — toda a interface respeita o tema claro/escuro automaticamente.' },
+            ];
+            var faq = [
+                { title: 'Entrega', content: 'Enviamos para todo o Brasil em até 5 dias úteis.' },
+                { title: 'Trocas e devoluções', content: 'Você tem até 30 dias para solicitar a troca.' },
+                { title: 'Garantia', content: 'Todos os produtos têm garantia de 12 meses.' },
+            ];
+            var singleOpen = 0, multiOpen = [true, true, false];
+            function renderAcc(el, items, isOpen, onToggle) {
+                el.innerHTML = items.map(function (p, i) {
+                    return '<div class="tx-accordion-item">' +
+                        '<div class="tx-accordion-trigger" data-i="' + i + '" role="button">' +
+                        (p.icon ? '<span class="mdi ' + p.icon + '"></span>' : '') +
+                        '<span class="tx-accordion-label">' + p.title + '</span>' +
+                        '<span class="mdi tx-accordion-chevron ' + (isOpen(i) ? 'mdi-chevron-up' : 'mdi-chevron-down') + '"></span></div>' +
+                        (isOpen(i) ? '<div class="tx-accordion-body">' + p.content + '</div>' : '') + '</div>';
+                }).join('');
+                el.querySelectorAll('[data-i]').forEach(function (t) { t.addEventListener('click', function () { onToggle(parseInt(t.getAttribute('data-i'), 10)); }); });
+            }
+            function rs() { renderAcc(document.getElementById('acc-single'), single, function (i) { return i === singleOpen; }, function (i) { singleOpen = i; rs(); }); }
+            function rm() { renderAcc(document.getElementById('acc-multi'), faq, function (i) { return multiOpen[i]; }, function (i) { multiOpen[i] = !multiOpen[i]; rm(); }); }
+            rs(); rm();
+
+            /* Steps */
+            var STEPS = ['Carrinho', 'Endereço', 'Pagamento', 'Confirmação'];
+            var STEP_TXT = ['Itens selecionados — revise o seu carrinho de compras.', 'Informe o endereço de entrega do pedido.', 'Escolha a forma de pagamento: cartão ou Pix.', 'Pedido realizado com sucesso!'];
+            var step = 1;
+            function renderSteps() {
+                document.querySelector('#steps ul').innerHTML = STEPS.map(function (s, i) {
+                    return '<li class="' + (i === step ? 'is-active' : '') + '"><a href="#"><span class="tag ' + (i <= step ? 'is-primary' : 'is-light') + '" style="margin-right:0.4rem;">' + (i + 1) + '</span>' + s + '</a></li>';
+                }).join('');
+                document.getElementById('step-content').textContent = STEP_TXT[step];
+                document.getElementById('step-prev').disabled = step === 0;
+                document.getElementById('step-next').disabled = step === STEPS.length - 1;
+            }
+            renderSteps();
+            document.getElementById('step-prev').addEventListener('click', function () { if (step > 0) { step--; renderSteps(); } });
+            document.getElementById('step-next').addEventListener('click', function () { if (step < STEPS.length - 1) { step++; renderSteps(); } });
+
+            /* Rate */
+            function renderRate(el, value, readonly, onChange) {
+                el.innerHTML = '';
+                for (var i = 1; i <= 5; i++) {
+                    var span = document.createElement('span');
+                    span.className = 'mdi ' + (i <= value ? 'mdi-star is-on' : 'mdi-star-outline');
+                    span.setAttribute('data-v', i);
+                    if (!readonly) span.addEventListener('click', function () { onChange(parseInt(this.getAttribute('data-v'), 10)); });
+                    el.appendChild(span);
+                }
+            }
+            var r1 = 3;
+            function r1render() { renderRate(document.getElementById('rate1'), r1, false, function (v) { r1 = v; r1render(); }); document.getElementById('rate1-label').textContent = r1 + ' de 5'; }
+            r1render();
+            renderRate(document.getElementById('rate2'), 4, true);
+
+            /* Tags */
+            var tags = ['HTML', 'Bulma', 'JavaScript'];
+            function renderTags() {
+                document.getElementById('tag-list').innerHTML = tags.map(function (t, i) {
+                    return '<span class="tag is-primary is-light">' + t + '<button class="delete is-small" data-rm="' + i + '"></button></span>';
+                }).join('');
+                document.getElementById('tag-count').textContent = tags.length + ' tag(s) — pressione Enter para adicionar.';
+                document.querySelectorAll('[data-rm]').forEach(function (b) { b.addEventListener('click', function () { tags.splice(parseInt(b.getAttribute('data-rm'), 10), 1); renderTags(); }); });
+            }
+            renderTags();
+            document.getElementById('tag-input').addEventListener('keydown', function (e) {
+                if (e.key === 'Enter' && this.value.trim()) { e.preventDefault(); tags.push(this.value.trim()); this.value = ''; renderTags(); }
+                else if (e.key === 'Backspace' && !this.value && tags.length) { tags.pop(); renderTags(); }
+            });
+
+            /* Avatars */
+            var COLORS = ['#485fc7', '#48c774', '#3273dc', '#f59e0b', '#9b59b6', '#e74c3c', '#1abc9c'];
+            function initials(name) { return name.split(' ').map(function (p) { return p[0]; }).slice(0, 2).join('').toUpperCase(); }
+            function avStyle(name) { var h = 0; for (var i = 0; i < name.length; i++) h = name.charCodeAt(i) + ((h << 5) - h); var c = COLORS[Math.abs(h) % COLORS.length]; return 'background: color-mix(in srgb, ' + c + ' 16%, transparent); color: ' + c + ';'; }
+            var sizes = [['Ana Silva', 'xs'], ['Bruno Costa', 'sm'], ['Carla Dias', 'md'], ['Diego Luz', 'lg'], ['Erica Melo', 'xl']];
+            document.getElementById('avatar-sizes').innerHTML = sizes.map(function (s) { return '<span class="tx-avatar tx-avatar-' + s[1] + '" style="' + avStyle(s[0]) + '">' + initials(s[0]) + '</span>'; }).join('');
+            var statuses = [['João Pedro', 'var(--tx-success)'], ['Lia Souza', 'var(--tx-warning)'], ['Marcos Reis', 'var(--tx-text-muted)']];
+            document.getElementById('avatar-status').innerHTML = statuses.map(function (s) { return '<span class="tx-avatar tx-avatar-md" style="' + avStyle(s[0]) + '">' + initials(s[0]) + '<span class="tx-avatar-status" style="background:' + s[1] + ';"></span></span>'; }).join('');
+            var group = ['Marina Costa', 'Lucas Pinto', 'André Sá', 'Rafa Lima'];
+            document.getElementById('avatar-group').innerHTML = group.map(function (n) { return '<span class="tx-avatar tx-avatar-md tx-avatar-stacked" style="' + avStyle(n) + '">' + initials(n) + '</span>'; }).join('') + '<span class="tx-avatar tx-avatar-md tx-avatar-stacked tx-avatar-extra">+5</span>';
+        })();
+    }
+</script>
+</body>
+</html>

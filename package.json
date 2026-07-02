@@ -1,0 +1,15 @@
+{
+  "name": "html-bulma-admin-template",
+  "version": "1.0.0",
+  "private": true,
+  "description": "HTML + Bulma admin & landing template (static, no framework)",
+  "scripts": {
+    "build": "node build.js",
+    "watch": "node build.js --watch",
+    "serve": "npx serve ."
+  },
+  "devDependencies": {
+    "bulma": "^1.0.4",
+    "sass": "^1.83.4"
+  }
+}

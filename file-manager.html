@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <title>Arquivos — Admin Template</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" />
+    <link rel="stylesheet" href="assets/css/variables.css" />
+    <link rel="stylesheet" href="assets/css/dark.css" />
+    <link rel="stylesheet" href="assets/css/app.css" />
+</head>
+<body>
+<div class="tx-layout">
+    <aside class="tx-sidebar" id="tx-sidebar"></aside>
+    <div class="tx-backdrop" id="tx-backdrop"></div>
+    <div class="tx-main" id="tx-main">
+        <header class="tx-header" id="tx-header"></header>
+        <main class="tx-content">
+
+            <div class="tx-fm-toolbar">
+                <nav class="breadcrumb is-small" aria-label="breadcrumbs" style="margin-bottom: 0;">
+                    <ul><li><a>Início</a></li><li class="is-active"><a aria-current="page">Meus arquivos</a></li></ul>
+                </nav>
+                <div class="tx-fm-actions">
+                    <div class="buttons has-addons" style="margin-bottom: 0;">
+                        <button class="button is-small is-primary" id="view-grid" aria-label="Grade"><span class="mdi mdi-view-grid"></span></button>
+                        <button class="button is-small is-light" id="view-list" aria-label="Lista"><span class="mdi mdi-view-list"></span></button>
+                    </div>
+                    <button class="button is-primary" id="upload-btn"><span class="icon"><span class="mdi mdi-plus"></span></span><span>Enviar arquivo</span></button>
+                </div>
+            </div>
+
+            <div class="box tx-storage">
+                <div class="tx-storage-head">
+                    <div class="tx-storage-info">
+                        <span class="tx-storage-icon"><span class="mdi mdi-database"></span></span>
+                        <div><p class="has-text-weight-semibold" style="color: var(--tx-text-heading);">Armazenamento</p><p class="is-size-7 has-text-grey">64.5 GB de 100 GB utilizados</p></div>
+                    </div>
+                    <span class="has-text-weight-semibold" style="color: var(--tx-text-heading);">65%</span>
+                </div>
+                <progress class="progress is-primary" value="65" max="100" style="margin-top: 1rem;">65%</progress>
+            </div>
+
+            <h2 class="tx-fm-section-title">Pastas</h2>
+            <div class="columns is-multiline" id="folders-grid"></div>
+
+            <h2 class="tx-fm-section-title">Arquivos</h2>
+            <div id="files-grid" class="columns is-multiline"></div>
+            <div id="files-table" class="box" style="padding: 0; display: none;">
+                <table class="table is-fullwidth is-hoverable">
+                    <thead><tr><th>Nome</th><th>Tamanho</th><th>Modificado</th><th class="has-text-right">Ações</th></tr></thead>
+                    <tbody id="files-tbody"></tbody>
+                </table>
+            </div>
+
+        </main>
+        <footer class="tx-footer" id="tx-footer" style="padding: 0.75rem 1.25rem; border-top: 1px solid var(--tx-border); text-align: center; font-size: 0.78rem; color: var(--tx-text-muted); background: var(--tx-card-bg);"></footer>
+    </div>
+    <div class="tx-notifications" id="tx-notifications"></div>
+    <div class="tx-cookie-banner" id="tx-cookie-banner" style="display:none;"></div>
+
+    <div class="modal" id="upload-modal">
+        <div class="modal-background"></div>
+        <div class="modal-card" style="width: 560px; max-width: 100%;">
+            <header class="modal-card-head"><div><p class="modal-card-title">Enviar arquivos</p><p class="is-size-7 has-text-grey">Arraste e solte ou selecione do seu dispositivo</p></div><button class="delete" id="upload-close"></button></header>
+            <section class="modal-card-body">
+                <div class="tx-dropzone" id="dropzone">
+                    <span class="mdi mdi-cloud-upload"></span>
+                    <p class="has-text-weight-medium" style="color: var(--tx-text-heading);">Arraste arquivos aqui ou <span style="color: var(--tx-primary);">clique para procurar</span></p>
+                    <p class="is-size-7 has-text-grey">PNG, JPG ou PDF · até 5 MB cada</p>
+                    <input type="file" id="file-input" multiple style="display: none;" />
+                </div>
+                <ul id="file-list" style="margin-top: 1rem;"></ul>
+            </section>
+            <footer class="modal-card-foot" style="justify-content: flex-end;"><button class="button" id="upload-cancel">Cancelar</button><button class="button is-primary" id="upload-finish"><span class="icon"><span class="mdi mdi-check"></span></span><span>Concluir</span></button></footer>
+        </div>
+    </div>
+</div>
+
+<script src="assets/js/state.js"></script>
+<script src="assets/js/menu.js"></script>
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/layout.js"></script>
+<script>
+    if (txAuth.requireAuth()) {
+        txLayout.init({ current: 'file-manager.html', pageTitle: 'Arquivos' });
+        (function () {
+            var FOLDERS = [
+                { name: 'Documentos', items: 24, modified: '24/05/2026' },
+                { name: 'Imagens', items: 132, modified: '22/05/2026' },
+                { name: 'Projetos', items: 9, modified: '20/05/2026' },
+                { name: 'Backups', items: 5, modified: '12/05/2026' },
+            ];
+            var KIND = {
+                document: { icon: 'mdi-file-document', color: '#485fc7' },
+                image: { icon: 'mdi-image', color: '#48c774' },
+                archive: { icon: 'mdi-folder-zip', color: '#f59e0b' },
+                sheet: { icon: 'mdi-file-table', color: '#3273dc' },
+            };
+            var FILES = [
+                { name: 'Proposta-comercial.pdf', kind: 'document', size: '2,4 MB', modified: 'Hoje, 09:42' },
+                { name: 'Relatorio-maio.xlsx', kind: 'sheet', size: '845 KB', modified: 'Ontem, 18:11' },
+                { name: 'Banner-home.png', kind: 'image', size: '1,1 MB', modified: 'Ontem, 14:25' },
+                { name: 'Apresentacao.pdf', kind: 'document', size: '5,8 MB', modified: '23/05/2026' },
+                { name: 'Logo-vetor.svg', kind: 'image', size: '64 KB', modified: '22/05/2026' },
+                { name: 'Codigo-fonte.zip', kind: 'archive', size: '18,2 MB', modified: '20/05/2026' },
+            ];
+            var MENU = '<div class="dropdown-content">' +
+                '<a class="dropdown-item" data-act="Abrir"><span class="mdi mdi-eye" style="margin-right:0.4rem;"></span>Abrir</a>' +
+                '<a class="dropdown-item" data-act="Renomear"><span class="mdi mdi-pencil" style="margin-right:0.4rem;"></span>Renomear</a>' +
+                '<a class="dropdown-item" data-act="Baixar"><span class="mdi mdi-download" style="margin-right:0.4rem;"></span>Baixar</a>' +
+                '<a class="dropdown-item has-text-danger" data-act="Excluir"><span class="mdi mdi-delete" style="margin-right:0.4rem;"></span>Excluir</a></div>';
+
+            function ddMenu() {
+                return '<div class="dropdown is-right tx-fm-dd"><div class="dropdown-trigger"><button class="button is-small is-light" aria-label="Opções"><span class="mdi mdi-dots-vertical"></span></button></div>' +
+                    '<div class="dropdown-menu" role="menu">' + MENU + '</div></div>';
+            }
+
+            document.getElementById('folders-grid').innerHTML = FOLDERS.map(function (f) {
+                return '<div class="column is-3-desktop is-6-tablet"><div class="box tx-folder-card">' +
+                    '<span class="tx-folder-icon"><span class="mdi mdi-folder"></span></span>' +
+                    '<div class="tx-folder-meta"><p class="has-text-weight-medium tx-truncate" style="color:var(--tx-text-heading);">' + f.name + '</p>' +
+                    '<p class="is-size-7 has-text-grey">' + f.items + ' itens · ' + f.modified + '</p></div>' + ddMenu() + '</div></div>';
+            }).join('');
+
+            document.getElementById('files-grid').innerHTML = FILES.map(function (f) {
+                var k = KIND[f.kind];
+                return '<div class="column is-3-desktop is-4-tablet is-6-mobile"><div class="box tx-file-card">' +
+                    '<div class="tx-file-card-head"><span class="tx-file-icon" style="--icon-color:' + k.color + ';"><span class="mdi ' + k.icon + '"></span></span>' + ddMenu() + '</div>' +
+                    '<div><p class="has-text-weight-medium tx-truncate" style="color:var(--tx-text-heading);">' + f.name + '</p>' +
+                    '<p class="is-size-7 has-text-grey" style="margin-top:0.15rem;">' + f.size + ' · ' + f.modified + '</p></div></div></div>';
+            }).join('');
+
+            document.getElementById('files-tbody').innerHTML = FILES.map(function (f) {
+                var k = KIND[f.kind];
+                return '<tr><td><div class="tx-file-row-name"><span class="tx-file-icon is-small" style="--icon-color:' + k.color + ';"><span class="mdi ' + k.icon + '"></span></span>' +
+                    '<span class="has-text-weight-medium" style="color:var(--tx-text-heading);">' + f.name + '</span></div></td>' +
+                    '<td class="has-text-grey">' + f.size + '</td><td class="has-text-grey">' + f.modified + '</td>' +
+                    '<td class="has-text-right">' + ddMenu() + '</td></tr>';
+            }).join('');
+
+            /* Dropdown toggles + actions */
+            document.querySelectorAll('.tx-fm-dd .button').forEach(function (btn) {
+                btn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    var dd = btn.closest('.dropdown');
+                    document.querySelectorAll('.tx-fm-dd.is-active').forEach(function (d) { if (d !== dd) d.classList.remove('is-active'); });
+                    dd.classList.toggle('is-active');
+                });
+            });
+            document.addEventListener('click', function () { document.querySelectorAll('.tx-fm-dd.is-active').forEach(function (d) { d.classList.remove('is-active'); }); });
+            document.querySelectorAll('[data-act]').forEach(function (el) {
+                el.addEventListener('click', function () { txStore.notifySuccess(el.getAttribute('data-act') + ' executado'); });
+            });
+
+            /* View toggle */
+            document.getElementById('view-grid').addEventListener('click', function () {
+                this.classList.replace('is-light', 'is-primary'); document.getElementById('view-list').classList.replace('is-primary', 'is-light');
+                document.getElementById('files-grid').style.display = ''; document.getElementById('files-table').style.display = 'none';
+            });
+            document.getElementById('view-list').addEventListener('click', function () {
+                this.classList.replace('is-light', 'is-primary'); document.getElementById('view-grid').classList.replace('is-primary', 'is-light');
+                document.getElementById('files-grid').style.display = 'none'; document.getElementById('files-table').style.display = 'block';
+            });
+
+            /* Upload modal */
+            var modal = document.getElementById('upload-modal');
+            var pending = [];
+            function open() { modal.classList.add('is-active'); }
+            function close() { modal.classList.remove('is-active'); }
+            document.getElementById('upload-btn').addEventListener('click', open);
+            document.getElementById('upload-close').addEventListener('click', close);
+            document.getElementById('upload-cancel').addEventListener('click', close);
+            modal.querySelector('.modal-background').addEventListener('click', close);
+            var dz = document.getElementById('dropzone'), fi = document.getElementById('file-input'), fl = document.getElementById('file-list');
+            function fmt(b) { if (b < 1024) return b + ' B'; if (b < 1048576) return (b / 1024).toFixed(1) + ' KB'; return (b / 1048576).toFixed(1) + ' MB'; }
+            function renderFiles() {
+                fl.innerHTML = pending.map(function (f, i) {
+                    return '<li class="is-flex is-align-items-center is-justify-content-space-between" style="border:1px solid var(--tx-border); border-radius:var(--tx-radius); padding:0.5rem 0.75rem; margin-bottom:0.5rem;">' +
+                        '<span class="is-size-7"><span class="mdi mdi-file" style="margin-right:0.4rem; color:var(--tx-primary);"></span>' + f.name + '</span>' +
+                        '<span class="is-size-7 has-text-grey">' + fmt(f.size) + '</span></li>';
+                }).join('');
+            }
+            dz.addEventListener('click', function () { fi.click(); });
+            fi.addEventListener('change', function () { Array.prototype.forEach.call(fi.files, function (f) { pending.push(f); }); renderFiles(); fi.value = ''; });
+            ['dragenter', 'dragover'].forEach(function (ev) { dz.addEventListener(ev, function (e) { e.preventDefault(); dz.classList.add('is-dragging'); }); });
+            ['dragleave', 'drop'].forEach(function (ev) { dz.addEventListener(ev, function (e) { e.preventDefault(); dz.classList.remove('is-dragging'); }); });
+            dz.addEventListener('drop', function (e) { if (e.dataTransfer && e.dataTransfer.files) { Array.prototype.forEach.call(e.dataTransfer.files, function (f) { pending.push(f); }); renderFiles(); } });
+            document.getElementById('upload-finish').addEventListener('click', function () {
+                var n = pending.length; pending = []; renderFiles(); close();
+                txStore.notifySuccess(n > 0 ? (n + ' arquivo(s) enviado(s) com sucesso') : 'Arquivos enviados com sucesso');
+            });
+        })();
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <title>Configurações — Admin Template</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" />
+    <link rel="stylesheet" href="assets/css/variables.css" />
+    <link rel="stylesheet" href="assets/css/dark.css" />
+    <link rel="stylesheet" href="assets/css/app.css" />
+</head>
+<body>
+<div class="tx-layout">
+    <aside class="tx-sidebar" id="tx-sidebar"></aside>
+    <div class="tx-backdrop" id="tx-backdrop"></div>
+    <div class="tx-main" id="tx-main">
+        <header class="tx-header" id="tx-header"></header>
+        <main class="tx-content">
+
+            <div class="columns">
+                <div class="column is-8">
+                    <div class="tx-card">
+                        <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-palette"></span><span class="tx-card-title">Aparência</span></div>
+                        <div class="tx-card-body">
+                            <div class="field">
+                                <label class="label">Tema</label>
+                                <div style="display: flex; gap: 0.75rem; align-items: center; padding-top: 0.25rem;">
+                                    <button class="button" id="theme-light"><span class="mdi mdi-weather-sunny" style="margin-right:0.25rem;"></span>Claro</button>
+                                    <button class="button" id="theme-dark"><span class="mdi mdi-weather-night" style="margin-right:0.25rem;"></span>Escuro</button>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="field">
+                                <label class="label">Tamanho da fonte</label>
+                                <div class="select"><select id="font-size"><option value="13px">Pequena (13px)</option><option value="14px" selected>Normal (14px)</option><option value="15px">Grande (15px)</option><option value="16px">Extra grande (16px)</option></select></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tx-card" style="margin-top: 1rem;">
+                        <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-palette-swatch"></span><span class="tx-card-title">Paletas de Cores</span></div>
+                        <div class="tx-card-body">
+                            <p style="font-size: 0.85rem; color: var(--tx-text-muted); margin-bottom: 1rem;">Aplique um conjunto de cores ao layout com um clique.</p>
+                            <div class="tx-palette-grid" id="palette-grid"></div>
+                        </div>
+                    </div>
+
+                    <div class="tx-card" style="margin-top: 1rem;">
+                        <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-tune"></span><span class="tx-card-title">Personalização Avançada</span></div>
+                        <div class="tx-card-body">
+                            <p style="font-size: 0.85rem; color: var(--tx-text-muted); margin-bottom: 0.5rem;">Ajuste cada variável individualmente.</p>
+                            <div id="color-groups"></div>
+                            <div class="tx-reset-bar">
+                                <button class="button is-light is-small" id="reset-theme"><span class="mdi mdi-restore" style="margin-right:0.25rem;"></span>Restaurar padrões</button>
+                                <span class="tx-reset-hint">Remove todas as customizações</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tx-card" style="margin-top: 1rem;">
+                        <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-view-dashboard-edit"></span><span class="tx-card-title">Layout</span></div>
+                        <div class="tx-card-body">
+                            <div class="field">
+                                <label class="label">Largura do menu lateral</label>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.85rem; color: var(--tx-text-muted);">
+                                    <span>160px</span><span style="font-weight:600; color: var(--tx-text);" id="sidebar-width-label">260px</span><span>400px</span>
+                                </div>
+                                <input type="range" id="sidebar-width-input" min="160" max="400" step="5" value="260" style="width: 100%; accent-color: var(--tx-primary);" />
+                            </div>
+                            <hr />
+                            <div class="field">
+                                <label class="label">Menu lateral</label>
+                                <label class="tx-switch is-primary">
+                                    <input type="checkbox" id="sidebar-collapse-toggle" />
+                                    <span class="tx-switch-track"><span class="tx-switch-thumb"></span></span>
+                                    <span class="tx-switch-label" id="sidebar-collapse-label">Expandido</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="column is-4">
+                    <div class="tx-card">
+                        <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-account"></span><span class="tx-card-title">Perfil</span></div>
+                        <div class="tx-card-body">
+                            <div style="text-align: center; padding: 1rem 0;">
+                                <div id="profile-avatar" style="width: 72px; height: 72px; border-radius: 50%; background: var(--tx-primary); display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 2rem; font-weight: 700; color: white;">?</div>
+                                <div style="font-size: 1.1rem; font-weight: 600; color: var(--tx-text);" id="profile-name"></div>
+                                <div style="font-size: 0.85rem; color: var(--tx-text-muted); margin-top: 0.25rem;" id="profile-email"></div>
+                                <span class="tag is-primary is-light" style="margin-top: 0.5rem;" id="profile-role"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tx-card" style="margin-top: 1rem;">
+                        <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-information"></span><span class="tx-card-title">Sobre o Template</span></div>
+                        <div class="tx-card-body">
+                            <div style="font-size: 0.8rem; color: var(--tx-text-muted); line-height: 1.8;">
+                                <div><strong style="color: var(--tx-text);">HTML5</strong> puro</div>
+                                <div><strong style="color: var(--tx-text);">Bulma 1.0</strong> + MDI Icons</div>
+                                <div><strong style="color: var(--tx-text);">CSS Variables</strong> + Nesting nativo</div>
+                                <div><strong style="color: var(--tx-text);">Vanilla JS</strong> · sem build</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+        <footer class="tx-footer" id="tx-footer" style="padding: 0.75rem 1.25rem; border-top: 1px solid var(--tx-border); text-align: center; font-size: 0.78rem; color: var(--tx-text-muted); background: var(--tx-card-bg);"></footer>
+    </div>
+    <div class="tx-notifications" id="tx-notifications"></div>
+    <div class="tx-cookie-banner" id="tx-cookie-banner" style="display:none;"></div>
+</div>
+
+<script src="assets/js/state.js"></script>
+<script src="assets/js/menu.js"></script>
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/layout.js"></script>
+<script src="assets/js/pages/settings.js"></script>
+</body>
+</html>

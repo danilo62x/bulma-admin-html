@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <title>Caixa de entrada — Admin Template</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" />
+    <link rel="stylesheet" href="assets/css/variables.css" />
+    <link rel="stylesheet" href="assets/css/dark.css" />
+    <link rel="stylesheet" href="assets/css/app.css" />
+</head>
+<body>
+<div class="tx-layout">
+    <aside class="tx-sidebar" id="tx-sidebar"></aside>
+    <div class="tx-backdrop" id="tx-backdrop"></div>
+    <div class="tx-main" id="tx-main">
+        <header class="tx-header" id="tx-header"></header>
+        <main class="tx-content">
+
+            <div class="tx-inbox-head">
+                <div>
+                    <h1 class="title is-5" style="margin-bottom: 0.15rem;">Caixa de entrada</h1>
+                    <p class="is-size-7 has-text-grey">Gerencie suas mensagens em um só lugar.</p>
+                </div>
+                <button class="button is-primary" id="compose-btn"><span class="icon"><span class="mdi mdi-email-plus"></span></span><span>Escrever</span></button>
+            </div>
+
+            <div class="columns">
+                <aside class="column is-3-desktop is-hidden-touch">
+                    <div class="box" style="padding: 0.5rem;">
+                        <aside class="menu"><ul class="menu-list" id="folder-list"></ul></aside>
+                    </div>
+                </aside>
+
+                <section class="column is-4-desktop" id="list-col">
+                    <div class="box" style="padding: 0;">
+                        <div class="tx-inbox-search">
+                            <div class="control has-icons-left">
+                                <input class="input is-small" type="text" id="email-search" placeholder="Buscar e-mails..." />
+                                <span class="icon is-small is-left"><i class="mdi mdi-magnify"></i></span>
+                            </div>
+                        </div>
+                        <ul class="tx-email-list" id="email-list"></ul>
+                    </div>
+                </section>
+
+                <section class="column" id="reading-col">
+                    <div class="box tx-reading-pane" id="reading-pane"></div>
+                </section>
+            </div>
+
+        </main>
+        <footer class="tx-footer" id="tx-footer" style="padding: 0.75rem 1.25rem; border-top: 1px solid var(--tx-border); text-align: center; font-size: 0.78rem; color: var(--tx-text-muted); background: var(--tx-card-bg);"></footer>
+    </div>
+    <div class="tx-notifications" id="tx-notifications"></div>
+    <div class="tx-cookie-banner" id="tx-cookie-banner" style="display:none;"></div>
+
+    <!-- Compose modal -->
+    <div class="modal" id="compose-modal">
+        <div class="modal-background"></div>
+        <div class="modal-card" style="width: 560px; max-width: 100%;">
+            <header class="modal-card-head">
+                <div><p class="modal-card-title">Nova mensagem</p><p class="is-size-7 has-text-grey">Escreva e envie um e-mail</p></div>
+                <button class="delete" id="compose-close"></button>
+            </header>
+            <section class="modal-card-body">
+                <div class="field"><label class="label">Para</label><div class="control has-icons-left"><input class="input" type="email" placeholder="destinatario@email.com" /><span class="icon is-small is-left"><i class="mdi mdi-account"></i></span></div></div>
+                <div class="field"><label class="label">Assunto</label><div class="control has-icons-left"><input class="input" type="text" placeholder="Assunto da mensagem" /><span class="icon is-small is-left"><i class="mdi mdi-format-title"></i></span></div></div>
+                <div class="field"><label class="label">Mensagem</label><div class="control"><textarea class="textarea" rows="6" placeholder="Escreva sua mensagem..."></textarea></div></div>
+            </section>
+            <footer class="modal-card-foot" style="justify-content: flex-end;">
+                <button class="button" id="compose-cancel">Cancelar</button>
+                <button class="button is-primary" id="compose-send"><span class="icon"><span class="mdi mdi-send"></span></span><span>Enviar</span></button>
+            </footer>
+        </div>
+    </div>
+</div>
+
+<script src="assets/js/state.js"></script>
+<script src="assets/js/menu.js"></script>
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/layout.js"></script>
+<script>
+    if (txAuth.requireAuth()) {
+        txLayout.init({ current: 'inbox.html', pageTitle: 'Caixa de entrada' });
+        (function () {
+            var ACCENTS = ['#485fc7', '#48c774', '#f59e0b', '#f14668', '#3273dc'];
+            var FOLDERS = [
+                { id: 'inbox', label: 'Caixa de entrada', icon: 'mdi-email' },
+                { id: 'sent', label: 'Enviados', icon: 'mdi-send' },
+                { id: 'drafts', label: 'Rascunhos', icon: 'mdi-pencil' },
+                { id: 'starred', label: 'Com estrela', icon: 'mdi-star' },
+                { id: 'trash', label: 'Lixeira', icon: 'mdi-delete' },
+            ];
+            var emails = [
+                { id: '1', folder: 'inbox', sender: 'Marina Costa', initials: 'MC', email: 'marina.costa@empresa.com', subject: 'Proposta comercial atualizada', preview: 'Olá! Segue em anexo a versão revisada da proposta com os novos valores...', body: 'Olá!\n\nSegue em anexo a versão revisada da proposta comercial com os novos valores discutidos na reunião de ontem. Ajustei as condições de pagamento e incluí o desconto para contrato anual.\n\nPode revisar e me dizer se podemos seguir? Fico no aguardo.\n\nAbraços,\nMarina', time: '09:42', unread: true, starred: true, accent: ACCENTS[0] },
+                { id: '2', folder: 'inbox', sender: 'Equipe Financeiro', initials: 'EF', email: 'financeiro@empresa.com', subject: 'Fatura de maio disponível', preview: 'Sua fatura referente ao mês de maio já está disponível para download...', body: 'Prezado cliente,\n\nSua fatura referente ao mês de maio já está disponível para download no portal. O vencimento é dia 10/06/2026.\n\nAtenciosamente,\nEquipe Financeiro', time: '08:15', unread: true, starred: false, accent: ACCENTS[1] },
+                { id: '3', folder: 'inbox', sender: 'Lucas Pereira', initials: 'LP', email: 'lucas.p@parceiro.io', subject: 'Re: Integração da API', preview: 'Perfeito, consegui rodar os testes aqui e tudo passou. Vamos para produção?', body: 'Fala!\n\nPerfeito, consegui rodar os testes aqui no ambiente de homologação e tudo passou sem erros.\n\nPodemos agendar o deploy para produção ainda esta semana?\n\nValeu,\nLucas', time: 'Ontem', unread: true, starred: false, accent: ACCENTS[2] },
+                { id: '4', folder: 'inbox', sender: 'Aline Souza', initials: 'AS', email: 'aline.souza@design.co', subject: 'Mockups da nova landing page', preview: 'Terminei os mockups da home e da página de preços. Dá uma olhada...', body: 'Oi!\n\nTerminei os mockups da home e da página de preços. Deixei os arquivos no Figma, o link está no canal do projeto.\n\nAbraços,\nAline', time: 'Ontem', unread: false, starred: true, accent: ACCENTS[3] },
+                { id: '5', folder: 'inbox', sender: 'Rafael Lima', initials: 'RL', email: 'rafael@enterprise.com', subject: 'Reunião de alinhamento - quinta', preview: 'Pessoal, vamos confirmar a reunião de alinhamento para quinta às 14h?', body: 'Pessoal,\n\nVamos confirmar a reunião de alinhamento para quinta-feira às 14h? Mandem confirmação de presença.\n\nObrigado,\nRafael', time: '23 mai', unread: false, starred: false, accent: ACCENTS[4] },
+                { id: '6', folder: 'sent', sender: 'Você', initials: 'EU', email: 'voce@empresa.com', subject: 'Re: Proposta comercial atualizada', preview: 'Recebido, Marina! Vou revisar hoje à tarde e te retorno até amanhã.', body: 'Recebido, Marina!\n\nVou revisar hoje à tarde e te retorno até amanhã com qualquer ajuste necessário.\n\nObrigado,', time: '10:05', unread: false, starred: false, accent: ACCENTS[0] },
+                { id: '7', folder: 'sent', sender: 'Você', initials: 'EU', email: 'voce@empresa.com', subject: 'Relatório semanal', preview: 'Segue o relatório semanal com os principais indicadores da equipe.', body: 'Time,\n\nSegue o relatório semanal com os principais indicadores. Crescemos 8% em conversões.', time: '22 mai', unread: false, starred: false, accent: ACCENTS[1] },
+                { id: '8', folder: 'drafts', sender: 'Rascunho', initials: 'RA', email: 'voce@empresa.com', subject: 'Ideias para o próximo evento', preview: 'Algumas ideias iniciais para o evento de lançamento do produto...', body: 'Algumas ideias iniciais para o evento de lançamento do produto:\n\n- Local: auditório principal\n- Formato híbrido\n\n(rascunho não finalizado)', time: '20 mai', unread: false, starred: false, accent: ACCENTS[2] },
+            ];
+            var activeFolder = 'inbox';
+            var selectedId = '1';
+            var search = '';
+
+            function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+            function counts() {
+                var c = { inbox: 0, sent: 0, drafts: 0, starred: 0, trash: 0 };
+                emails.forEach(function (e) {
+                    if (e.folder === 'inbox' && e.unread) c.inbox++;
+                    if (e.folder === 'sent') c.sent++;
+                    if (e.folder === 'drafts') c.drafts++;
+                    if (e.starred) c.starred++;
+                    if (e.folder === 'trash') c.trash++;
+                });
+                return c;
+            }
+
+            function listFor() {
+                return emails.filter(function (e) {
+                    var inFolder = activeFolder === 'starred' ? e.starred : e.folder === activeFolder;
+                    if (!inFolder) return false;
+                    if (search) {
+                        var q = search.toLowerCase();
+                        return e.sender.toLowerCase().indexOf(q) > -1 || e.subject.toLowerCase().indexOf(q) > -1 || e.preview.toLowerCase().indexOf(q) > -1;
+                    }
+                    return true;
+                });
+            }
+
+            function renderFolders() {
+                var c = counts();
+                document.getElementById('folder-list').innerHTML = FOLDERS.map(function (f) {
+                    var n = c[f.id];
+                    return '<li><a class="tx-folder-link ' + (activeFolder === f.id ? 'is-active' : '') + '" data-folder="' + f.id + '">' +
+                        '<span class="tx-folder-label"><span class="mdi ' + f.icon + '"></span>' + f.label + '</span>' +
+                        (n > 0 ? '<span class="tag is-rounded ' + (activeFolder === f.id ? 'is-primary' : 'is-light') + '">' + n + '</span>' : '') +
+                        '</a></li>';
+                }).join('');
+                document.querySelectorAll('[data-folder]').forEach(function (el) {
+                    el.addEventListener('click', function () { activeFolder = el.getAttribute('data-folder'); selectedId = null; renderAll(); });
+                });
+            }
+
+            function renderList() {
+                var list = listFor();
+                document.getElementById('email-list').innerHTML = list.length ? list.map(function (e) {
+                    return '<li><a class="tx-email-item ' + (selectedId === e.id ? 'is-selected' : '') + '" data-email="' + e.id + '">' +
+                        '<span class="tx-email-avatar" style="--avatar-color:' + e.accent + ';">' + e.initials + '</span>' +
+                        '<div class="tx-email-main"><div class="tx-email-row">' +
+                        '<span class="tx-email-sender ' + (e.unread ? 'is-unread' : '') + '">' + esc(e.sender) + '</span>' +
+                        '<span class="is-size-7 has-text-grey">' + e.time + '</span></div>' +
+                        '<p class="tx-email-subject ' + (e.unread ? 'is-unread' : '') + '">' + esc(e.subject) + '</p>' +
+                        '<p class="tx-email-preview">' + esc(e.preview) + '</p></div>' +
+                        '<div class="tx-email-aside">' + (e.unread ? '<span class="tx-email-dot"></span>' : '') +
+                        '<span class="tx-email-star ' + (e.starred ? 'is-starred' : '') + '" data-star="' + e.id + '"><span class="mdi ' + (e.starred ? 'mdi-star' : 'mdi-star-outline') + '"></span></span></div>' +
+                        '</a></li>';
+                }).join('') : '<li class="tx-email-empty"><span class="mdi mdi-email-off-outline" style="font-size:1.6rem;"></span><p class="is-size-7 has-text-grey">Nenhuma mensagem nesta pasta.</p></li>';
+                document.querySelectorAll('[data-email]').forEach(function (el) {
+                    el.addEventListener('click', function (ev) {
+                        if (ev.target.closest('[data-star]')) return;
+                        selectedId = el.getAttribute('data-email');
+                        var e = emails.filter(function (m) { return m.id === selectedId; })[0];
+                        if (e) e.unread = false;
+                        renderAll();
+                    });
+                });
+                document.querySelectorAll('[data-star]').forEach(function (el) {
+                    el.addEventListener('click', function (ev) {
+                        ev.stopPropagation();
+                        var e = emails.filter(function (m) { return m.id === el.getAttribute('data-star'); })[0];
+                        if (e) e.starred = !e.starred;
+                        renderAll();
+                    });
+                });
+            }
+
+            function renderReading() {
+                var sel = emails.filter(function (e) { return e.id === selectedId; })[0];
+                var pane = document.getElementById('reading-pane');
+                if (!sel) {
+                    pane.innerHTML = '<div class="tx-reading-empty"><span class="tx-reading-empty-icon"><span class="mdi mdi-email-outline"></span></span>' +
+                        '<p class="has-text-weight-medium" style="color:var(--tx-text-heading);">Selecione uma mensagem</p>' +
+                        '<p class="is-size-7 has-text-grey">Escolha um e-mail na lista para visualizar o conteúdo.</p></div>';
+                    return;
+                }
+                pane.innerHTML = '<header class="tx-reading-head"><div class="tx-reading-from">' +
+                    '<span class="tx-email-avatar is-large" style="--avatar-color:' + sel.accent + ';">' + sel.initials + '</span>' +
+                    '<div><h2 class="tx-reading-subject">' + esc(sel.subject) + '</h2>' +
+                    '<p class="is-size-7" style="color:var(--tx-text);">' + esc(sel.sender) + '</p>' +
+                    '<p class="is-size-7 has-text-grey">' + esc(sel.email) + '</p></div></div>' +
+                    '<div class="tx-reading-actions">' +
+                    '<button class="button is-small is-light" data-archive><span class="mdi mdi-download"></span></button>' +
+                    '<button class="button is-small is-light" data-delete><span class="mdi mdi-delete"></span></button></div></header>' +
+                    '<div class="tx-reading-body">' + esc(sel.body) + '</div>' +
+                    '<footer class="tx-reading-foot"><button class="button is-light" id="reply-btn"><span class="icon"><span class="mdi mdi-reply"></span></span><span>Responder</span></button></footer>';
+                pane.querySelector('[data-archive]').addEventListener('click', function () { txStore.notifySuccess('Mensagem arquivada'); });
+                pane.querySelector('[data-delete]').addEventListener('click', function () { sel.folder = 'trash'; selectedId = null; txStore.notifySuccess('Mensagem movida para a lixeira'); renderAll(); });
+                pane.querySelector('#reply-btn').addEventListener('click', openCompose);
+            }
+
+            function renderAll() { renderFolders(); renderList(); renderReading(); }
+
+            var modal = document.getElementById('compose-modal');
+            function openCompose() { modal.classList.add('is-active'); }
+            function closeCompose() { modal.classList.remove('is-active'); }
+            document.getElementById('compose-btn').addEventListener('click', openCompose);
+            document.getElementById('compose-close').addEventListener('click', closeCompose);
+            document.getElementById('compose-cancel').addEventListener('click', closeCompose);
+            modal.querySelector('.modal-background').addEventListener('click', closeCompose);
+            document.getElementById('compose-send').addEventListener('click', function () { closeCompose(); txStore.notifySuccess('Mensagem enviada com sucesso'); });
+
+            document.getElementById('email-search').addEventListener('input', function () { search = this.value; renderList(); });
+
+            renderAll();
+        })();
+    }
+</script>
+</body>
+</html>

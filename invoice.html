@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <title>Fatura — Admin Template</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" />
+    <link rel="stylesheet" href="assets/css/variables.css" />
+    <link rel="stylesheet" href="assets/css/dark.css" />
+    <link rel="stylesheet" href="assets/css/app.css" />
+</head>
+<body>
+<div class="tx-layout">
+    <aside class="tx-sidebar" id="tx-sidebar"></aside>
+    <div class="tx-backdrop" id="tx-backdrop"></div>
+    <div class="tx-main" id="tx-main">
+        <header class="tx-header" id="tx-header"></header>
+        <main class="tx-content">
+
+            <div class="tx-invoice-topbar">
+                <div>
+                    <h1 class="title is-4" style="margin-bottom: 0.25rem;">Fatura</h1>
+                    <p class="subtitle is-6 has-text-grey">Detalhamento da cobrança e itens do pedido.</p>
+                </div>
+                <div class="buttons">
+                    <button class="button is-primary" data-notify="Download da fatura iniciado!"><span class="icon"><span class="mdi mdi-download"></span></span><span>Baixar PDF</span></button>
+                    <button class="button is-light" id="print-btn"><span class="icon"><span class="mdi mdi-printer"></span></span><span>Imprimir</span></button>
+                    <button class="button is-light" data-notify="Fatura enviada por email!"><span class="icon"><span class="mdi mdi-email-outline"></span></span><span>Enviar</span></button>
+                </div>
+            </div>
+
+            <div class="box tx-invoice">
+                <div class="tx-invoice-header">
+                    <div class="tx-invoice-brand">
+                        <div class="tx-invoice-logo"><span class="mdi mdi-flash"></span></div>
+                        <div><p class="tx-invoice-company">Acme Tecnologia Ltda.</p><p class="has-text-grey is-size-7">contato@acme.com.br</p></div>
+                    </div>
+                    <div class="tx-invoice-meta">
+                        <h2 class="title is-5" style="margin-bottom: 0.25rem;">FATURA #2026-0042</h2>
+                        <p class="has-text-grey is-size-7">Emissão: 28/05/2026</p>
+                        <p class="has-text-grey is-size-7">Vencimento: 12/06/2026</p>
+                        <span class="tag is-warning is-light" style="margin-top: 0.5rem;">Pendente</span>
+                    </div>
+                </div>
+
+                <div class="columns tx-invoice-parties">
+                    <div class="column">
+                        <p class="tx-invoice-label">De</p>
+                        <p class="tx-invoice-party-name">Acme Tecnologia Ltda.</p>
+                        <p class="tx-invoice-party-line">CNPJ: 12.345.678/0001-90</p>
+                        <p class="tx-invoice-party-line">Av. Paulista, 1000 — Sala 142</p>
+                        <p class="tx-invoice-party-line">São Paulo, SP — 01310-100</p>
+                    </div>
+                    <div class="column has-text-right-tablet">
+                        <p class="tx-invoice-label">Para</p>
+                        <p class="tx-invoice-party-name">Marina Costa — Studio MC</p>
+                        <p class="tx-invoice-party-line">CNPJ: 98.765.432/0001-21</p>
+                        <p class="tx-invoice-party-line">Rua das Flores, 250 — Conj. 8</p>
+                        <p class="tx-invoice-party-line">Belo Horizonte, MG — 30140-071</p>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table class="table is-fullwidth tx-invoice-table">
+                        <thead><tr><th>Descrição</th><th class="has-text-centered">Qtd.</th><th class="has-text-right">Preço unit.</th><th class="has-text-right">Total</th></tr></thead>
+                        <tbody id="invoice-items"></tbody>
+                    </table>
+                </div>
+
+                <div class="tx-invoice-summary-wrap">
+                    <div class="tx-invoice-summary">
+                        <div class="tx-invoice-summary-row"><span class="has-text-grey">Subtotal</span><span class="has-text-weight-medium" id="inv-subtotal"></span></div>
+                        <div class="tx-invoice-summary-row"><span class="has-text-grey">Desconto</span><span class="has-text-weight-medium has-text-success" id="inv-discount"></span></div>
+                        <div class="tx-invoice-summary-row"><span class="has-text-grey">Impostos (5%)</span><span class="has-text-weight-medium" id="inv-tax"></span></div>
+                        <div class="tx-invoice-summary-row tx-invoice-summary-total"><span class="has-text-weight-semibold">Total</span><span class="tx-invoice-total-value" id="inv-total"></span></div>
+                    </div>
+                </div>
+
+                <div class="notification tx-invoice-note">
+                    <div class="tx-invoice-note-inner">
+                        <span class="mdi mdi-information-outline tx-invoice-note-icon"></span>
+                        <div><p class="has-text-weight-medium">Observações</p>
+                        <p class="is-size-7" style="margin-top: 0.25rem;">Pagamento via PIX, boleto ou cartão de crédito. Em caso de atraso, será aplicada multa de 2% acrescida de juros de 1% ao mês. Obrigado pela preferência!</p></div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+        <footer class="tx-footer" id="tx-footer" style="padding: 0.75rem 1.25rem; border-top: 1px solid var(--tx-border); text-align: center; font-size: 0.78rem; color: var(--tx-text-muted); background: var(--tx-card-bg);"></footer>
+    </div>
+    <div class="tx-notifications" id="tx-notifications"></div>
+    <div class="tx-cookie-banner" id="tx-cookie-banner" style="display:none;"></div>
+</div>
+
+<script src="assets/js/state.js"></script>
+<script src="assets/js/menu.js"></script>
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/layout.js"></script>
+<script>
+    if (txAuth.requireAuth()) {
+        txLayout.init({ current: 'invoice.html', pageTitle: 'Fatura' });
+        (function () {
+            var BRL = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
+            var ITEMS = [
+                { desc: 'Plano Pro — assinatura anual', detail: '01/06/2026 a 31/05/2027', qty: 1, unit: 1548.0 },
+                { desc: 'Usuários adicionais', detail: '5 assentos extras', qty: 5, unit: 29.0 },
+                { desc: 'Armazenamento extra', detail: 'Pacote de 250 GB', qty: 2, unit: 49.0 },
+                { desc: 'Suporte prioritário 24/7', detail: 'Add-on mensal', qty: 1, unit: 199.0 },
+            ];
+            document.getElementById('invoice-items').innerHTML = ITEMS.map(function (i) {
+                return '<tr><td><p class="tx-invoice-item-desc">' + i.desc + '</p><p class="has-text-grey is-size-7">' + i.detail + '</p></td>' +
+                    '<td class="has-text-centered">' + i.qty + '</td><td class="has-text-right">' + BRL.format(i.unit) + '</td>' +
+                    '<td class="has-text-right tx-invoice-item-total">' + BRL.format(i.qty * i.unit) + '</td></tr>';
+            }).join('');
+            var subtotal = ITEMS.reduce(function (s, i) { return s + i.qty * i.unit; }, 0);
+            var discount = 90.0, taxBase = subtotal - discount, tax = taxBase * 0.05, total = taxBase + tax;
+            document.getElementById('inv-subtotal').textContent = BRL.format(subtotal);
+            document.getElementById('inv-discount').textContent = '− ' + BRL.format(discount);
+            document.getElementById('inv-tax').textContent = BRL.format(tax);
+            document.getElementById('inv-total').textContent = BRL.format(total);
+
+            document.getElementById('print-btn').addEventListener('click', function () { window.print(); });
+            document.querySelectorAll('[data-notify]').forEach(function (b) {
+                b.addEventListener('click', function () { txStore.notifySuccess(b.getAttribute('data-notify')); });
+            });
+        })();
+    }
+</script>
+</body>
+</html>

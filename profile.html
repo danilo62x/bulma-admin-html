@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <title>Meu Perfil — Admin Template</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" />
+    <link rel="stylesheet" href="assets/css/variables.css" />
+    <link rel="stylesheet" href="assets/css/dark.css" />
+    <link rel="stylesheet" href="assets/css/app.css" />
+</head>
+<body>
+<div class="tx-layout">
+    <aside class="tx-sidebar" id="tx-sidebar"></aside>
+    <div class="tx-backdrop" id="tx-backdrop"></div>
+    <div class="tx-main" id="tx-main">
+        <header class="tx-header" id="tx-header"></header>
+        <main class="tx-content">
+
+            <div class="tx-profile-hero">
+                <div class="tx-profile-cover"></div>
+                <div class="tx-profile-identity">
+                    <div class="tx-avatar-lg">
+                        <span id="profile-initial">A</span>
+                        <button class="tx-avatar-edit" onclick="txStore.notify('Upload de foto', 'is-info')"><span class="mdi mdi-camera"></span></button>
+                    </div>
+                    <div class="tx-profile-meta">
+                        <h2 class="tx-profile-name" id="profile-name">Administrador</h2>
+                        <p class="tx-profile-role"><span class="tag is-primary is-light" id="profile-role">Administrador</span></p>
+                        <p class="tx-profile-since">Membro desde Janeiro de 2024</p>
+                    </div>
+                    <div class="tx-profile-actions">
+                        <button class="button is-primary" id="edit-toggle"><span class="mdi mdi-pencil" style="margin-right:0.25rem;"></span>Editar Perfil</button>
+                        <button class="button is-light" onclick="txStore.notifySuccess('Link copiado!')"><span class="mdi mdi-share-variant" style="margin-right:0.25rem;"></span>Compartilhar</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="columns is-multiline tx-profile-stats">
+                <div class="column is-3-desktop is-6-tablet"><div class="tx-pstat"><div class="tx-pstat-val">248</div><div class="tx-pstat-label">Tarefas concluídas</div><div class="tx-pstat-trend has-text-success"><span class="mdi mdi-arrow-up-thin"></span>+12 este mês</div></div></div>
+                <div class="column is-3-desktop is-6-tablet"><div class="tx-pstat"><div class="tx-pstat-val">64</div><div class="tx-pstat-label">Relatórios emitidos</div><div class="tx-pstat-trend has-text-success"><span class="mdi mdi-arrow-up-thin"></span>+5 este mês</div></div></div>
+                <div class="column is-3-desktop is-6-tablet"><div class="tx-pstat"><div class="tx-pstat-val">7</div><div class="tx-pstat-label">Projetos ativos</div><div class="tx-pstat-trend has-text-success"><span class="mdi mdi-arrow-up-thin"></span>+2 novos</div></div></div>
+                <div class="column is-3-desktop is-6-tablet"><div class="tx-pstat"><div class="tx-pstat-val">4.8★</div><div class="tx-pstat-label">Avaliação da equipe</div><div class="tx-pstat-trend has-text-success"><span class="mdi mdi-arrow-up-thin"></span>+0.2 trimestre</div></div></div>
+            </div>
+
+            <div class="columns">
+                <div class="column is-4">
+                    <div class="tx-card">
+                        <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-account-circle"></span><span class="tx-card-title">Sobre</span></div>
+                        <div class="tx-card-body" id="about-view">
+                            <p style="font-size:0.875rem;color:var(--tx-text-muted);line-height:1.65;">
+                                Administrador sênior com foco em operações, relatórios e gestão de equipes. Mais de 8 anos de experiência em sistemas web.
+                            </p>
+                            <div class="tx-info-list">
+                                <div class="tx-info-row"><span class="mdi tx-info-icon mdi-email-outline"></span><span id="about-email">admin@empresa.com</span></div>
+                                <div class="tx-info-row"><span class="mdi tx-info-icon mdi-phone-outline"></span><span>(11) 99999-9999</span></div>
+                                <div class="tx-info-row"><span class="mdi tx-info-icon mdi-map-marker-outline"></span><span>São Paulo, SP</span></div>
+                                <div class="tx-info-row"><span class="mdi tx-info-icon mdi-domain"></span><span>Tecnologia</span></div>
+                                <div class="tx-info-row"><span class="mdi tx-info-icon mdi-badge-account"></span><span>Administrador Sênior</span></div>
+                            </div>
+                        </div>
+                        <div class="tx-card-body" id="about-edit" style="display:none;">
+                            <div class="field"><label class="label">Nome completo</label><div class="control has-icons-left"><input class="input" id="edit-name" /><span class="icon is-small is-left"><i class="mdi mdi-account"></i></span></div></div>
+                            <div class="field"><label class="label">E-mail</label><div class="control has-icons-left"><input class="input" type="email" id="edit-email" /><span class="icon is-small is-left"><i class="mdi mdi-email"></i></span></div></div>
+                            <div class="field"><label class="label">Telefone</label><div class="control has-icons-left"><input class="input" value="(11) 99999-9999" /><span class="icon is-small is-left"><i class="mdi mdi-phone"></i></span></div></div>
+                            <div class="tx-form-actions">
+                                <button class="button is-primary" id="save-profile"><span class="mdi mdi-content-save" style="margin-right:0.25rem;"></span>Salvar</button>
+                                <button class="button is-light" id="cancel-edit">Cancelar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tx-card" style="margin-top:1rem;">
+                        <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-star-outline"></span><span class="tx-card-title">Habilidades</span></div>
+                        <div class="tx-card-body">
+                            <div class="tx-skills">
+                                <div class="tx-skill-row"><div class="tx-skill-header"><span class="tx-skill-name">Gestão de Projetos</span><span class="tx-skill-pct">92%</span></div><progress class="progress is-primary is-small" value="92" max="100">92%</progress></div>
+                                <div class="tx-skill-row"><div class="tx-skill-header"><span class="tx-skill-name">Análise de Dados</span><span class="tx-skill-pct">85%</span></div><progress class="progress is-info is-small" value="85" max="100">85%</progress></div>
+                                <div class="tx-skill-row"><div class="tx-skill-header"><span class="tx-skill-name">Liderança de Equipe</span><span class="tx-skill-pct">88%</span></div><progress class="progress is-success is-small" value="88" max="100">88%</progress></div>
+                                <div class="tx-skill-row"><div class="tx-skill-header"><span class="tx-skill-name">HTML/CSS/JS</span><span class="tx-skill-pct">90%</span></div><progress class="progress is-warning is-small" value="90" max="100">90%</progress></div>
+                                <div class="tx-skill-row"><div class="tx-skill-header"><span class="tx-skill-name">Comunicação</span><span class="tx-skill-pct">95%</span></div><progress class="progress is-primary is-small" value="95" max="100">95%</progress></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tx-card" style="margin-top:1rem;">
+                        <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-tag-multiple"></span><span class="tx-card-title">Interesses</span></div>
+                        <div class="tx-card-body">
+                            <div class="tx-tags-showcase">
+                                <span class="tag is-primary is-light">HTML</span>
+                                <span class="tag is-primary is-light">CSS</span>
+                                <span class="tag is-primary is-light">Bulma</span>
+                                <span class="tag is-primary is-light">UX Design</span>
+                                <span class="tag is-primary is-light">Analytics</span>
+                                <span class="tag is-primary is-light">Agile</span>
+                                <span class="tag is-primary is-light">Vanilla JS</span>
+                                <span class="tag is-primary is-light">Web Components</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="column is-8">
+                    <div class="tx-card">
+                        <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-history"></span><span class="tx-card-title">Atividade Recente</span></div>
+                        <div class="tx-card-body">
+                            <div class="tx-timeline">
+                                <div class="tx-tl-item"><div class="tx-tl-line"></div><div class="tx-tl-dot" style="background:#485fc7;"><span class="mdi mdi-file-chart"></span></div><div class="tx-tl-content"><div class="tx-tl-title">Relatório mensal publicado</div><div class="tx-tl-desc">Análise de KPIs de Abril 2025 disponível.</div><div class="tx-tl-time">Há 2 horas</div></div></div>
+                                <div class="tx-tl-item"><div class="tx-tl-line"></div><div class="tx-tl-dot" style="background:#48c774;"><span class="mdi mdi-account-plus"></span></div><div class="tx-tl-content"><div class="tx-tl-title">Novo membro adicionado</div><div class="tx-tl-desc">Fernanda entrou no projeto Alpha.</div><div class="tx-tl-time">Há 5 horas</div></div></div>
+                                <div class="tx-tl-item"><div class="tx-tl-line"></div><div class="tx-tl-dot" style="background:#f59e0b;"><span class="mdi mdi-trophy"></span></div><div class="tx-tl-content"><div class="tx-tl-title">Meta de vendas atingida</div><div class="tx-tl-desc">Superamos a meta de R$ 50k em Abril.</div><div class="tx-tl-time">Ontem</div></div></div>
+                                <div class="tx-tl-item"><div class="tx-tl-line"></div><div class="tx-tl-dot" style="background:#3273dc;"><span class="mdi mdi-update"></span></div><div class="tx-tl-content"><div class="tx-tl-title">Sistema atualizado</div><div class="tx-tl-desc">Versão 2.4.1 em produção.</div><div class="tx-tl-time">2 dias atrás</div></div></div>
+                                <div class="tx-tl-item"><div class="tx-tl-line"></div><div class="tx-tl-dot" style="background:#9b59b6;"><span class="mdi mdi-presentation"></span></div><div class="tx-tl-content"><div class="tx-tl-title">Reunião com stakeholders</div><div class="tx-tl-desc">Roadmap Q2 aprovado.</div><div class="tx-tl-time">3 dias atrás</div></div></div>
+                                <div class="tx-tl-item"><div class="tx-tl-line"></div><div class="tx-tl-dot" style="background:#1abc9c;"><span class="mdi mdi-database-check"></span></div><div class="tx-tl-content"><div class="tx-tl-title">Backup automático</div><div class="tx-tl-desc">Snapshot de BD salvo.</div><div class="tx-tl-time">1 semana atrás</div></div></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tx-card" style="margin-top:1rem;">
+                        <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-folder-multiple"></span><span class="tx-card-title">Projetos Recentes</span></div>
+                        <div class="tx-card-body">
+                            <div class="columns is-multiline">
+                                <div class="column is-6"><div class="tx-project-card"><div class="tx-project-header"><div class="tx-project-icon" style="background: color-mix(in srgb, #485fc7 15%, transparent); color: #485fc7;"><span class="mdi mdi-chart-line"></span></div><span class="tag is-small is-primary is-light">Ativo</span></div><div class="tx-project-name">Dashboard Analytics</div><div class="tx-project-desc">Painel BI com métricas em tempo real.</div><div class="tx-project-footer"><div class="tx-project-progress"><progress class="progress is-primary is-small" value="78" max="100">78%</progress><span class="tx-project-pct">78%</span></div><div class="tx-project-team"><div class="tx-team-avatar" style="background:#485fc7;">J</div><div class="tx-team-avatar" style="background:#48c774; margin-left:-6px;">M</div><div class="tx-team-avatar" style="background:#f59e0b; margin-left:-6px;">C</div></div></div></div></div>
+                                <div class="column is-6"><div class="tx-project-card"><div class="tx-project-header"><div class="tx-project-icon" style="background: color-mix(in srgb, #f59e0b 15%, transparent); color: #f59e0b;"><span class="mdi mdi-cellphone"></span></div><span class="tag is-small is-warning is-light">Em andamento</span></div><div class="tx-project-name">App Mobile</div><div class="tx-project-desc">Aplicativo para gestão em campo.</div><div class="tx-project-footer"><div class="tx-project-progress"><progress class="progress is-primary is-small" value="42" max="100">42%</progress><span class="tx-project-pct">42%</span></div><div class="tx-project-team"><div class="tx-team-avatar" style="background:#3273dc;">A</div><div class="tx-team-avatar" style="background:#9b59b6; margin-left:-6px;">R</div></div></div></div></div>
+                                <div class="column is-6"><div class="tx-project-card"><div class="tx-project-header"><div class="tx-project-icon" style="background: color-mix(in srgb, #3273dc 15%, transparent); color: #3273dc;"><span class="mdi mdi-web"></span></div><span class="tag is-small is-info is-light">Revisão</span></div><div class="tx-project-name">Portal do Cliente</div><div class="tx-project-desc">Self-service para clientes.</div><div class="tx-project-footer"><div class="tx-project-progress"><progress class="progress is-primary is-small" value="95" max="100">95%</progress><span class="tx-project-pct">95%</span></div><div class="tx-project-team"><div class="tx-team-avatar" style="background:#1abc9c;">F</div><div class="tx-team-avatar" style="background:#e67e22; margin-left:-6px;">T</div><div class="tx-team-avatar" style="background:#485fc7; margin-left:-6px;">B</div></div></div></div></div>
+                                <div class="column is-6"><div class="tx-project-card"><div class="tx-project-header"><div class="tx-project-icon" style="background: color-mix(in srgb, #48c774 15%, transparent); color: #48c774;"><span class="mdi mdi-database-arrow-right"></span></div><span class="tag is-small is-success is-light">Ativo</span></div><div class="tx-project-name">Migração de Dados</div><div class="tx-project-desc">Migração para PostgreSQL.</div><div class="tx-project-footer"><div class="tx-project-progress"><progress class="progress is-success is-small" value="60" max="100">60%</progress><span class="tx-project-pct">60%</span></div><div class="tx-project-team"><div class="tx-team-avatar" style="background:#f14668;">D</div><div class="tx-team-avatar" style="background:#485fc7; margin-left:-6px;">L</div></div></div></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+        <footer class="tx-footer" id="tx-footer" style="padding: 0.75rem 1.25rem; border-top: 1px solid var(--tx-border); text-align: center; font-size: 0.78rem; color: var(--tx-text-muted); background: var(--tx-card-bg);"></footer>
+    </div>
+    <div class="tx-notifications" id="tx-notifications"></div>
+    <div class="tx-cookie-banner" id="tx-cookie-banner" style="display:none;"></div>
+</div>
+
+<script src="assets/js/state.js"></script>
+<script src="assets/js/menu.js"></script>
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/layout.js"></script>
+<script>
+    if (txAuth.requireAuth()) {
+        txLayout.init({ current: 'profile.html', pageTitle: 'Meu Perfil' });
+        var user = txAuth.currentUser();
+        if (user) {
+            document.getElementById('profile-initial').textContent = user.name[0];
+            document.getElementById('profile-name').textContent = user.name;
+            document.getElementById('profile-role').textContent = user.role;
+            document.getElementById('about-email').textContent = user.email;
+            document.getElementById('edit-name').value = user.name;
+            document.getElementById('edit-email').value = user.email;
+        }
+        var view = document.getElementById('about-view');
+        var edit = document.getElementById('about-edit');
+        var btn = document.getElementById('edit-toggle');
+        btn.addEventListener('click', function () {
+            var editing = edit.style.display !== 'none';
+            edit.style.display = editing ? 'none' : 'block';
+            view.style.display = editing ? 'block' : 'none';
+            btn.innerHTML = '<span class="mdi mdi-pencil" style="margin-right:0.25rem;"></span>' + (editing ? 'Editar Perfil' : 'Cancelar');
+        });
+        document.getElementById('cancel-edit').addEventListener('click', function () {
+            edit.style.display = 'none'; view.style.display = 'block';
+            btn.innerHTML = '<span class="mdi mdi-pencil" style="margin-right:0.25rem;"></span>Editar Perfil';
+        });
+        document.getElementById('save-profile').addEventListener('click', function () {
+            edit.style.display = 'none'; view.style.display = 'block';
+            btn.innerHTML = '<span class="mdi mdi-pencil" style="margin-right:0.25rem;"></span>Editar Perfil';
+            txStore.notifySuccess('Perfil atualizado com sucesso!');
+        });
+    }
+</script>
+</body>
+</html>

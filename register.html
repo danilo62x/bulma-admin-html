@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <title>Criar conta — Admin Template</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" />
+    <link rel="stylesheet" href="assets/css/variables.css" />
+    <link rel="stylesheet" href="assets/css/dark.css" />
+    <link rel="stylesheet" href="assets/css/app.css" />
+</head>
+<body>
+<div class="tx-login-page">
+    <div class="tx-login-card">
+        <div class="tx-login-header">
+            <div class="tx-login-logo">A</div>
+            <h1 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 0.25rem;">Criar conta</h1>
+            <p style="opacity: 0.8; font-size: 0.875rem;">Preencha os dados para começar</p>
+        </div>
+
+        <div class="tx-login-body">
+            <form id="register-form" novalidate>
+                <div class="field">
+                    <label class="label">Nome completo</label>
+                    <div class="control has-icons-left">
+                        <input class="input" type="text" id="r-name" placeholder="Seu nome completo" autocomplete="name" />
+                        <span class="icon is-small is-left"><i class="mdi mdi-account"></i></span>
+                    </div>
+                    <p class="help is-danger" data-error="name" style="display: none;"></p>
+                </div>
+
+                <div class="field">
+                    <label class="label">E-mail</label>
+                    <div class="control has-icons-left">
+                        <input class="input" type="email" id="r-email" placeholder="seu@email.com" autocomplete="email" />
+                        <span class="icon is-small is-left"><i class="mdi mdi-email"></i></span>
+                    </div>
+                    <p class="help is-danger" data-error="email" style="display: none;"></p>
+                </div>
+
+                <div class="field">
+                    <label class="label">Senha</label>
+                    <div class="control has-icons-left">
+                        <input class="input" type="password" id="r-password" placeholder="••••••••" autocomplete="new-password" />
+                        <span class="icon is-small is-left"><i class="mdi mdi-lock"></i></span>
+                    </div>
+                    <p class="help">Mínimo de 8 caracteres</p>
+                    <p class="help is-danger" data-error="password" style="display: none;"></p>
+                </div>
+
+                <div class="field">
+                    <label class="label">Confirmar senha</label>
+                    <div class="control has-icons-left">
+                        <input class="input" type="password" id="r-confirm" placeholder="••••••••" autocomplete="new-password" />
+                        <span class="icon is-small is-left"><i class="mdi mdi-lock-check"></i></span>
+                    </div>
+                    <p class="help is-danger" data-error="confirmPassword" style="display: none;"></p>
+                </div>
+
+                <div class="field">
+                    <label class="checkbox is-size-7">
+                        <input type="checkbox" id="r-terms" /> Li e aceito os termos de uso e a política de privacidade
+                    </label>
+                    <p class="help is-danger" data-error="acceptTerms" style="display: none;"></p>
+                </div>
+
+                <button type="submit" class="button is-primary is-fullwidth" id="register-submit">Criar conta</button>
+            </form>
+
+            <p class="has-text-centered is-size-7 has-text-grey" style="margin-top: 1.5rem;">
+                Já tem uma conta?
+                <a href="login.html" style="color: var(--tx-primary); font-weight: 500;">Entrar</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<script src="assets/js/state.js"></script>
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/pwa.js"></script>
+<script>
+    txAuth.requireGuest();
+
+    var form = document.getElementById('register-form');
+    var submitBtn = document.getElementById('register-submit');
+
+    function setError(field, msg) {
+        var el = document.querySelector('[data-error="' + field + '"]');
+        if (!el) return;
+        if (msg) { el.textContent = msg; el.style.display = 'block'; }
+        else { el.textContent = ''; el.style.display = 'none'; }
+    }
+
+    function validate() {
+        var name = document.getElementById('r-name').value.trim();
+        var email = document.getElementById('r-email').value.trim();
+        var pwd = document.getElementById('r-password').value;
+        var confirm = document.getElementById('r-confirm').value;
+        var terms = document.getElementById('r-terms').checked;
+        var ok = true;
+        if (!name) { setError('name', 'Informe seu nome'); ok = false; } else setError('name', null);
+        if (!email) { setError('email', 'Informe seu e-mail'); ok = false; }
+        else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setError('email', 'E-mail inválido'); ok = false; }
+        else setError('email', null);
+        if (!pwd) { setError('password', 'Informe uma senha'); ok = false; }
+        else if (pwd.length < 8) { setError('password', 'A senha deve ter ao menos 8 caracteres'); ok = false; }
+        else setError('password', null);
+        if (!confirm) { setError('confirmPassword', 'Confirme sua senha'); ok = false; }
+        else if (confirm !== pwd) { setError('confirmPassword', 'As senhas não conferem'); ok = false; }
+        else setError('confirmPassword', null);
+        if (!terms) { setError('acceptTerms', 'Você precisa aceitar os termos'); ok = false; } else setError('acceptTerms', null);
+        return ok;
+    }
+
+    form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        if (!validate()) return;
+        submitBtn.classList.add('is-loading');
+        submitBtn.disabled = true;
+        await new Promise(function (r) { setTimeout(r, 700); });
+        window.location.href = 'login.html';
+    });
+</script>
+</body>
+</html>

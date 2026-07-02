@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <title>Integrações & Bibliotecas — Admin Template</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" />
+    <link rel="stylesheet" href="assets/css/variables.css" />
+    <link rel="stylesheet" href="assets/css/dark.css" />
+    <link rel="stylesheet" href="assets/css/app.css" />
+
+    <!-- CDN libraries (only this page uses CDNs for the demos) -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <link href="https://cdn.jsdelivr.net/npm/quill@2/dist/quill.snow.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/quill@2/dist/quill.js"></script>
+</head>
+<body>
+<div class="tx-layout">
+    <aside class="tx-sidebar" id="tx-sidebar"></aside>
+    <div class="tx-backdrop" id="tx-backdrop"></div>
+    <div class="tx-main" id="tx-main">
+        <header class="tx-header" id="tx-header"></header>
+        <main class="tx-content">
+
+            <div style="margin-bottom: 1.25rem;">
+                <h1 class="title is-4" style="margin-bottom: 0.25rem;">Integrações &amp; Bibliotecas</h1>
+                <p class="subtitle is-6 has-text-grey">Demonstração das bibliotecas integradas ao template — gráficos, tabelas, formulários e mais.</p>
+            </div>
+
+            <!-- ApexCharts -->
+            <div class="tx-section-head">
+                <h2 class="title is-5" style="margin: 0;">Gráficos</h2>
+                <span class="tag is-primary is-light"><span class="icon is-small"><i class="mdi mdi-flash"></i></span><span>ApexCharts</span></span>
+                <p class="tx-section-desc">Gráficos interativos e responsivos com tema claro/escuro automático.</p>
+            </div>
+            <div class="tx-card">
+                <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-chart-areaspline"></span><span class="tx-card-title">Receita x Despesas</span></div>
+                <div class="tx-card-body"><div id="chart-area"></div></div>
+            </div>
+            <div class="columns" style="margin-top: 1rem;">
+                <div class="column is-7"><div class="tx-card"><div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-chart-bar"></span><span class="tx-card-title">Vendas por produto</span></div><div class="tx-card-body"><div id="chart-bar"></div></div></div></div>
+                <div class="column is-5"><div class="tx-card"><div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-chart-donut"></span><span class="tx-card-title">Fontes de tráfego</span></div><div class="tx-card-body"><div id="chart-donut"></div></div></div></div>
+            </div>
+
+            <!-- Data table -->
+            <div class="tx-section-head" style="margin-top: 2rem;">
+                <h2 class="title is-5" style="margin: 0;">Tabela de dados</h2>
+                <span class="tag is-primary is-light"><span class="icon is-small"><i class="mdi mdi-flash"></i></span><span>Vanilla JS</span></span>
+                <p class="tx-section-desc">Ordenação, busca global e paginação no cliente.</p>
+            </div>
+            <div class="tx-card">
+                <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-account-group"></span><span class="tx-card-title">Usuários</span>
+                    <input class="input is-small" type="text" id="dt-search" placeholder="Buscar..." style="max-width: 200px;" />
+                </div>
+                <div class="tx-card-body">
+                    <div class="table-container"><table class="table is-fullwidth is-hoverable"><thead><tr id="dt-head"></tr></thead><tbody id="dt-rows"></tbody></table></div>
+                    <div class="is-flex is-align-items-center is-justify-content-space-between is-size-7 has-text-grey" style="margin-top: 0.5rem;">
+                        <span><span id="dt-count">0</span> registro(s)</span>
+                        <div class="buttons has-addons" style="margin-bottom: 0;">
+                            <button class="button is-small" id="dt-prev">Anterior</button>
+                            <span class="button is-small is-static" id="dt-page"></span>
+                            <button class="button is-small" id="dt-next">Próximo</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form + Rich text -->
+            <div class="columns" style="margin-top: 2rem;">
+                <div class="column is-6">
+                    <div class="tx-section-head"><h2 class="title is-5" style="margin: 0;">Formulário validado</h2><span class="tag is-primary is-light"><span class="icon is-small"><i class="mdi mdi-flash"></i></span><span>Validação nativa</span></span></div>
+                    <div class="tx-card"><div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-form-select"></span><span class="tx-card-title">Cadastro</span></div>
+                        <div class="tx-card-body">
+                            <form id="contact-form" novalidate>
+                                <div class="field"><label class="label">Nome completo</label><div class="control has-icons-left"><input class="input" name="nome" type="text" placeholder="Seu nome" /><span class="icon is-small is-left"><i class="mdi mdi-account"></i></span></div><p class="help is-danger" data-err="nome" style="display:none;"></p></div>
+                                <div class="field"><label class="label">E-mail</label><div class="control has-icons-left"><input class="input" name="email" type="email" placeholder="voce@empresa.com" /><span class="icon is-small is-left"><i class="mdi mdi-email"></i></span></div><p class="help is-danger" data-err="email" style="display:none;"></p></div>
+                                <div class="field"><label class="label">Plano</label><div class="control"><div class="select is-fullwidth"><select name="plano"><option value="">Selecione...</option><option value="start">Start</option><option value="pro">Pro</option><option value="enterprise">Enterprise</option></select></div></div><p class="help is-danger" data-err="plano" style="display:none;"></p></div>
+                                <div class="field"><label class="checkbox"><input type="checkbox" name="termos" /> Aceito os termos de uso</label><p class="help is-danger" data-err="termos" style="display:none;"></p></div>
+                                <p class="help is-success" id="form-success" style="display:none;"></p>
+                                <button type="submit" class="button is-primary" style="margin-top: 0.5rem;"><span class="icon"><i class="mdi mdi-check"></i></span><span>Enviar</span></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-6">
+                    <div class="tx-section-head"><h2 class="title is-5" style="margin: 0;">Editor de texto rico</h2><span class="tag is-primary is-light"><span class="icon is-small"><i class="mdi mdi-flash"></i></span><span>Quill</span></span></div>
+                    <div class="tx-card"><div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-format-text"></span><span class="tx-card-title">Conteúdo</span></div>
+                        <div class="tx-card-body"><div id="editor" style="min-height: 200px;"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Date picker + Upload -->
+            <div class="columns" style="margin-top: 2rem;">
+                <div class="column is-6">
+                    <div class="tx-section-head"><h2 class="title is-5" style="margin: 0;">Seletor de data</h2><span class="tag is-primary is-light"><span class="icon is-small"><i class="mdi mdi-flash"></i></span><span>flatpickr</span></span></div>
+                    <div class="tx-card"><div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-calendar"></span><span class="tx-card-title">Datas</span></div>
+                        <div class="tx-card-body">
+                            <div class="field"><label class="label">Data</label><div class="control"><input class="input" type="text" id="dp-date" placeholder="Selecione a data" /></div></div>
+                            <div class="field"><label class="label">Data e hora</label><div class="control"><input class="input" type="text" id="dp-datetime" placeholder="Selecione data e hora" /></div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-6">
+                    <div class="tx-section-head"><h2 class="title is-5" style="margin: 0;">Upload de arquivos</h2><span class="tag is-primary is-light"><span class="icon is-small"><i class="mdi mdi-flash"></i></span><span>Drag &amp; drop nativo</span></span></div>
+                    <div class="tx-card"><div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-cloud-upload"></span><span class="tx-card-title">Enviar arquivos</span></div>
+                        <div class="tx-card-body">
+                            <div class="tx-dropzone" id="dropzone">
+                                <span class="mdi mdi-cloud-upload"></span>
+                                <p class="has-text-weight-medium" style="color: var(--tx-text-heading);">Arraste arquivos aqui ou <span style="color: var(--tx-primary);">clique para procurar</span></p>
+                                <p class="is-size-7 has-text-grey">PNG, JPG ou PDF · até 5 MB cada</p>
+                                <input type="file" id="file-input" multiple accept="image/png,image/jpeg,application/pdf" style="display: none;" />
+                            </div>
+                            <ul id="file-list" style="margin-top: 1rem;"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+        <footer class="tx-footer" id="tx-footer" style="padding: 0.75rem 1.25rem; border-top: 1px solid var(--tx-border); text-align: center; font-size: 0.78rem; color: var(--tx-text-muted); background: var(--tx-card-bg);"></footer>
+    </div>
+    <div class="tx-notifications" id="tx-notifications"></div>
+    <div class="tx-cookie-banner" id="tx-cookie-banner" style="display:none;"></div>
+</div>
+
+<script src="assets/js/state.js"></script>
+<script src="assets/js/menu.js"></script>
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/layout.js"></script>
+<script>
+    if (txAuth.requireAuth()) {
+        txLayout.init({ current: 'integrations.html', pageTitle: 'Integrações & Bibliotecas' });
+        (function () {
+            var BRAND = '#485fc7';
+            var isDark = function () { return document.documentElement.getAttribute('data-theme') === 'dark'; };
+            var muted = function () { return isDark() ? '#95a5a6' : '#7a7a7a'; };
+            function apexTheme() {
+                return {
+                    theme: { mode: isDark() ? 'dark' : 'light' },
+                    chart: { background: 'transparent', fontFamily: 'inherit', toolbar: { show: false } },
+                    grid: { borderColor: isDark() ? '#2c3e50' : '#ebebeb' },
+                    tooltip: { theme: isDark() ? 'dark' : 'light' },
+                    legend: { labels: { colors: muted() } },
+                };
+            }
+
+            /* ApexCharts */
+            var charts = [];
+            if (typeof ApexCharts !== 'undefined') {
+                var MONTHS = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+                var base = apexTheme();
+                var area = new ApexCharts(document.getElementById('chart-area'), Object.assign({}, base, {
+                    chart: Object.assign({}, base.chart, { type: 'area', height: 320 }),
+                    colors: [BRAND, '#48c774'],
+                    series: [{ name: 'Receita', data: [31, 40, 28, 51, 42, 62, 58, 70, 65, 82, 78, 95] }, { name: 'Despesas', data: [22, 28, 25, 33, 30, 38, 36, 44, 41, 50, 47, 55] }],
+                    xaxis: { categories: MONTHS, labels: { style: { colors: muted() } } },
+                    yaxis: { labels: { style: { colors: muted() } } },
+                    dataLabels: { enabled: false }, stroke: { curve: 'smooth', width: 2 },
+                    fill: { type: 'gradient', gradient: { opacityFrom: 0.4, opacityTo: 0 } },
+                    legend: Object.assign({}, base.legend, { position: 'top' }),
+                }));
+                area.render(); charts.push(area);
+
+                var bar = new ApexCharts(document.getElementById('chart-bar'), Object.assign({}, base, {
+                    chart: Object.assign({}, base.chart, { type: 'bar', height: 300 }), colors: [BRAND],
+                    series: [{ name: 'Vendas', data: [44, 55, 41, 67, 22, 43, 36, 52] }],
+                    plotOptions: { bar: { borderRadius: 4, columnWidth: '55%' } }, dataLabels: { enabled: false },
+                    xaxis: { categories: ['Pro', 'Start', 'Storage', 'Ent.', 'Treino', 'API', 'SMS', 'Extra'], labels: { style: { colors: muted() } } },
+                    yaxis: { labels: { style: { colors: muted() } } },
+                }));
+                bar.render(); charts.push(bar);
+
+                var donut = new ApexCharts(document.getElementById('chart-donut'), Object.assign({}, base, {
+                    chart: Object.assign({}, base.chart, { type: 'donut', height: 300 }),
+                    colors: [BRAND, '#3273dc', '#48c774', '#f59e0b', '#95a5a6'],
+                    series: [42, 24, 18, 10, 6], labels: ['Google', 'Direto', 'Social', 'Email', 'Outros'],
+                    legend: Object.assign({}, base.legend, { position: 'bottom' }),
+                    plotOptions: { pie: { donut: { size: '65%' } } }, dataLabels: { enabled: false },
+                }));
+                donut.render(); charts.push(donut);
+
+                var obs = new MutationObserver(function () {
+                    var t = apexTheme();
+                    charts.forEach(function (c) {
+                        c.updateOptions({ theme: t.theme, grid: t.grid, tooltip: t.tooltip, legend: { labels: { colors: muted() } }, xaxis: { labels: { style: { colors: muted() } } }, yaxis: { labels: { style: { colors: muted() } } } }, false, false);
+                    });
+                });
+                obs.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+            }
+
+            /* Data table */
+            var USERS = [
+                { nome: 'Marina Costa', email: 'marina@empresa.com', funcao: 'Administradora', status: 'Ativo', valor: 1299.9 },
+                { nome: 'Lucas Pereira', email: 'lucas@empresa.com', funcao: 'Editor', status: 'Pendente', valor: 349.5 },
+                { nome: 'Aline Souza', email: 'aline@empresa.com', funcao: 'Visualizador', status: 'Ativo', valor: 89.0 },
+                { nome: 'Rafael Lima', email: 'rafael@empresa.com', funcao: 'Editor', status: 'Inativo', valor: 0 },
+                { nome: 'Bianca Rocha', email: 'bianca@empresa.com', funcao: 'Administradora', status: 'Ativo', valor: 2499.0 },
+                { nome: 'Diego Martins', email: 'diego@empresa.com', funcao: 'Visualizador', status: 'Pendente', valor: 159.9 },
+            ];
+            var COLS = [{ key: 'nome', label: 'Nome' }, { key: 'email', label: 'E-mail' }, { key: 'funcao', label: 'Função' }, { key: 'status', label: 'Status' }, { key: 'valor', label: 'Valor' }];
+            var PAGE = 5, brl = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
+            function stClass(s) { if (s === 'Ativo') return 'is-success is-light'; if (s === 'Pendente') return 'is-warning is-light'; return 'is-danger is-light'; }
+            var sortKey = 'nome', sortDir = 1, page = 1;
+            var headEl = document.getElementById('dt-head'), rowsEl = document.getElementById('dt-rows'), searchEl = document.getElementById('dt-search');
+            function renderHead() {
+                headEl.innerHTML = COLS.map(function (c) { var a = sortKey === c.key ? (sortDir === 1 ? ' ▲' : ' ▼') : ''; return '<th data-sort="' + c.key + '" style="cursor:pointer;">' + c.label + a + '</th>'; }).join('');
+                headEl.querySelectorAll('[data-sort]').forEach(function (th) { th.addEventListener('click', function () { var k = th.getAttribute('data-sort'); if (sortKey === k) sortDir *= -1; else { sortKey = k; sortDir = 1; } page = 1; render(); }); });
+            }
+            function renderTable() {
+                var q = (searchEl.value || '').toLowerCase();
+                var data = USERS.filter(function (u) { return !q || u.nome.toLowerCase().indexOf(q) > -1 || u.email.toLowerCase().indexOf(q) > -1 || u.funcao.toLowerCase().indexOf(q) > -1; });
+                data = data.slice().sort(function (a, b) { var av = a[sortKey], bv = b[sortKey]; if (typeof av === 'string') { av = av.toLowerCase(); bv = bv.toLowerCase(); } return av < bv ? -1 * sortDir : av > bv ? 1 * sortDir : 0; });
+                var total = data.length, pages = Math.max(1, Math.ceil(total / PAGE));
+                if (page > pages) page = pages;
+                var slice = data.slice((page - 1) * PAGE, page * PAGE);
+                rowsEl.innerHTML = slice.length ? slice.map(function (u) {
+                    return '<tr><td class="has-text-weight-medium">' + u.nome + '</td><td class="has-text-grey">' + u.email + '</td><td>' + u.funcao + '</td>' +
+                        '<td><span class="tag ' + stClass(u.status) + '">' + u.status + '</span></td><td class="has-text-weight-medium">' + brl.format(u.valor) + '</td></tr>';
+                }).join('') : '<tr><td colspan="5" class="has-text-centered has-text-grey" style="padding: 2rem;">Nenhum registro encontrado.</td></tr>';
+                document.getElementById('dt-count').textContent = total;
+                document.getElementById('dt-page').textContent = page + ' / ' + pages;
+                document.getElementById('dt-prev').disabled = page <= 1;
+                document.getElementById('dt-next').disabled = page >= pages;
+            }
+            function render() { renderHead(); renderTable(); }
+            searchEl.addEventListener('input', function () { page = 1; render(); });
+            document.getElementById('dt-prev').addEventListener('click', function () { if (page > 1) { page--; render(); } });
+            document.getElementById('dt-next').addEventListener('click', function () { page++; render(); });
+            render();
+
+            /* Form validation */
+            var form = document.getElementById('contact-form');
+            function showErr(name, msg) { var p = form.querySelector('[data-err="' + name + '"]'); if (!p) return; if (msg) { p.textContent = msg; p.style.display = 'block'; } else { p.textContent = ''; p.style.display = 'none'; } }
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                var nome = form.nome.value.trim(), email = form.email.value.trim(), plano = form.plano.value, termos = form.termos.checked, ok = true;
+                if (nome.length < 3) { showErr('nome', 'Mínimo de 3 caracteres'); ok = false; } else showErr('nome', '');
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showErr('email', 'E-mail inválido'); ok = false; } else showErr('email', '');
+                if (!plano) { showErr('plano', 'Selecione um plano'); ok = false; } else showErr('plano', '');
+                if (!termos) { showErr('termos', 'É preciso aceitar os termos'); ok = false; } else showErr('termos', '');
+                var success = document.getElementById('form-success');
+                if (ok) { success.textContent = 'Formulário enviado com sucesso para ' + nome + '!'; success.style.display = 'block'; form.reset(); }
+                else { success.style.display = 'none'; }
+            });
+
+            /* Quill */
+            if (typeof Quill !== 'undefined') {
+                new Quill('#editor', { theme: 'snow', placeholder: 'Comece a escrever o seu conteúdo aqui…', modules: { toolbar: [[{ header: [1, 2, 3, false] }], ['bold', 'italic', 'underline'], [{ list: 'ordered' }, { list: 'bullet' }], ['blockquote', 'link'], ['clean']] } });
+            }
+
+            /* flatpickr */
+            if (typeof flatpickr !== 'undefined') {
+                flatpickr('#dp-date', { dateFormat: 'd/m/Y', defaultDate: new Date() });
+                flatpickr('#dp-datetime', { enableTime: true, dateFormat: 'd/m/Y H:i', time_24hr: true, defaultDate: new Date() });
+            }
+
+            /* Upload */
+            var dz = document.getElementById('dropzone'), fi = document.getElementById('file-input'), fl = document.getElementById('file-list'), files = [];
+            function fmt(b) { if (b < 1024) return b + ' B'; if (b < 1048576) return (b / 1024).toFixed(1) + ' KB'; return (b / 1048576).toFixed(1) + ' MB'; }
+            function renderFiles() {
+                fl.innerHTML = files.map(function (f, i) {
+                    return '<li class="is-flex is-align-items-center is-justify-content-space-between" style="border:1px solid var(--tx-border); border-radius:var(--tx-radius); padding:0.5rem 0.75rem; margin-bottom:0.5rem;">' +
+                        '<span class="is-size-7"><span class="mdi mdi-file" style="margin-right:0.4rem; color:var(--tx-primary);"></span>' + f.name + '</span>' +
+                        '<span class="is-flex is-align-items-center" style="gap:0.75rem;"><span class="is-size-7 has-text-grey">' + fmt(f.size) + '</span><button class="delete is-small" data-rm="' + i + '"></button></span></li>';
+                }).join('');
+                fl.querySelectorAll('[data-rm]').forEach(function (b) { b.addEventListener('click', function () { files.splice(parseInt(b.getAttribute('data-rm'), 10), 1); renderFiles(); }); });
+            }
+            function add(list) { Array.prototype.forEach.call(list, function (f) { files.push(f); }); renderFiles(); }
+            dz.addEventListener('click', function () { fi.click(); });
+            fi.addEventListener('change', function () { add(fi.files); fi.value = ''; });
+            ['dragenter', 'dragover'].forEach(function (ev) { dz.addEventListener(ev, function (e) { e.preventDefault(); dz.classList.add('is-dragging'); }); });
+            ['dragleave', 'drop'].forEach(function (ev) { dz.addEventListener(ev, function (e) { e.preventDefault(); dz.classList.remove('is-dragging'); }); });
+            dz.addEventListener('drop', function (e) { if (e.dataTransfer && e.dataTransfer.files) add(e.dataTransfer.files); });
+        })();
+    }
+</script>
+</body>
+</html>

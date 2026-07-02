@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <title>Documentação — Admin Template</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" />
+    <link rel="stylesheet" href="assets/css/variables.css" />
+    <link rel="stylesheet" href="assets/css/dark.css" />
+    <link rel="stylesheet" href="assets/css/app.css" />
+</head>
+<body>
+<div class="tx-layout">
+    <aside class="tx-sidebar" id="tx-sidebar"></aside>
+    <div class="tx-backdrop" id="tx-backdrop"></div>
+    <div class="tx-main" id="tx-main">
+        <header class="tx-header" id="tx-header"></header>
+        <main class="tx-content">
+
+            <div style="margin-bottom: 1.25rem;">
+                <h1 class="title is-4" style="margin-bottom: 0.25rem;">Documentação</h1>
+                <p class="subtitle is-6 has-text-grey">Guia completo de uso do template e da API.</p>
+            </div>
+
+            <div class="columns">
+                <div class="column is-3">
+                    <aside class="tx-doc-toc">
+                        <div class="box">
+                            <div class="field" style="margin-bottom: 0.75rem;">
+                                <div class="control has-icons-left">
+                                    <input class="input is-small" type="text" id="doc-search" placeholder="Buscar na documentação..." />
+                                    <span class="icon is-left"><i class="mdi mdi-magnify"></i></span>
+                                </div>
+                            </div>
+                            <p class="tx-doc-toc-title">Nesta página</p>
+                            <aside class="menu"><ul class="menu-list" id="doc-toc"></ul><p class="has-text-grey is-size-7" id="doc-noresults" style="padding: 0.5rem 0.75rem; display:none;">Nenhuma seção encontrada.</p></aside>
+                        </div>
+                    </aside>
+                </div>
+
+                <div class="column is-9">
+                    <article class="box tx-doc-article">
+                        <section class="tx-doc-section">
+                            <h2 id="introducao" class="tx-doc-heading">Introdução</h2>
+                            <p class="tx-doc-text">Bem-vindo à documentação do <strong>Admin Template</strong>. Este guia cobre desde a instalação até o uso avançado dos componentes. O template é construído com HTML, Bulma e JavaScript vanilla, priorizando performance e suporte completo a modo escuro.</p>
+                            <div class="notification is-info is-light tx-doc-callout"><span class="mdi mdi-information-outline tx-doc-callout-icon"></span><div><p class="has-text-weight-semibold">Dica</p><p class="is-size-7" style="margin-top: 0.25rem;">Você pode servir o template com qualquer servidor estático — não há necessidade de build pesado.</p></div></div>
+                        </section>
+
+                        <section class="tx-doc-section">
+                            <h2 id="instalacao" class="tx-doc-heading">Instalação</h2>
+                            <p class="tx-doc-text">Clone o repositório e sirva os arquivos estáticos:</p>
+                            <div class="tx-doc-codeblock"><button type="button" class="button is-small tx-doc-copy"><span class="mdi mdi-content-copy"></span> Copiar</button><pre class="tx-doc-pre"><code># Clonar o projeto
+git clone https://github.com/acme/admin-template.git
+cd admin-template/html
+
+# Servir localmente
+npx serve .</code></pre></div>
+                            <p class="tx-doc-text">A aplicação ficará disponível em <code class="tx-doc-code">http://localhost:3000</code>.</p>
+                        </section>
+
+                        <section class="tx-doc-section">
+                            <h2 id="configuracao" class="tx-doc-heading">Configuração</h2>
+                            <p class="tx-doc-text">As cores e tokens de design são definidos em <code class="tx-doc-code">assets/css/variables.css</code>:</p>
+                            <div class="tx-doc-codeblock"><button type="button" class="button is-small tx-doc-copy"><span class="mdi mdi-content-copy"></span> Copiar</button><pre class="tx-doc-pre"><code>:root {
+  --tx-primary: #485fc7;
+  --tx-success: #48c774;
+  --tx-radius: 6px;
+}</code></pre></div>
+                            <div class="notification is-warning is-light tx-doc-callout"><span class="mdi mdi-alert-outline tx-doc-callout-icon"></span><div><p class="has-text-weight-semibold">Atenção</p><p class="is-size-7" style="margin-top: 0.25rem;">O CSS usa nesting nativo. Para navegadores antigos, compile com PostCSS.</p></div></div>
+                        </section>
+
+                        <section class="tx-doc-section">
+                            <h2 id="componentes" class="tx-doc-heading">Componentes</h2>
+                            <p class="tx-doc-text">O template inclui um conjunto de componentes reutilizáveis. A tabela abaixo resume os principais:</p>
+                            <div class="table-container"><table class="table is-fullwidth tx-doc-table"><thead><tr><th>Componente</th><th>Descrição</th><th>Uso</th></tr></thead><tbody>
+                                <tr><td><code class="tx-doc-code">tx-card</code></td><td>Container de seção com cabeçalho.</td><td class="has-text-grey">header, body</td></tr>
+                                <tr><td><code class="tx-doc-code">tx-stats-card</code></td><td>Cartão de métrica com tendência.</td><td class="has-text-grey">icon, value, label</td></tr>
+                                <tr><td><code class="tx-doc-code">table</code></td><td>Tabela Bulma com sort/filter via JS.</td><td class="has-text-grey">is-fullwidth, is-hoverable</td></tr>
+                                <tr><td><code class="tx-doc-code">modal</code></td><td>Diálogo modal com toggle por classe.</td><td class="has-text-grey">is-active</td></tr>
+                            </tbody></table></div>
+                        </section>
+
+                        <section class="tx-doc-section">
+                            <h2 id="api" class="tx-doc-heading">API</h2>
+                            <p class="tx-doc-text">A API REST utiliza autenticação via token Bearer. Inclua o cabeçalho <code class="tx-doc-code">Authorization</code> em todas as requisições autenticadas:</p>
+                            <div class="tx-doc-codeblock"><button type="button" class="button is-small tx-doc-copy"><span class="mdi mdi-content-copy"></span> Copiar</button><pre class="tx-doc-pre"><code>curl https://api.acme.com.br/v1/users \
+  -H "Authorization: Bearer SEU_TOKEN" \
+  -H "Content-Type: application/json"</code></pre></div>
+                            <div class="table-container"><table class="table is-fullwidth tx-doc-table"><thead><tr><th>Método</th><th>Endpoint</th><th>Descrição</th></tr></thead><tbody>
+                                <tr><td><span class="tag is-success is-light tx-doc-method">GET</span></td><td><code class="tx-doc-code">/v1/users</code></td><td class="has-text-grey">Lista todos os usuários.</td></tr>
+                                <tr><td><span class="tag is-primary is-light tx-doc-method">POST</span></td><td><code class="tx-doc-code">/v1/users</code></td><td class="has-text-grey">Cria um novo usuário.</td></tr>
+                                <tr><td><span class="tag is-danger is-light tx-doc-method">DELETE</span></td><td><code class="tx-doc-code">/v1/users/:id</code></td><td class="has-text-grey">Remove um usuário.</td></tr>
+                            </tbody></table></div>
+                        </section>
+
+                        <section class="tx-doc-section">
+                            <h2 id="faq" class="tx-doc-heading">FAQ</h2>
+                            <div class="tx-doc-faq-list">
+                                <div class="tx-doc-faq-item"><p class="tx-doc-faq-q"><span class="mdi mdi-help-circle-outline" style="color: var(--tx-primary); margin-right: 0.5rem;"></span>Posso usar o template em projetos comerciais?</p><p class="tx-doc-faq-a">Sim. A licença permite uso em projetos comerciais ilimitados após a compra.</p></div>
+                                <div class="tx-doc-faq-item"><p class="tx-doc-faq-q"><span class="mdi mdi-help-circle-outline" style="color: var(--tx-primary); margin-right: 0.5rem;"></span>O template suporta modo escuro?</p><p class="tx-doc-faq-a">Sim, todo o template foi construído com suporte nativo a modo claro e escuro.</p></div>
+                                <div class="tx-doc-faq-item"><p class="tx-doc-faq-q"><span class="mdi mdi-help-circle-outline" style="color: var(--tx-primary); margin-right: 0.5rem;"></span>Como reporto um bug?</p><p class="tx-doc-faq-a">Abra uma issue no repositório do GitHub com passos para reproduzir o problema.</p></div>
+                            </div>
+                        </section>
+                    </article>
+                </div>
+            </div>
+
+        </main>
+        <footer class="tx-footer" id="tx-footer" style="padding: 0.75rem 1.25rem; border-top: 1px solid var(--tx-border); text-align: center; font-size: 0.78rem; color: var(--tx-text-muted); background: var(--tx-card-bg);"></footer>
+    </div>
+    <div class="tx-notifications" id="tx-notifications"></div>
+    <div class="tx-cookie-banner" id="tx-cookie-banner" style="display:none;"></div>
+</div>
+
+<script src="assets/js/state.js"></script>
+<script src="assets/js/menu.js"></script>
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/layout.js"></script>
+<script>
+    if (txAuth.requireAuth()) {
+        txLayout.init({ current: 'documentation.html', pageTitle: 'Documentação' });
+        (function () {
+            var SECTIONS = [
+                { id: 'introducao', label: 'Introdução', icon: 'mdi-information-outline' },
+                { id: 'instalacao', label: 'Instalação', icon: 'mdi-download' },
+                { id: 'configuracao', label: 'Configuração', icon: 'mdi-cog' },
+                { id: 'componentes', label: 'Componentes', icon: 'mdi-view-grid-outline' },
+                { id: 'api', label: 'API', icon: 'mdi-web' },
+                { id: 'faq', label: 'FAQ', icon: 'mdi-help-circle-outline' },
+            ];
+            var active = 'introducao', search = '';
+            function render() {
+                var filtered = SECTIONS.filter(function (s) { return !search.trim() || s.label.toLowerCase().indexOf(search.toLowerCase()) > -1; });
+                document.getElementById('doc-toc').innerHTML = filtered.map(function (s) {
+                    return '<li><a href="#' + s.id + '" class="' + (active === s.id ? 'is-active' : '') + '" data-sec="' + s.id + '"><span class="mdi ' + s.icon + '" style="margin-right: 0.5rem;"></span>' + s.label + '</a></li>';
+                }).join('');
+                document.getElementById('doc-noresults').style.display = filtered.length ? 'none' : 'block';
+                document.querySelectorAll('[data-sec]').forEach(function (el) {
+                    el.addEventListener('click', function () { active = el.getAttribute('data-sec'); render(); });
+                });
+            }
+            render();
+            document.getElementById('doc-search').addEventListener('input', function () { search = this.value; render(); });
+            document.querySelectorAll('.tx-doc-copy').forEach(function (btn) {
+                btn.addEventListener('click', function () { txStore.notifySuccess('Código copiado!'); });
+            });
+        })();
+    }
+</script>
+</body>
+</html>

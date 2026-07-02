@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <title>Tipografia — Admin Template</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" />
+    <link rel="stylesheet" href="assets/css/variables.css" />
+    <link rel="stylesheet" href="assets/css/dark.css" />
+    <link rel="stylesheet" href="assets/css/app.css" />
+</head>
+<body>
+<div class="tx-layout">
+    <aside class="tx-sidebar" id="tx-sidebar"></aside>
+    <div class="tx-backdrop" id="tx-backdrop"></div>
+    <div class="tx-main" id="tx-main">
+        <header class="tx-header" id="tx-header"></header>
+        <main class="tx-content">
+
+            <div class="tx-card">
+                <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-format-header-1"></span><span class="tx-card-title">Títulos</span></div>
+                <div class="tx-card-body">
+                    <div class="tx-typo-section">
+                        <h1 class="title is-1">Título Nível 1 <span class="tx-typo-badge">.title.is-1</span></h1>
+                        <h2 class="title is-2">Título Nível 2 <span class="tx-typo-badge">.title.is-2</span></h2>
+                        <h3 class="title is-3">Título Nível 3 <span class="tx-typo-badge">.title.is-3</span></h3>
+                        <h4 class="title is-4">Título Nível 4 <span class="tx-typo-badge">.title.is-4</span></h4>
+                        <h5 class="title is-5">Título Nível 5 <span class="tx-typo-badge">.title.is-5</span></h5>
+                        <h6 class="title is-6">Título Nível 6 <span class="tx-typo-badge">.title.is-6</span></h6>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tx-card" style="margin-top: 1rem;">
+                <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-format-header-2"></span><span class="tx-card-title">Subtítulos</span></div>
+                <div class="tx-card-body">
+                    <div class="tx-typo-section">
+                        <p class="subtitle is-3">Subtítulo tamanho 3 <span class="tx-typo-badge">.subtitle.is-3</span></p>
+                        <p class="subtitle is-4">Subtítulo tamanho 4 <span class="tx-typo-badge">.subtitle.is-4</span></p>
+                        <p class="subtitle is-5">Subtítulo tamanho 5 <span class="tx-typo-badge">.subtitle.is-5</span></p>
+                        <p class="subtitle is-6">Subtítulo tamanho 6 <span class="tx-typo-badge">.subtitle.is-6</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tx-card" style="margin-top: 1rem;">
+                <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-format-size"></span><span class="tx-card-title">Tamanhos de Texto</span></div>
+                <div class="tx-card-body">
+                    <div class="tx-typo-section">
+                        <p class="is-size-1">Tamanho 1 — 3rem <span class="tx-typo-badge">.is-size-1</span></p>
+                        <p class="is-size-2">Tamanho 2 — 2.5rem <span class="tx-typo-badge">.is-size-2</span></p>
+                        <p class="is-size-3">Tamanho 3 — 2rem <span class="tx-typo-badge">.is-size-3</span></p>
+                        <p class="is-size-4">Tamanho 4 — 1.5rem <span class="tx-typo-badge">.is-size-4</span></p>
+                        <p class="is-size-5">Tamanho 5 — 1.25rem <span class="tx-typo-badge">.is-size-5</span></p>
+                        <p class="is-size-6">Tamanho 6 — 1rem (padrão) <span class="tx-typo-badge">.is-size-6</span></p>
+                        <p class="is-size-7">Tamanho 7 — 0.75rem <span class="tx-typo-badge">.is-size-7</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="columns" style="margin-top: 1rem;">
+                <div class="column is-6">
+                    <div class="tx-card">
+                        <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-format-bold"></span><span class="tx-card-title">Pesos de Fonte</span></div>
+                        <div class="tx-card-body">
+                            <div class="tx-typo-weight-list">
+                                <p class="has-text-weight-light">Light — 300 <span class="tx-typo-badge">.has-text-weight-light</span></p>
+                                <p class="has-text-weight-normal">Normal — 400 <span class="tx-typo-badge">.has-text-weight-normal</span></p>
+                                <p class="has-text-weight-medium">Medium — 500 <span class="tx-typo-badge">.has-text-weight-medium</span></p>
+                                <p class="has-text-weight-semibold">Semibold — 600 <span class="tx-typo-badge">.has-text-weight-semibold</span></p>
+                                <p class="has-text-weight-bold">Bold — 700 <span class="tx-typo-badge">.has-text-weight-bold</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-6">
+                    <div class="tx-card">
+                        <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-format-letter-case"></span><span class="tx-card-title">Transformações</span></div>
+                        <div class="tx-card-body">
+                            <div class="tx-typo-weight-list">
+                                <p class="is-capitalized">capitalized text <span class="tx-typo-badge">.is-capitalized</span></p>
+                                <p class="is-lowercase">LOWERCASE TEXT <span class="tx-typo-badge">.is-lowercase</span></p>
+                                <p class="is-uppercase">uppercase text <span class="tx-typo-badge">.is-uppercase</span></p>
+                                <p class="is-italic">Texto em itálico <span class="tx-typo-badge">.is-italic</span></p>
+                                <p><del>Texto riscado</del> com <code>&lt;del&gt;</code></p>
+                                <p><u>Texto sublinhado</u> com <code>&lt;u&gt;</code></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tx-card" style="margin-top: 1rem;">
+                <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-palette"></span><span class="tx-card-title">Cores de Texto</span></div>
+                <div class="tx-card-body">
+                    <div class="tx-typo-colors-grid">
+                        <div class="tx-typo-color-item"><p class="has-text-primary" style="font-size:0.95rem; font-weight:600;">Primary</p><code class="tx-typo-badge">.has-text-primary</code></div>
+                        <div class="tx-typo-color-item"><p class="has-text-link" style="font-size:0.95rem; font-weight:600;">Link</p><code class="tx-typo-badge">.has-text-link</code></div>
+                        <div class="tx-typo-color-item"><p class="has-text-info" style="font-size:0.95rem; font-weight:600;">Info</p><code class="tx-typo-badge">.has-text-info</code></div>
+                        <div class="tx-typo-color-item"><p class="has-text-success" style="font-size:0.95rem; font-weight:600;">Success</p><code class="tx-typo-badge">.has-text-success</code></div>
+                        <div class="tx-typo-color-item"><p class="has-text-warning" style="font-size:0.95rem; font-weight:600;">Warning</p><code class="tx-typo-badge">.has-text-warning</code></div>
+                        <div class="tx-typo-color-item"><p class="has-text-danger" style="font-size:0.95rem; font-weight:600;">Danger</p><code class="tx-typo-badge">.has-text-danger</code></div>
+                        <div class="tx-typo-color-item"><p class="has-text-dark" style="font-size:0.95rem; font-weight:600;">Dark</p><code class="tx-typo-badge">.has-text-dark</code></div>
+                        <div class="tx-typo-color-item"><p class="has-text-grey" style="font-size:0.95rem; font-weight:600;">Grey</p><code class="tx-typo-badge">.has-text-grey</code></div>
+                        <div class="tx-typo-color-item"><p style="color: var(--tx-primary); font-size:0.95rem; font-weight:600;">Primary Token</p><code class="tx-typo-badge">--tx-primary</code></div>
+                        <div class="tx-typo-color-item"><p style="color: var(--tx-text-muted); font-size:0.95rem; font-weight:600;">Muted Token</p><code class="tx-typo-badge">--tx-text-muted</code></div>
+                        <div class="tx-typo-color-item"><p style="color: var(--tx-text-heading); font-size:0.95rem; font-weight:600;">Heading Token</p><code class="tx-typo-badge">--tx-text-heading</code></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tx-card" style="margin-top: 1rem;">
+                <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-format-align-left"></span><span class="tx-card-title">Alinhamento</span></div>
+                <div class="tx-card-body">
+                    <div class="tx-typo-align-list">
+                        <p class="has-text-left tx-typo-align-item">Alinhado à esquerda <span class="tx-typo-badge">.has-text-left</span></p>
+                        <p class="has-text-centered tx-typo-align-item">Centralizado <span class="tx-typo-badge">.has-text-centered</span></p>
+                        <p class="has-text-right tx-typo-align-item">Alinhado à direita <span class="tx-typo-badge">.has-text-right</span></p>
+                        <p class="has-text-justified tx-typo-align-item">Justificado: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <span class="tx-typo-badge">.has-text-justified</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tx-card" style="margin-top: 1rem;">
+                <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-code-tags"></span><span class="tx-card-title">Elementos Inline</span></div>
+                <div class="tx-card-body">
+                    <div class="content" style="font-size: 0.9rem;">
+                        <p>Use <strong>negrito</strong>, <em>itálico</em>, <small>pequeno</small>, e <code>código inline</code>.</p>
+                        <p>Abreviação: <abbr title="HyperText Markup Language">HTML</abbr>. Tecla: <kbd>Ctrl</kbd> + <kbd>C</kbd>. Variável: <var>x</var> = <var>y</var> + 2.</p>
+                        <blockquote>"A boa tipografia cria harmonia entre forma e função." <footer>— Ellen Lupton</footer></blockquote>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tx-card" style="margin-top: 1rem;">
+                <div class="tx-card-header"><span class="mdi tx-card-header-icon mdi-ruler"></span><span class="tx-card-title">Escala do Design System</span></div>
+                <div class="tx-card-body">
+                    <div class="tx-typo-scale-grid">
+                        <div class="tx-typo-scale-item"><p style="font-size:2rem; color:var(--tx-text-heading); font-weight:700; line-height:1.3;">Aa</p><div class="tx-typo-scale-meta"><strong>Display</strong><span>2rem · Títulos de página</span></div></div>
+                        <div class="tx-typo-scale-item"><p style="font-size:1.6rem; color:var(--tx-text-heading); font-weight:700; line-height:1.3;">Aa</p><div class="tx-typo-scale-meta"><strong>H1</strong><span>1.6rem · Seção principal</span></div></div>
+                        <div class="tx-typo-scale-item"><p style="font-size:1.3rem; color:var(--tx-text-heading); font-weight:700; line-height:1.3;">Aa</p><div class="tx-typo-scale-meta"><strong>H2</strong><span>1.3rem · Seção secundária</span></div></div>
+                        <div class="tx-typo-scale-item"><p style="font-size:1.1rem; color:var(--tx-text-heading); font-weight:700; line-height:1.3;">Aa</p><div class="tx-typo-scale-meta"><strong>H3</strong><span>1.1rem · Card title</span></div></div>
+                        <div class="tx-typo-scale-item"><p style="font-size:1rem; color:var(--tx-text-heading); line-height:1.3;">Aa</p><div class="tx-typo-scale-meta"><strong>Body</strong><span>1rem · Texto corrido</span></div></div>
+                        <div class="tx-typo-scale-item"><p style="font-size:0.875rem; color:var(--tx-text-heading); line-height:1.3;">Aa</p><div class="tx-typo-scale-meta"><strong>Small</strong><span>0.875rem · Labels</span></div></div>
+                        <div class="tx-typo-scale-item"><p style="font-size:0.75rem; color:var(--tx-text-heading); line-height:1.3;">Aa</p><div class="tx-typo-scale-meta"><strong>Caption</strong><span>0.75rem · Badges</span></div></div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+        <footer class="tx-footer" id="tx-footer" style="padding: 0.75rem 1.25rem; border-top: 1px solid var(--tx-border); text-align: center; font-size: 0.78rem; color: var(--tx-text-muted); background: var(--tx-card-bg);"></footer>
+    </div>
+    <div class="tx-notifications" id="tx-notifications"></div>
+    <div class="tx-cookie-banner" id="tx-cookie-banner" style="display:none;"></div>
+</div>
+
+<script src="assets/js/state.js"></script>
+<script src="assets/js/menu.js"></script>
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/layout.js"></script>
+<script>
+    if (txAuth.requireAuth()) txLayout.init({ current: 'typography.html', pageTitle: 'Tipografia' });
+</script>
+</body>
+</html>

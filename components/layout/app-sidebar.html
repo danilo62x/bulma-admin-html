@@ -1,0 +1,65 @@
+<!--
+    AppSidebar — menu lateral com 3 níveis
+    Este HTML é gerado dinamicamente pelo `assets/js/layout.js` (função renderSidebar).
+    A estrutura abaixo é apenas referência visual / fallback estático.
+
+    Para configurar os itens do menu, edite `assets/js/menu.js`.
+-->
+<aside class="tx-sidebar">
+    <!-- Brand -->
+    <div class="tx-sidebar-brand">
+        <div class="tx-sidebar-icon-box">A</div>
+        <span class="tx-sidebar-brand-text">Admin Template</span>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="tx-sidebar-nav">
+        <!-- Item simples (nível 1) -->
+        <a href="dashboard.html" class="tx-nav-item is-active">
+            <span class="tx-nav-icon mdi mdi-view-dashboard"></span>
+            <span class="tx-nav-label">Dashboard</span>
+        </a>
+
+        <!-- Item com submenu (nível 1 → 2) -->
+        <div class="tx-nav-item">
+            <span class="tx-nav-icon mdi mdi-puzzle"></span>
+            <span class="tx-nav-label">Interface</span>
+            <span class="tx-nav-chevron mdi mdi-chevron-down"></span>
+        </div>
+        <div class="tx-nav-submenu is-open">
+            <!-- Subitem nível 2 → 3 -->
+            <div class="tx-nav-subgroup">
+                <span class="mdi mdi-widgets-outline" style="font-size:1rem;"></span>
+                Componentes
+                <span class="tx-nav-subgroup-chevron mdi mdi-chevron-down"></span>
+            </div>
+            <div class="tx-nav-subsubmenu is-open">
+                <a href="components.html" class="tx-nav-subsubitem">
+                    <span class="mdi mdi-view-grid-outline" style="margin-right:0.4rem; font-size:0.9rem;"></span>
+                    Geral
+                </a>
+                <a href="typography.html" class="tx-nav-subsubitem">
+                    <span class="mdi mdi-format-font" style="margin-right:0.4rem; font-size:0.9rem;"></span>
+                    Tipografia
+                </a>
+            </div>
+
+            <!-- Subitem simples nível 2 -->
+            <a href="forms.html" class="tx-nav-subitem">
+                <span class="mdi mdi-form-select" style="margin-right:0.5rem; font-size:1rem;"></span>
+                Formulários
+            </a>
+        </div>
+    </nav>
+
+    <!-- Footer (logout) -->
+    <div class="tx-sidebar-footer">
+        <div class="tx-nav-item" data-action="logout">
+            <span class="tx-nav-icon mdi mdi-logout"></span>
+            <span class="tx-nav-label">Sair</span>
+        </div>
+    </div>
+
+    <!-- Resize handle (drag para ajustar largura) -->
+    <div class="tx-resize-handle"></div>
+</aside>
